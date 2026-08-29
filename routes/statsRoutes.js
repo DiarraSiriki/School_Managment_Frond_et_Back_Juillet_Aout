@@ -17,7 +17,7 @@ const router = express.Router();
 router.use(verifyToken);
 
 
-router.get('/', checkRole(['admin']), getStats);
+router.get('/', checkRole(['admin', 'teacher']), getStats);
 router.get('/average', checkRole(['admin', 'teacher']), getMoyenneGenerale);
 router.get('/rankings', checkRole(['admin', 'teacher']), getClassement);
 router.get('/best-student', checkRole(['admin', 'teacher']), getMeilleurEtudiant);

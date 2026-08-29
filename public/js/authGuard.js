@@ -1,10 +1,32 @@
 const AuthGuard = {
-
+  normalizeRole(role) {
+    if (!role) return '';
+    const normalized = String(role).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const aliases = {
+      admin: 'admin',
+      administrateur: 'admin',
+      teacher: 'teacher',
+      professeur: 'teacher',
+      prof: 'teacher',
+      enseignant: 'teacher',
+      student: 'student',
+      etudiant: 'student',
+      etudiante: 'student',
+      eleve: 'student'
+    };
+    return aliases[normalized] || normalized;
+  },
+ 
   getUser() {
     const userJson = localStorage.getItem('user');
-    return userJson ? JSON.parse(userJson) : null;
+    const user = userJson ? JSON.parse(userJson) : null;
+    if (!user) return null;
+    return {
+      ...user,
+      role: this.normalizeRole(user.role)
+    };
   },
-
+ 
   getRole() {
     const user = this.getUser();
     return user ? user.role : null;
@@ -79,7 +101,7 @@ const AuthGuard = {
     if (!role || !this.permissions[role]) return false;
     return this.permissions[role].includes(permission);
   },
-
+ 
   checkPageAccess() {
     const role = this.getRole();
 
@@ -90,7 +112,7 @@ const AuthGuard = {
 
     const allowedRolesAttr = document.body.getAttribute('data-roles');
     if (allowedRolesAttr) {
-      const allowedRoles = allowedRolesAttr.split(',').map(r => r.trim());
+      const allowedRoles = allowedRolesAttr.split(',').map(r => this.normalizeRole(r.trim()));
       if (!allowedRoles.includes(role)) {
         window.location.href = this.homePage[role] || '/';
         return false;

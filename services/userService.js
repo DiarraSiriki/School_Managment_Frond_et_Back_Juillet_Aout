@@ -5,13 +5,38 @@ import Classe from '../models/modelClass.js';
 import { resolveClasseId } from './classeService.js';
 import logger from '../utils/logger.js';
 
+const ROLE_ALIASES = {
+  admin: 'admin',
+  administrateur: 'admin',
+  teacher: 'teacher',
+  professeur: 'teacher',
+  prof: 'teacher',
+  enseignant: 'teacher',
+  student: 'student',
+  etudiant: 'student',
+  etudiante: 'student',
+  eleve: 'student',
+  eleve: 'student'
+};
+
+const normalizeRole = (role) => {
+  if (!role) return '';
+  const normalized = String(role)
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+  return ROLE_ALIASES[normalized] || normalized;
+};
+
 export {
   addUser,
   authenticate,
   removeUser,
   listUsers,
   getUserById,
-  updateUser
+  updateUser,
+  normalizeRole
 };
 
 /**
@@ -25,6 +50,7 @@ function splitFullName(fullName) {
 }
 
 async function addUser(name, role, email, mot_passe, extra = {}) {
+  const normalizedRole = normalizeRole(role);
   const emailToSave = (email || '').toLowerCase().trim();
   const passwordToSave = mot_passe;
 
@@ -33,12 +59,12 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
     throw new Error('Le mot de passe ne peut pas être vide.');
   }
 
-  if (!name || !role || !emailToSave) {
+  if (!name || !normalizedRole || !emailToSave) {
     throw new Error('name, role et email sont requis.');
   }
 
   const allowedRoles = ['admin', 'teacher', 'student'];
-  if (!allowedRoles.includes(role)) {
+  if (!allowedRoles.includes(normalizedRole)) {
     throw new Error(`Rôle invalide. Valeurs autorisées : ${allowedRoles.join(', ')}`);
   }
 
@@ -48,13 +74,13 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
     throw new Error('Cet email est déjà utilisé.');
   }
 
-  if (role === 'teacher') {
+  if (normalizedRole === 'teacher') {
     if (!extra.matiere || !String(extra.matiere).trim()) {
       throw new Error('La matière est obligatoire pour un professeur.');
     }
   }
 
-  if (role === 'student') {
+  if (normalizedRole === 'student') {
     if (!extra.matricule || !String(extra.matricule).trim()) {
       throw new Error('Le matricule est obligatoire pour un étudiant.');
     }
@@ -69,18 +95,18 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
     }
   }
 
-  const result = await User.create(name, role, emailToSave, passwordToSave);
+  const result = await User.create(name, normalizedRole, emailToSave, passwordToSave);
   const userId = result.id;
 
-  logger.info(`Utilisateur ajouté: ID=${userId}, Nom=${name}, Rôle=${role}`);
+  logger.info(`Utilisateur ajouté: ID=${userId}, Nom=${name}, Rôle=${normalizedRole}`);
 
   try {
-    if (role === 'teacher') {
+    if (normalizedRole === 'teacher') {
       const matiere = String(extra.matiere).trim();
       const classe_id = extra.classe_id || null;
       await Teacher.create(name, matiere, classe_id, userId);
       logger.info(`Fiche professeur créée pour user_id=${userId}, matière=${matiere}, classe_id=${classe_id}`);
-    } else if (role === 'student') {
+    } else if (normalizedRole === 'student') {
       const split = splitFullName(name);
       const prenom = (extra.prenom && String(extra.prenom).trim()) || split.prenom;
       const nom = (extra.nom && String(extra.nom).trim()) || split.nom || name;
@@ -99,7 +125,12 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
 }
 
 async function getUserById(id) {
-  return User.getById(id);
+  const user = await User.getById(id);
+  if (!user) return null;
+  return {
+    ...user,
+    role: normalizeRole(user.role)
+  };
 }
 
 async function authenticate(email, mot_passe) {
@@ -109,7 +140,12 @@ async function authenticate(email, mot_passe) {
   const user = await User.getByEmail(emailToVerify);
   if (!user || !user.mot_passe) return null;
 
-  return mot_passe === user.mot_passe ? user : null;
+  if (mot_passe !== user.mot_passe) return null;
+
+  return {
+    ...user,
+    role: normalizeRole(user.role)
+  };
 }
 
 async function removeUser(id) {
@@ -161,9 +197,10 @@ async function listUsers() {
   const users = await User.getAll();
 
   const usersWithDetails = await Promise.all(users.map(async user => {
+    const userRole = normalizeRole(user.role);
     let details = {};
 
-    if (user.role === 'student') {
+    if (userRole === 'student') {
       const student = await Student.getByUserId(user.id);
       if (student) {
         details = {
@@ -174,7 +211,7 @@ async function listUsers() {
           classe_id: student.classe_id
         };
       }
-    } else if (user.role === 'teacher') {
+    } else if (userRole === 'teacher') {
       const teacher = await Teacher.getByUserId(user.id);
       if (teacher) {
         details = {
@@ -187,15 +224,16 @@ async function listUsers() {
 
     return {
       ...user,
+      role: userRole,
       ...details
     };
   }));
 
   const linkedStudentUserIds = new Set(
-    users.filter(u => u.role === 'student').map(u => u.id)
+    usersWithDetails.filter(u => u.role === 'student').map(u => u.id)
   );
   const linkedTeacherUserIds = new Set(
-    users.filter(u => u.role === 'teacher').map(u => u.id)
+    usersWithDetails.filter(u => u.role === 'teacher').map(u => u.id)
   );
 
   const allStudents = await Student.getAll();
@@ -245,7 +283,7 @@ async function updateUser(id, name, role, email, mot_passe, extra = {}) {
 
   const emailToSave = email ? email.toLowerCase().trim() : currentUser.email;
   const nameToSave = name || currentUser.name;
-  const roleToSave = role || currentUser.role;
+  const roleToSave = normalizeRole(role || currentUser.role);
 
   const result = await User.update(id, nameToSave, roleToSave, emailToSave, passwordToSave);
 
