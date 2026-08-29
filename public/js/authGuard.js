@@ -71,7 +71,7 @@ const AuthGuard = {
   homePage: {
     admin: '/dashboard-admin',
     teacher: '/notes',
-    student: '/notes'
+    student: '/mon-profil'
   },
 
   can(permission) {

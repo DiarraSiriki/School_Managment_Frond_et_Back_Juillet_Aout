@@ -14,8 +14,8 @@ const router = express.Router();
 router.use(verifyToken);
 
 router.get('/search', checkRole(['admin', 'teacher']), chercherMatiere);
-router.get('/', checkRole(['admin', 'teacher']), getMatieres);
-router.get('/:id', checkRole(['admin', 'teacher']), getMatiereParId);
+router.get('/', checkRole(['admin', 'teacher', 'student']), getMatieres);
+router.get('/:id', checkRole(['admin', 'teacher', 'student']), getMatiereParId);
 
 router.post('/', checkRole(['admin']), ajouterMatiere);
 router.put('/:id', checkRole(['admin']), modifierMatiere);

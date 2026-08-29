@@ -1,16 +1,13 @@
 // Front + back sur le même service Render → même origine
-// En local tu peux surcharger avec window.__API_BASE__ si besoin
 const API_BASE_URL =
   (typeof window !== 'undefined' && window.__API_BASE__) ||
   '/api';
 
 const API = {
-  // 1. Récupère le token JWT depuis le localStorage
   getToken() {
     return localStorage.getItem('token');
   },
 
-  // 2. Client Fetch générique avec gestion d'en-tête et d'erreurs
   async request(endpoint, options = {}) {
     const token = this.getToken();
 
@@ -28,15 +25,17 @@ const API = {
     try {
       const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
 
-      if (response.status === 401 || response.status === 403) {
-        console.warn('[API] Session expirée ou accès non autorisé.');
+      // 401 = session expirée → déconnexion
+      // 403 = droit insuffisant → on laisse l'appelant gérer (ne pas déconnecter)
+      if (response.status === 401) {
+        console.warn('[API] Session expirée.');
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href = '/';
         return;
       }
 
-      const data = await response.json();
+      const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
         throw new Error(data.message || data.error || `Erreur serveur (${response.status})`);
@@ -49,7 +48,6 @@ const API = {
     }
   },
 
-  // 3. Méthodes raccourcis HTTP
   get(endpoint) {
     return this.request(endpoint, { method: 'GET' });
   },
@@ -72,7 +70,6 @@ const API = {
     return this.request(endpoint, { method: 'DELETE' });
   },
 
-  // AUTHENTIFICATION
   auth: {
     login: (credentials) => API.post('/auth/login', credentials),
     me: () => API.get('/auth/me'),
@@ -89,7 +86,6 @@ const API = {
     }
   },
 
-  // UTILISATEURS / ADMIN
   admin: {
     getUsers: () => API.get('/users'),
     createUser: (userData) => API.post('/users', userData),
@@ -97,7 +93,6 @@ const API = {
     deleteUser: (id) => API.delete(`/users/${id}`)
   },
 
-  // ÉTUDIANTS
   students: {
     getAll: () => API.get('/students'),
     getById: (id) => API.get(`/students/${id}`),
@@ -108,7 +103,6 @@ const API = {
     delete: (id) => API.delete(`/students/${id}`)
   },
 
-  // PROFESSEURS
   teachers: {
     getAll: () => API.get('/teachers'),
     getById: (id) => API.get(`/teachers/${id}`),
@@ -118,7 +112,6 @@ const API = {
     delete: (id) => API.delete(`/teachers/${id}`)
   },
 
-  // CLASSES
   classes: {
     getAll: () => API.get('/classes'),
     getById: (id) => API.get(`/classes/${id}`),
@@ -127,7 +120,6 @@ const API = {
     delete: (id) => API.delete(`/classes/${id}`)
   },
 
-  // MATIÈRES
   subjects: {
     getAll: () => API.get('/subjects'),
     getById: (id) => API.get(`/subjects/${id}`),
@@ -136,7 +128,6 @@ const API = {
     delete: (id) => API.delete(`/subjects/${id}`)
   },
 
-  // NOTES
   grades: {
     getAll: () => API.get('/grades'),
     getByStudent: (studentId) => API.get(`/grades/student/${studentId}`),
@@ -145,7 +136,6 @@ const API = {
     delete: (id) => API.delete(`/grades/${id}`)
   },
 
-  // ABSENCES
   absences: {
     getAll: () => API.get('/absences'),
     getByStudent: (studentId) => API.get(`/absences/student/${studentId}`),

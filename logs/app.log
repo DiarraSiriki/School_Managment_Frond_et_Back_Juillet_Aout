@@ -1463,3 +1463,43 @@
 [2026-08-29 22:38:36] [INFO] Historique des absences consulté (1 absences)
 [2026-08-29 22:38:54] [INFO] Absence enregistrée: ID=2, Étudiant=5, Date=2026-08-29, Statut=non justifiée, Matière=null
 [2026-08-29 22:38:54] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:20] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:20] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:24] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 22:52:24] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:25] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 22:52:26] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:31] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:52:32] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:52:32] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 15.00)
+[2026-08-29 22:52:32] [INFO] Toutes les absences globales : Total=2, Justifiées=1, Non justifiées=1
+[2026-08-29 22:52:32] [INFO] Absences de l'étudiant ID=5 : Total=2, Justifiées=1, Non justifiées=1
+[2026-08-29 22:52:32] [INFO] Absences de l'étudiant ID=6 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-29 22:52:32] [INFO] Statistiques globales : Étudiants=2, Professeurs=5, Matières=3
+[2026-08-29 22:52:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:32] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:35] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:52:35] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:52:35] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 15.00)
+[2026-08-29 22:52:35] [INFO] Toutes les absences globales : Total=2, Justifiées=1, Non justifiées=1
+[2026-08-29 22:52:35] [INFO] Absences de l'étudiant ID=5 : Total=2, Justifiées=1, Non justifiées=1
+[2026-08-29 22:52:35] [INFO] Absences de l'étudiant ID=6 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-29 22:52:35] [INFO] Statistiques globales : Étudiants=2, Professeurs=5, Matières=3
+[2026-08-29 22:52:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:39] [INFO] Historique des absences consulté (2 absences)
+[2026-08-29 22:52:41] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:43] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:45] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:52:46] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 22:53:07] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:53:07] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 22:53:24] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 22:53:25] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-29 22:54:49] [INFO] Tentative de connexion: coul@gmail.com
+[2026-08-29 22:54:50] [INFO] Connexion réussie: coul@gmail.com (role: teacher)
+[2026-08-29 22:54:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:55:21] [INFO] Tentative de connexion: coul@gmail.com
+[2026-08-29 22:55:21] [INFO] Connexion réussie: coul@gmail.com (role: teacher)
+[2026-08-29 22:55:22] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:55:59] [INFO] Tentative de connexion: krasco@gmail.com
+[2026-08-29 22:56:00] [INFO] Connexion réussie: krasco@gmail.com (role: student)

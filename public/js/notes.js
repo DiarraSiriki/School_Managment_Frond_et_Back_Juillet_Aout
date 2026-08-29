@@ -1,16 +1,15 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // --- 1. ÉLÉMENTS DU DOM ---
   const topDateText = document.getElementById('topDateText');
   const gradeSubtitle = document.getElementById('gradeSubtitle');
   const tableBody = document.getElementById('gradesTableBody');
   const btnNewGrade = document.getElementById('btnNewGrade');
-  
+
   const modal = document.getElementById('gradeModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalSubtitle = document.getElementById('modalSubtitle');
   const formError = document.getElementById('formError');
   const gradeForm = document.getElementById('gradeForm');
-  
+
   const inputId = document.getElementById('gradeId');
   const selectStudent = document.getElementById('gradeStudent');
   const selectSubject = document.getElementById('gradeSubject');
@@ -23,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   let allSubjects = [];
   let allClasses = [];
 
-  // --- 2. UTILS & DATES ---
   function showAlert(message, type = 'success') {
     const box = document.getElementById('alertBox');
     if (!box) return;
@@ -50,9 +48,35 @@ document.addEventListener('DOMContentLoaded', async () => {
     topDateText.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
   }
 
-  // --- 3. CHARGEMENT DES DONNÉES ---
   async function loadData() {
     try {
+      const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+      const role = currentUser?.role;
+
+      // Étudiant : uniquement SES notes
+      if (role === 'student') {
+        if (btnNewGrade) btnNewGrade.style.display = 'none';
+        const profile = await API.students.getMyProfile();
+        const me = profile?.data || profile;
+        const studentId = me?.id;
+        if (!studentId) {
+          throw new Error('Profil étudiant introuvable.');
+        }
+        const gradesRes = await API.grades.getByStudent(studentId);
+        allGrades = Array.isArray(gradesRes?.data) ? gradesRes.data : (Array.isArray(gradesRes) ? gradesRes : []);
+        allStudents = [me];
+        try {
+          const subjectsRes = await API.subjects.getAll();
+          allSubjects = Array.isArray(subjectsRes?.data) ? subjectsRes.data : (Array.isArray(subjectsRes) ? subjectsRes : []);
+        } catch (_) {
+          allSubjects = [];
+        }
+        allClasses = [];
+        populateSelects();
+        renderTable();
+        return;
+      }
+
       const [gradesRes, studentsRes, subjectsRes, classesRes] = await Promise.all([
         API.grades.getAll(),
         API.students.getAll(),
@@ -90,7 +114,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // --- 4. AFFICHAGE DU TABLEAU ---
   function renderTable() {
     if (gradeSubtitle) {
       gradeSubtitle.textContent = `${allGrades.length} note${allGrades.length > 1 ? 's' : ''} enregistrée${allGrades.length > 1 ? 's' : ''}`;
@@ -104,7 +127,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     tableBody.innerHTML = allGrades.map(g => {
       const student = allStudents.find(s => String(s.id) === String(g.student_id));
       const studentName = student ? `${student.nom} ${student.prenom || ''}` : (g.student_nom || 'Étudiant inconnu');
-      
+
       const subject = allSubjects.find(s => String(s.id) === String(g.subject_id));
       const subjectName = subject ? subject.nom : (g.subject_nom || '-');
 
@@ -133,7 +156,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }).join('');
   }
 
-  // --- 5. GESTION DE LA MODALE ---
   function openModal(grade = null) {
     gradeForm.reset();
     formError.style.display = 'none';
@@ -158,7 +180,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     modal.classList.remove('show');
   }
 
-  // --- 6. ÉVÉNEMENTS & SOUMISSION ---
   if (btnNewGrade) btnNewGrade.addEventListener('click', () => openModal());
   if (btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
 
@@ -223,7 +244,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
-  // --- 7. INITIALISATION ---
   renderDate();
   await loadData();
 });
