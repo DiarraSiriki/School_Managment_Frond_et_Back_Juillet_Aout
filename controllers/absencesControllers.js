@@ -1,5 +1,6 @@
 import {
     recordAbsence,
+    updateAbsence,
     updateAbsenceStatus,
     markAsJustified,
     markAsUnjustified,
@@ -10,16 +11,15 @@ import {
 
 import { getStudentByUserId } from '../services/studentService.js';
 
-// Enregistre une nouvelle absence
 const ajouterAbsence = async (req, res) => {
-    const { student_id, date, status } = req.body;
+    const { student_id, date, status, subject_id } = req.body;
 
     if (!student_id || !date) {
         return res.status(400).json({ error: "L'ID de l'étudiant (student_id) et la date sont requis." });
     }
 
     try {
-        const absenceId = await recordAbsence(student_id, date, status);
+        const absenceId = await recordAbsence(student_id, date, status, subject_id);
         return res.status(201).json({
             success: true,
             message: "Absence enregistrée avec succès !",
@@ -27,11 +27,40 @@ const ajouterAbsence = async (req, res) => {
         });
     } catch (error) {
         console.error("[ERREUR AJOUT ABSENCE]", error);
-        return res.status(500).json({ error: "Erreur lors de l'enregistrement de l'absence." });
+        return res.status(500).json({ error: "Erreur lors de l'enregistrement de l'absence.", details: error.message });
     }
 };
 
-// Récupère l'historique complet de toutes les absences
+const modifierAbsence = async (req, res) => {
+    const id = req.params.id;
+    const { student_id, date, status, subject_id } = req.body;
+
+    if (student_id === undefined && date === undefined && status === undefined && subject_id === undefined) {
+        return res.status(400).json({
+            error: "Fournissez au moins un champ à modifier (student_id, date, status, subject_id)."
+        });
+    }
+
+    try {
+        if (status !== undefined && student_id === undefined && date === undefined && subject_id === undefined) {
+            const ok = await updateAbsenceStatus(id, status);
+            if (!ok) {
+                return res.status(404).json({ error: "Absence introuvable ou aucun changement effectué." });
+            }
+            return res.json({ success: true, message: "Statut de l'absence mis à jour avec succès." });
+        }
+
+        const ok = await updateAbsence(id, { student_id, date, status, subject_id });
+        if (!ok) {
+            return res.status(404).json({ error: "Absence introuvable ou aucune modification effectuée." });
+        }
+        return res.json({ success: true, message: "Absence mise à jour avec succès." });
+    } catch (error) {
+        console.error("[ERREUR MODIFICATION ABSENCE]", error);
+        return res.status(500).json({ error: "Erreur lors de la modification de l'absence.", details: error.message });
+    }
+};
+
 const getHistoriqueAbsences = async (req, res) => {
     try {
         const absences = await getHistory();
@@ -42,7 +71,6 @@ const getHistoriqueAbsences = async (req, res) => {
     }
 };
 
-// Récupère l'historique des absences d'un étudiant spécifique
 const getHistoriqueEtudiant = async (req, res) => {
     const { student_id } = req.params;
     if (req.user.role === 'student') {
@@ -60,7 +88,6 @@ const getHistoriqueEtudiant = async (req, res) => {
     }
 };
 
-// Met à jour le statut d'une absence (justifiée ou non)
 const modifierStatutAbsence = async (req, res) => {
     const id = req.params.id;
     const { status } = req.body;
@@ -71,11 +98,9 @@ const modifierStatutAbsence = async (req, res) => {
 
     try {
         const estModifie = await updateAbsenceStatus(id, status);
-
         if (!estModifie) {
             return res.status(404).json({ error: "Absence introuvable ou aucun changement effectué." });
         }
-
         return res.json({ success: true, message: "Statut de l'absence mis à jour avec succès." });
     } catch (error) {
         console.error("[ERREUR MODIFICATION STATUT ABSENCE]", error);
@@ -83,17 +108,13 @@ const modifierStatutAbsence = async (req, res) => {
     }
 };
 
-// Marque une absence comme justifiée
 const justifierAbsence = async (req, res) => {
     const id = req.params.id;
-
     try {
         const estModifie = await markAsJustified(id);
-
         if (!estModifie) {
             return res.status(404).json({ error: "Absence introuvable." });
         }
-
         return res.json({ success: true, message: "L'absence a été marquée comme justifiée." });
     } catch (error) {
         console.error("[ERREUR JUSTIFIER ABSENCE]", error);
@@ -101,17 +122,13 @@ const justifierAbsence = async (req, res) => {
     }
 };
 
-// Marque une absence comme non justifiée
 const injustifierAbsence = async (req, res) => {
     const id = req.params.id;
-
     try {
         const estModifie = await markAsUnjustified(id);
-
         if (!estModifie) {
             return res.status(404).json({ error: "Absence introuvable." });
         }
-
         return res.json({ success: true, message: "L'absence a été marquée comme non justifiée." });
     } catch (error) {
         console.error("[ERREUR INJUSTIFIER ABSENCE]", error);
@@ -119,17 +136,13 @@ const injustifierAbsence = async (req, res) => {
     }
 };
 
-// Supprime une absence par son ID
 const supprimerAbsence = async (req, res) => {
     const id = req.params.id;
-
     try {
         const estSupprime = await removeAbsence(id);
-
         if (!estSupprime) {
             return res.status(404).json({ error: "Absence introuvable ou déjà supprimée." });
         }
-
         return res.json({ success: true, message: "Absence supprimée avec succès." });
     } catch (error) {
         console.error("[ERREUR SUPPRESSION ABSENCE]", error);
@@ -139,6 +152,7 @@ const supprimerAbsence = async (req, res) => {
 
 export {
     ajouterAbsence,
+    modifierAbsence,
     getHistoriqueAbsences,
     getHistoriqueEtudiant,
     modifierStatutAbsence,

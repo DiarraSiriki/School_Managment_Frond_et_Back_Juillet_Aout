@@ -1,5 +1,3 @@
-// Gestion de la page Absences
-
 const ROLE_LABELS = {
   admin: 'Administrateur',
   teacher: 'Professeur',
@@ -8,11 +6,11 @@ const ROLE_LABELS = {
 
 let allAbsences = [];
 let allStudents = [];
-let allClasses = [];
 let allSubjects = [];
+let allClasses = [];
 let searchTerm = '';
+let editingAbsenceId = null;
 
-// --- Utils ---
 function updateCurrentUserDisplay() {
   const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
   if (currentUser) {
@@ -34,102 +32,71 @@ function showAlert(message, type = 'success') {
   alertDiv.className = `alert alert-${type}`;
   alertDiv.textContent = message;
   alertDiv.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    border-radius: 8px;
+    position: fixed; top: 20px; right: 20px; padding: 12px 20px;
+    border-radius: 8px; z-index: 3000; font-weight: 600;
     background: ${type === 'success' ? '#dcfce7' : '#fef2f2'};
     color: ${type === 'success' ? '#15803d' : '#ef4444'};
-    z-index: 10000;
-    font-weight: 600;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   `;
   document.body.appendChild(alertDiv);
   setTimeout(() => alertDiv.remove(), 3500);
 }
 
-function renderTodayDate() {
-  const dateEl = document.querySelector('.top-date');
-  if (!dateEl) return;
-  const formatted = new Date().toLocaleDateString('fr-FR', {
-    weekday: 'short', day: 'numeric', month: 'long', year: 'numeric'
-  });
-  dateEl.innerHTML = `${formatted.charAt(0).toUpperCase() + formatted.slice(1)} <span class="status-dot"></span>`;
+async function loadStudents() {
+  try {
+    const res = await API.students.getAll();
+    allStudents = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+  } catch (e) {
+    console.warn('[loadStudents]', e);
+    allStudents = [];
+  }
 }
 
-// --- Chargement des données ---
+async function loadSubjects() {
+  try {
+    const res = await API.subjects.getAll();
+    allSubjects = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+  } catch (e) {
+    console.warn('[loadSubjects]', e);
+    allSubjects = [];
+  }
+}
+
+async function loadClasses() {
+  try {
+    const res = await API.classes.getAll();
+    allClasses = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+  } catch (e) {
+    console.warn('[loadClasses]', e);
+    allClasses = [];
+  }
+}
+
+function getStudentClassName(studentId) {
+  const s = allStudents.find((x) => String(x.id) === String(studentId));
+  if (!s) return '-';
+  const c = allClasses.find((x) => String(x.id) === String(s.classe_id));
+  return c ? c.nom : (s.classe || '-');
+}
+
 async function loadAbsences() {
   try {
     const absences = await API.absences.getAll();
-    allAbsences = Array.isArray(absences) ? absences : (Array.isArray(absences?.data) ? absences.data : []);
+    allAbsences = Array.isArray(absences) ? absences : [];
     renderStats();
     renderTable();
   } catch (error) {
-    console.error('Erreur lors du chargement des absences:', error);
+    console.error('Erreur chargement absences:', error);
     const tbody = document.querySelector('.table-container tbody');
     if (tbody) {
-      tbody.innerHTML = `<tr><td colspan="6">Erreur de chargement: ${escapeHtml(error.message)}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="5">Erreur: ${escapeHtml(error.message)}</td></tr>`;
     }
   }
 }
 
-async function loadStudents() {
-  try {
-    const res = await API.students.getAll();
-    allStudents = Array.isArray(res) ? res : (Array.isArray(res?.data) ? res.data : []);
-    populateStudentSelect();
-  } catch (err) {
-    console.error('Erreur chargement étudiants:', err);
-  }
-}
-
-async function loadClassesAndSubjects() {
-  try {
-    const [classesRes, subjectsRes] = await Promise.all([
-      API.classes.getAll(),
-      API.subjects.getAll()
-    ]);
-
-    allClasses = Array.isArray(classesRes) ? classesRes : (classesRes?.data || []);
-    allSubjects = Array.isArray(subjectsRes) ? subjectsRes : (subjectsRes?.data || []);
-
-    populateClasseSelect();
-    populateMatiereSelect();
-  } catch (err) {
-    console.error('Erreur chargement classes/matières:', err);
-  }
-}
-
-function populateStudentSelect() {
-  const select = document.getElementById('absenceStudent');
-  if (!select) return;
-  select.innerHTML = '<option value="">Sélectionner un étudiant</option>' +
-    allStudents.map(s => {
-      const name = s.nom ? `${s.nom} ${s.prenom || ''}`.trim() : (s.name || `Étudiant #${s.id}`);
-      return `<option value="${s.id}">${escapeHtml(name)}</option>`;
-    }).join('');
-}
-
-function populateClasseSelect() {
-  const select = document.getElementById('absenceClasse');
-  if (!select) return;
-  select.innerHTML = '<option value="">Sélectionner une classe</option>' +
-    allClasses.map(c => `<option value="${c.id}">${escapeHtml(c.nom)}</option>`).join('');
-}
-
-function populateMatiereSelect() {
-  const select = document.getElementById('absenceMatiere');
-  if (!select) return;
-  select.innerHTML = '<option value="">Sélectionner une matière</option>' +
-    allSubjects.map(s => `<option value="${s.id}">${escapeHtml(s.nom)}</option>`).join('');
-}
-
-// --- Stats & tableau ---
 function renderStats() {
   const total = allAbsences.length;
-  const justified = allAbsences.filter(a => a.status === 'justifiée').length;
-  const notJustified = allAbsences.filter(a => a.status === 'non justifiée').length;
+  const justified = allAbsences.filter((a) => a.status === 'justifiée').length;
+  const notJustified = allAbsences.filter((a) => a.status === 'non justifiée').length;
 
   const neutralCard = document.querySelector('.card-icon.neutral + .card-content .card-value');
   const warningCard = document.querySelector('.card-icon.warning + .card-content .card-value');
@@ -142,59 +109,35 @@ function renderStats() {
   if (subtitle) subtitle.textContent = `${total} absences enregistrées · ${notJustified} non justifiées`;
 }
 
-function getClasseName(absence) {
-  if (absence.classe) return absence.classe;
-  const classeId = absence.classe_id;
-  if (classeId) {
-    const c = allClasses.find(cl => String(cl.id) === String(classeId));
-    if (c) return c.nom;
-  }
-  const student = allStudents.find(s => String(s.id) === String(absence.student_id));
-  if (student?.classe_id) {
-    const c = allClasses.find(cl => String(cl.id) === String(student.classe_id));
-    if (c) return c.nom;
-  }
-  return '-';
-}
-
-function getMatiereName(absence) {
-  if (absence.matiere) return absence.matiere;
-  if (absence.subject_id) {
-    const s = allSubjects.find(sub => String(sub.id) === String(absence.subject_id));
-    if (s) return s.nom;
-  }
-  return '-';
-}
-
 function renderTable() {
   const tbody = document.querySelector('.table-container tbody');
   if (!tbody) return;
 
-  const filteredAbsences = allAbsences.filter(a => {
+  const filtered = allAbsences.filter((a) => {
     if (!searchTerm) return true;
-    const haystack = `${a.student_name || ''} ${getClasseName(a)} ${getMatiereName(a)}`.toLowerCase();
-    return haystack.includes(searchTerm);
+    const hay = `${a.student_name || ''} ${a.classe || ''} ${a.matiere || ''}`.toLowerCase();
+    return hay.includes(searchTerm);
   });
 
-  if (filteredAbsences.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Aucune absence trouvée.</td></tr>`;
+  if (filtered.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5">Aucune absence trouvée.</td></tr>`;
     return;
   }
 
-  tbody.innerHTML = filteredAbsences.map(a => {
-    const statusClass = a.status === 'justifiée' ? 'badge-success' : 'badge-warning';
-    const statusLabel = a.status || 'non justifiée';
-
-    return `
+  tbody.innerHTML = filtered
+    .map((a) => {
+      const statusLabel = a.status || '-';
+      const statusClass = a.status === 'justifiée' ? 'badge-success' : 'badge-warning';
+      return `
       <tr>
         <td><strong>${escapeHtml(a.student_name || 'Inconnu')}</strong></td>
-        <td>${escapeHtml(getClasseName(a))}</td>
-        <td>${escapeHtml(getMatiereName(a))}</td>
+        <td>${escapeHtml(a.classe || '-')}</td>
+        <td>${escapeHtml(a.matiere || '-')}</td>
         <td>${escapeHtml(a.date || '-')}</td>
-        <td><span class="badge ${statusClass}">${escapeHtml(statusLabel)}</span></td>
         <td>
           <div class="action-buttons">
-            <button class="btn-edit" data-id="${a.id}" data-status="${a.status || ''}" title="Changer le statut">
+            <span class="badge ${statusClass}" style="margin-right:8px;font-size:12px;">${escapeHtml(statusLabel)}</span>
+            <button class="btn-edit" data-id="${a.id}" title="Modifier">
               <i class="fa-solid fa-pen"></i>
             </button>
             <button class="btn-delete" data-id="${a.id}" title="Supprimer">
@@ -202,110 +145,172 @@ function renderTable() {
             </button>
           </div>
         </td>
-      </tr>
-    `;
-  }).join('');
+      </tr>`;
+    })
+    .join('');
 }
 
-// --- Modale ---
-function openModal() {
-  const modal = document.getElementById('absenceModal');
-  const form = document.getElementById('absenceForm');
-  const formError = document.getElementById('formError');
-  const dateInput = document.getElementById('absenceDate');
-
-  if (form) form.reset();
-  if (formError) formError.style.display = 'none';
-
-  if (dateInput) {
-    dateInput.value = new Date().toISOString().slice(0, 10);
-  }
-
-  if (modal) modal.classList.add('show');
+function renderTodayDate() {
+  const dateEl = document.querySelector('.top-date');
+  if (!dateEl) return;
+  const formatted = new Date().toLocaleDateString('fr-FR', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+  dateEl.innerHTML = `${formatted.charAt(0).toUpperCase() + formatted.slice(1)} <span class="status-dot"></span>`;
 }
 
-function closeModal() {
-  const modal = document.getElementById('absenceModal');
-  if (modal) modal.classList.remove('show');
+function ensureModal() {
+  if (document.getElementById('absenceModal')) return;
+
+  const modal = document.createElement('div');
+  modal.id = 'absenceModal';
+  modal.style.cssText =
+    'display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;align-items:center;justify-content:center;';
+  modal.innerHTML = `
+    <div style="background:#fff;border-radius:12px;padding:24px;width:min(460px,94vw);box-shadow:0 12px 40px rgba(0,0,0,.18);max-height:90vh;overflow:auto;">
+      <h2 id="absenceModalTitle" style="margin:0 0 8px;font-size:1.25rem;">Signaler une absence</h2>
+      <p id="absenceModalSubtitle" style="margin:0 0 16px;color:#64748b;font-size:.9rem;">Renseignez les informations de l'absence.</p>
+      <div id="absenceFormError" style="display:none;color:#dc2626;margin-bottom:12px;font-size:.9rem;"></div>
+
+      <label style="display:block;margin-bottom:6px;font-weight:600;">Étudiant *</label>
+      <select id="absenceStudent" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;"></select>
+
+      <label style="display:block;margin-bottom:6px;font-weight:600;">Classe (auto)</label>
+      <input type="text" id="absenceClasse" readonly placeholder="—"
+        style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;background:#f8fafc;color:#64748b;" />
+
+      <label style="display:block;margin-bottom:6px;font-weight:600;">Matière</label>
+      <select id="absenceSubject" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;"></select>
+
+      <label style="display:block;margin-bottom:6px;font-weight:600;">Date *</label>
+      <input type="date" id="absenceDate" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;" />
+
+      <label style="display:block;margin-bottom:6px;font-weight:600;">Statut</label>
+      <select id="absenceStatus" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:16px;">
+        <option value="non justifiée">Non justifiée</option>
+        <option value="justifiée">Justifiée</option>
+      </select>
+
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button type="button" id="btnCancelAbsence" style="padding:10px 16px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;">Annuler</button>
+        <button type="button" id="btnSubmitAbsence" style="padding:10px 16px;border-radius:8px;border:none;background:#2563eb;color:#fff;cursor:pointer;font-weight:600;">Enregistrer</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeAbsenceModal();
+  });
+  document.getElementById('btnCancelAbsence').addEventListener('click', closeAbsenceModal);
+  document.getElementById('btnSubmitAbsence').addEventListener('click', submitAbsence);
+  document.getElementById('absenceStudent').addEventListener('change', () => {
+    const sid = document.getElementById('absenceStudent').value;
+    document.getElementById('absenceClasse').value = sid ? getStudentClassName(sid) : '';
+  });
 }
 
-function setupModal() {
-  const btnNew = document.getElementById('btnNewAbsence');
-  const btnCancel = document.getElementById('btnCancelModal');
-  const modal = document.getElementById('absenceModal');
-  const form = document.getElementById('absenceForm');
-  const btnSubmit = document.getElementById('btnSubmitModal');
-  const formError = document.getElementById('formError');
+function fillSelects(selectedStudentId, selectedSubjectId) {
   const studentSelect = document.getElementById('absenceStudent');
+  const subjectSelect = document.getElementById('absenceSubject');
 
-  if (btnNew) btnNew.addEventListener('click', openModal);
-  if (btnCancel) btnCancel.addEventListener('click', closeModal);
+  studentSelect.innerHTML =
+    '<option value="">Sélectionner un étudiant</option>' +
+    allStudents
+      .map((s) => {
+        const name = `${s.prenom || ''} ${s.nom || ''}`.trim() || s.name || `Étudiant #${s.id}`;
+        return `<option value="${s.id}">${escapeHtml(name)}</option>`;
+      })
+      .join('');
 
-  if (modal) {
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeModal();
-    });
+  subjectSelect.innerHTML =
+    '<option value="">Aucune matière</option>' +
+    allSubjects
+      .map((s) => `<option value="${s.id}">${escapeHtml(s.nom)}</option>`)
+      .join('');
+
+  if (selectedStudentId) studentSelect.value = String(selectedStudentId);
+  if (selectedSubjectId) subjectSelect.value = String(selectedSubjectId);
+  document.getElementById('absenceClasse').value = selectedStudentId
+    ? getStudentClassName(selectedStudentId)
+    : '';
+}
+
+function openAbsenceModal(absence = null) {
+  ensureModal();
+  editingAbsenceId = absence ? absence.id : null;
+  document.getElementById('absenceFormError').style.display = 'none';
+
+  if (absence) {
+    document.getElementById('absenceModalTitle').textContent = "Modifier l'absence";
+    document.getElementById('absenceModalSubtitle').textContent =
+      'Modifiez l’étudiant, la date, la matière ou le statut.';
+    fillSelects(absence.student_id, absence.subject_id);
+    document.getElementById('absenceDate').value = (absence.date || '').slice(0, 10);
+    document.getElementById('absenceStatus').value =
+      absence.status === 'justifiée' ? 'justifiée' : 'non justifiée';
+  } else {
+    document.getElementById('absenceModalTitle').textContent = 'Signaler une absence';
+    document.getElementById('absenceModalSubtitle').textContent =
+      "Renseignez les informations de l'absence.";
+    fillSelects(null, null);
+    document.getElementById('absenceDate').value = new Date().toISOString().slice(0, 10);
+    document.getElementById('absenceStatus').value = 'non justifiée';
   }
 
-  // Préremplir la classe selon l'étudiant choisi
-  if (studentSelect) {
-    studentSelect.addEventListener('change', (e) => {
-      const student = allStudents.find(s => String(s.id) === String(e.target.value));
-      const classeSelect = document.getElementById('absenceClasse');
-      if (!classeSelect) return;
-      classeSelect.value = student?.classe_id ? String(student.classe_id) : '';
-    });
+  document.getElementById('absenceModal').style.display = 'flex';
+}
+
+function closeAbsenceModal() {
+  const modal = document.getElementById('absenceModal');
+  if (modal) modal.style.display = 'none';
+  editingAbsenceId = null;
+}
+
+async function submitAbsence() {
+  const errEl = document.getElementById('absenceFormError');
+  errEl.style.display = 'none';
+
+  const student_id = Number(document.getElementById('absenceStudent').value);
+  const date = document.getElementById('absenceDate').value;
+  const status = document.getElementById('absenceStatus').value;
+  const subjectRaw = document.getElementById('absenceSubject').value;
+  const subject_id = subjectRaw ? Number(subjectRaw) : null;
+
+  if (!student_id || !date) {
+    errEl.textContent = "L'étudiant et la date sont obligatoires.";
+    errEl.style.display = 'block';
+    return;
   }
 
-  if (form) {
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (formError) formError.style.display = 'none';
+  const btn = document.getElementById('btnSubmitAbsence');
+  btn.disabled = true;
+  btn.textContent = 'Enregistrement...';
 
-      const student_id = Number(document.getElementById('absenceStudent').value);
-      const date = document.getElementById('absenceDate').value;
-      const status = document.getElementById('absenceStatus').value;
+  const payload = { student_id, date, status, subject_id };
 
-      // Classe et matière sont en UI seulement (non stockés par l'API actuelle)
-      // const classe_id = document.getElementById('absenceClasse').value;
-      // const subject_id = document.getElementById('absenceMatiere').value;
-
-      if (!student_id || !date) {
-        if (formError) {
-          formError.textContent = "L'étudiant et la date sont obligatoires.";
-          formError.style.display = 'block';
-        }
-        return;
-      }
-
-      if (btnSubmit) {
-        btnSubmit.disabled = true;
-        btnSubmit.textContent = 'Enregistrement...';
-      }
-
-      try {
-        await API.absences.create({ student_id, date, status });
-        showAlert('Absence enregistrée avec succès');
-        closeModal();
-        await loadAbsences();
-      } catch (err) {
-        if (formError) {
-          formError.textContent = err.message || "Erreur lors de l'enregistrement.";
-          formError.style.display = 'block';
-        } else {
-          showAlert(err.message || 'Erreur', 'error');
-        }
-      } finally {
-        if (btnSubmit) {
-          btnSubmit.disabled = false;
-          btnSubmit.textContent = 'Enregistrer';
-        }
-      }
-    });
+  try {
+    if (editingAbsenceId) {
+      await API.absences.update(editingAbsenceId, payload);
+      showAlert('Absence modifiée avec succès');
+    } else {
+      await API.absences.create(payload);
+      showAlert('Absence enregistrée avec succès');
+    }
+    closeAbsenceModal();
+    await loadAbsences();
+  } catch (error) {
+    errEl.textContent = error.message || "Erreur lors de l'enregistrement.";
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Enregistrer';
   }
 }
 
-// --- Actions tableau ---
 function setupTableActions() {
   const tbody = document.querySelector('.table-container tbody');
   if (!tbody) return;
@@ -316,22 +321,14 @@ function setupTableActions() {
 
     if (editBtn) {
       const id = editBtn.dataset.id;
-      const currentStatus = editBtn.dataset.status;
-      const newStatus = currentStatus === 'justifiée' ? 'non justifiée' : 'justifiée';
-
-      try {
-        await API.absences.update(id, { status: newStatus });
-        showAlert(`Absence ${newStatus === 'justifiée' ? 'justifiée' : 'marquée non justifiée'} avec succès`);
-        await loadAbsences();
-      } catch (error) {
-        showAlert(`Erreur: ${error.message}`, 'error');
-      }
+      const absence = allAbsences.find((a) => String(a.id) === String(id));
+      if (absence) openAbsenceModal(absence);
+      return;
     }
 
     if (deleteBtn) {
       const id = deleteBtn.dataset.id;
       if (!confirm('Supprimer cette absence ?')) return;
-
       try {
         await API.absences.delete(id);
         showAlert('Absence supprimée avec succès');
@@ -343,6 +340,11 @@ function setupTableActions() {
   });
 }
 
+function setupNewAbsenceButton() {
+  const btn = document.querySelector('.page-header .btn-primary');
+  if (btn) btn.addEventListener('click', () => openAbsenceModal());
+}
+
 function setupLogout() {
   const logoutIcon = document.querySelector('.logout-icon');
   if (logoutIcon) {
@@ -352,16 +354,12 @@ function setupLogout() {
   }
 }
 
-// --- Init ---
 document.addEventListener('DOMContentLoaded', async () => {
   renderTodayDate();
   updateCurrentUserDisplay();
   setupTableActions();
+  setupNewAbsenceButton();
   setupLogout();
-  setupModal();
-  await Promise.all([
-    loadAbsences(),
-    loadStudents(),
-    loadClassesAndSubjects()
-  ]);
+  await Promise.all([loadStudents(), loadSubjects(), loadClasses()]);
+  await loadAbsences();
 });

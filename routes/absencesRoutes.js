@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   ajouterAbsence,
+  modifierAbsence,
   getHistoriqueAbsences,
   getHistoriqueEtudiant,
   modifierStatutAbsence,
@@ -14,12 +15,11 @@ const router = express.Router();
 
 router.use(verifyToken);
 
-// Consultation
 router.get('/', checkRole(['admin', 'teacher']), getHistoriqueAbsences);
 router.get('/student/:student_id', checkRole(['admin', 'teacher', 'student']), getHistoriqueEtudiant);
 
-// Gestion → admin + teacher
 router.post('/', checkRole(['admin', 'teacher']), ajouterAbsence);
+router.put('/:id', checkRole(['admin', 'teacher']), modifierAbsence);
 router.put('/:id/status', checkRole(['admin', 'teacher']), modifierStatutAbsence);
 router.patch('/:id/justify', checkRole(['admin', 'teacher']), justifierAbsence);
 router.patch('/:id/unjustify', checkRole(['admin', 'teacher']), injustifierAbsence);

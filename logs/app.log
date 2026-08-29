@@ -1370,3 +1370,60 @@
 [2026-08-29 14:58:44] [INFO] Liste des utilisateurs consultée (13 entrées)
 [2026-08-29 14:58:49] [INFO] Liste des matières consultée (3 matières)
 [2026-08-29 14:58:59] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 18:54:37] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 18:54:39] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-29 18:54:40] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 18:56:44] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 18:56:45] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 18:56:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 18:56:49] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 18:58:04] [INFO] [Classe Model] Création réussie: class_id=5, nom=BTS2
+[2026-08-29 18:58:04] [INFO] [Classe Service] Classe créée automatiquement: ID=5, nom="BTS2", niveau="Non défini"
+[2026-08-29 18:58:05] [INFO] Utilisateur ajouté: ID=31, Nom=Kara Diarra, Rôle=student
+[2026-08-29 18:58:05] [INFO] [Student Model] Insertion réussie: student_id=6, matricule=MAT-09, user_id=31
+[2026-08-29 18:58:05] [INFO] Fiche étudiant créée pour user_id=31, matricule=MAT-09
+[2026-08-29 18:58:05] [INFO] Étudiant ajouté : ID=6, Matricule=MAT-09, ClasseID=5, UserID=31
+[2026-08-29 18:58:25] [INFO] Étudiant modifié: ID=6, ClasseID=5
+[2026-08-29 19:12:15] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 19:12:29] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 19:12:30] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 19:12:38] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 19:13:12] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 19:13:12] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:47:42] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 21:47:43] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-29 21:47:45] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 21:47:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:47:52] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 21:48:01] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:48:06] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:48:06] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:11] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 21:48:11] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:13] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 21:48:14] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:17] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 21:48:18] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:19] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 21:48:19] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:21] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 21:48:22] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:26] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 21:48:27] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:48:36] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:48:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:49:13] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:49:19] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:49:19] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 21:49:24] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:49:25] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 21:49:32] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 21:49:34] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 21:49:35] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 21:49:35] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 15.00)
+[2026-08-29 21:49:35] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 21:49:35] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 21:49:35] [INFO] Absences de l'étudiant ID=6 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-29 21:49:35] [INFO] Statistiques globales : Étudiants=2, Professeurs=5, Matières=3
+[2026-08-29 21:50:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 21:50:49] [INFO] Historique des absences consulté (1 absences)

@@ -1,8 +1,9 @@
 import {
-    addGrade,updateGrade,
-    removeGrade,listGrades,
-    getGradeById,getStudentGrades,
-    calculateAverage } from '../services/gradeService.js';
+    addGrade, updateGrade,
+    removeGrade, listGrades,
+    getGradeById, getStudentGrades,
+    calculateAverage
+} from '../services/gradeService.js';
 import { getTeacherByUserId } from '../services/teacherService.js';
 import { getSubjectById } from '../services/matiereService.js';
 import { getStudentByUserId } from '../services/studentService.js';
@@ -89,15 +90,20 @@ const getMoyenneEtudiant = async (req, res) => {
 
 // Ajoute une nouvelle note à un étudiant
 const ajouterNote = async (req, res) => {
-    const { student_id, subject_id, note } = req.body;
+    const { student_id, subject_id } = req.body;
+    // Frontend envoie parfois "valeur", backend attend "note"
+    const noteRaw = req.body.note ?? req.body.valeur;
+    const note = noteRaw !== undefined && noteRaw !== null && noteRaw !== ''
+        ? Number(noteRaw)
+        : undefined;
 
-    if (student_id === undefined || subject_id === undefined || note === undefined) {
+    if (student_id === undefined || subject_id === undefined || note === undefined || Number.isNaN(note)) {
         return res.status(400).json({
             error: "Tous les champs (student_id, subject_id, note) sont requis."
         });
     }
 
-    if (typeof note !== 'number' || note < 0 || note > 20) {
+    if (note < 0 || note > 20) {
         return res.status(400).json({ error: "La note doit être un nombre compris entre 0 et 20." });
     }
 
@@ -126,9 +132,12 @@ const ajouterNote = async (req, res) => {
 // Mettre à jour une note existante
 const modifierNote = async (req, res) => {
     const id = req.params.id;
-    const { note } = req.body;
+    const noteRaw = req.body.note ?? req.body.valeur;
+    const note = noteRaw !== undefined && noteRaw !== null && noteRaw !== ''
+        ? Number(noteRaw)
+        : undefined;
 
-    if (note === undefined) {
+    if (note === undefined || Number.isNaN(note)) {
         return res.status(400).json({ error: "La nouvelle valeur de la note est requise." });
     }
 

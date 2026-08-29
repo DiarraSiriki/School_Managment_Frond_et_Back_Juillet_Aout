@@ -4,16 +4,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const gradeSubtitle = document.getElementById('gradeSubtitle');
   const tableBody = document.getElementById('gradesTableBody');
   const btnNewGrade = document.getElementById('btnNewGrade');
-
+  
   const modal = document.getElementById('gradeModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalSubtitle = document.getElementById('modalSubtitle');
   const formError = document.getElementById('formError');
   const gradeForm = document.getElementById('gradeForm');
-
+  
   const inputId = document.getElementById('gradeId');
   const selectStudent = document.getElementById('gradeStudent');
-  const selectClasse = document.getElementById('gradeClasse');
   const selectSubject = document.getElementById('gradeSubject');
   const inputValeur = document.getElementById('gradeValue');
   const btnCancelModal = document.getElementById('btnCancelModal');
@@ -85,25 +84,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }).join('');
     }
 
-    if (selectClasse) {
-      selectClasse.innerHTML = '<option value="">Sélectionner une classe</option>' +
-        allClasses.map(c => `<option value="${c.id}">${escapeHtml(c.nom)}</option>`).join('');
-    }
-
     if (selectSubject) {
       selectSubject.innerHTML = '<option value="">Sélectionner une matière</option>' +
         allSubjects.map(s => `<option value="${s.id}">${escapeHtml(s.nom)}</option>`).join('');
     }
-  }
-
-  // Préremplir la classe selon l'étudiant choisi
-  if (selectStudent) {
-    selectStudent.addEventListener('change', () => {
-      const student = allStudents.find(s => String(s.id) === String(selectStudent.value));
-      if (selectClasse) {
-        selectClasse.value = student?.classe_id ? String(student.classe_id) : '';
-      }
-    });
   }
 
   // --- 4. AFFICHAGE DU TABLEAU ---
@@ -120,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     tableBody.innerHTML = allGrades.map(g => {
       const student = allStudents.find(s => String(s.id) === String(g.student_id));
       const studentName = student ? `${student.nom} ${student.prenom || ''}` : (g.student_nom || 'Étudiant inconnu');
-
+      
       const subject = allSubjects.find(s => String(s.id) === String(g.subject_id));
       const subjectName = subject ? subject.nom : (g.subject_nom || '-');
 
@@ -156,19 +140,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (grade) {
       modalTitle.textContent = 'Modifier la note';
-      modalSubtitle.textContent = "Ajustement de la note de l'élève";
+      modalSubtitle.textContent = 'Ajustement de la note de l\'élève';
       inputId.value = grade.id;
       selectStudent.value = grade.student_id || '';
       selectSubject.value = grade.subject_id || '';
       inputValeur.value = grade.valeur ?? grade.note ?? '';
-
-      const student = allStudents.find(s => String(s.id) === String(grade.student_id));
-      if (selectClasse) {
-        selectClasse.value = student?.classe_id ? String(student.classe_id) : '';
-      }
     } else {
       modalTitle.textContent = 'Saisir une note';
-      modalSubtitle.textContent = "Renseignez les détails de la note de l'élève.";
+      modalSubtitle.textContent = 'Renseignez les détails de la note de l\'élève.';
       inputId.value = '';
     }
 
@@ -217,6 +196,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const payload = {
       student_id: Number(selectStudent.value),
       subject_id: Number(selectSubject.value),
+      note: Number(inputValeur.value),
       valeur: Number(inputValeur.value)
     };
 
