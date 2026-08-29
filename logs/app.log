@@ -1427,3 +1427,31 @@
 [2026-08-29 21:49:35] [INFO] Statistiques globales : Étudiants=2, Professeurs=5, Matières=3
 [2026-08-29 21:50:49] [INFO] Liste des matières consultée (3 matières)
 [2026-08-29 21:50:49] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:32:43] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:32:43] [INFO] [Absence] Colonne subject_id ajoutée à la table absences
+[2026-08-29 22:32:43] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:32:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:32:54] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:33:01] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:33:02] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-29 22:33:11] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:33:11] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:15] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:33:15] [INFO] Classement consulté (2 étudiants)
+[2026-08-29 22:33:15] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 15.00)
+[2026-08-29 22:33:15] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 22:33:15] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 22:33:15] [INFO] Absences de l'étudiant ID=6 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-29 22:33:15] [INFO] Statistiques globales : Étudiants=2, Professeurs=5, Matières=3
+[2026-08-29 22:33:17] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:33:19] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 22:33:19] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:21] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 22:33:22] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:51] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 22:33:51] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:51] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 22:33:52] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:33:53] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:33:53] [INFO] Historique des absences consulté (1 absences)
