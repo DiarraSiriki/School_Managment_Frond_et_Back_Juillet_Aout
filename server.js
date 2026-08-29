@@ -25,7 +25,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(join(__dirname, 'public'), { index: false }));
+
+// Serveur de fichiers statiques (dossier public)
+app.use(express.static(join(__dirname, 'public')));
 
 // 1. PAGE D'ACCUEIL (Renvoyer index.html pour '/')
 app.get('/', (req, res) => {
@@ -37,7 +39,7 @@ app.get('/login', (req, res) => {
     res.sendFile(join(__dirname, 'public', 'login.html'));
 });
 
-
+// Routes des pages HTML
 app.get('/dashboard-admin', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-admin.html')));
 app.get('/dashboard-etudiant', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-etudiant.html')));
 app.get('/dashboard-prof', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-prof.html')));
@@ -46,7 +48,6 @@ app.get('/matieres', (req, res) => res.sendFile(join(__dirname, 'public', 'html'
 app.get('/notes', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'notes.html')));
 app.get('/statistiques', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'statistiques.html')));
 app.get('/mon-profil', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'mon-profil.html')));
-
 
 const htmlRouteMap = {
     'index.html': '/',
@@ -82,8 +83,8 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'API School Management fonctionnelle' });
 });
 
-// Route 404
-app.use((req, res, next) => {
+// Route 404 pour les requêtes non trouvées
+app.use((req, res) => {
     res.status(404).json({ error: `Route non trouvée : ${req.originalUrl}` });
 });
 
@@ -100,6 +101,6 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
     console.log(`=================================`);
     console.log(`Serveur School Management lancé !`);
-    console.log(`URL : http://localhost:${PORT}`);
+    console.log(`Port : ${PORT}`);
     console.log(`=================================`);
 });

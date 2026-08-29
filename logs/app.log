@@ -1353,3 +1353,20 @@
 [2026-08-29 00:03:47] [INFO] Liste des utilisateurs consultée (13 entrées)
 [2026-08-29 00:03:47] [INFO] Liste des matières consultée (3 matières)
 [2026-08-29 00:04:06] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 00:09:29] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:09:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:09:47] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:09:47] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 14:50:50] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 14:50:51] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 14:51:00] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 14:51:01] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 14:51:01] [ERROR] Erreur lors de la connexion: admin@gmail.com - fetch failed
+[2026-08-29 14:51:01] [ERROR] Erreur lors de la connexion: admin@gmail.com - fetch failed
+[2026-08-29 14:51:10] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-29 14:51:10] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-29 14:58:43] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-29 14:58:43] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-29 14:58:44] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 14:58:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 14:58:59] [INFO] Liste des matières consultée (3 matières)
