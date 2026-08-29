@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySchoolManager - Matières</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/matieres.css">
+</head>
+<body data-roles="admin,teacher">
+
+  <!-- BOÎTE D'ALERTE POUR NOTIFICATIONS -->
+  <div id="alertBox" class="alert-box"></div>
+
+  <!-- BARRE LATÉRALE (SIDEBAR) -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item active"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+      <a href="/mon-profil" class="menu-item"><i class="fa-solid fa-id-card"></i> Mon Profil</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <div class="user-name">Admin</div>
+        <div class="user-role">Administrateur</div>
+      </div>
+      <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-content">
+    
+    <!-- EN-TÊTE HAUT -->
+    <header class="top-header">
+      <div class="top-title">
+        <i class="fa-solid fa-book-open"></i> Matières
+      </div>
+      <div class="top-date">
+        <span id="topDateText">Chargement...</span> <span class="status-dot"></span>
+      </div>
+    </header>
+
+    <!-- EN-TÊTE PAGE + BOUTON -->
+    <div class="page-header">
+      <div>
+        <h1>Matières</h1>
+        <p class="subtitle" id="subjectSubtitle">Chargement des matières...</p>
+      </div>
+      <button class="btn-primary" id="btnNewSubject"><i class="fa-solid fa-plus"></i> Nouvelle matière</button>
+    </div>
+
+    <!-- TABLEAU DES MATIÈRES -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>MATIÈRE</th>
+            <th>CLASSE</th>
+            <th>PROFESSEUR</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="subjectsTableBody">
+          <tr class="table-state-row">
+            <td colspan="4" style="text-align:center;">Chargement...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- MODALE DE CRÉATION ET MODIFICATION -->
+  <div id="subjectModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Nouvelle matière</h3>
+      <p id="modalSubtitle">Renseignez les détails de la matière.</p>
+
+      <div id="formError" class="alert-box" style="display: none;"></div>
+
+      <form id="subjectForm">
+        <input type="hidden" id="subjectId">
+
+        <div class="form-group">
+          <label for="subjectNom">Nom de la matière</label>
+          <input type="text" id="subjectNom" placeholder="Ex: Mathématiques" required>
+        </div>
+
+        <div class="form-group">
+          <label for="subjectClasse">Classe</label>
+          <select id="subjectClasse" required>
+            <option value="">Sélectionner une classe</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="subjectTeacher">Professeur enseignant</label>
+          <select id="subjectTeacher">
+            <option value="">Aucun professeur attribué</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnCancelModal" class="btn-secondary">Annuler</button>
+          <button type="submit" id="btnSubmitModal" class="btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/matieres.js"></script>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySchoolManager - Utilisateurs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/dashboard-admin.css">
+</head>
+
+<body data-roles="admin">
+
+  <div id="alertBox" class="alert-box"></div>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item active"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+      <a href="/mon-profil" class="menu-item"><i class="fa-solid fa-id-card"></i> Mon Profil</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar-sidebar">A</div>
+      <div class="user-info">
+        <div class="user-name">Chargement...</div>
+        <div class="user-role">---</div>
+      </div>
+      <button class="logout-btn" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></button>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <header class="top-header">
+      <div class="top-title">
+        <i class="fa-solid fa-users"></i>
+        <span>Utilisateurs</span>
+      </div>
+      <div class="top-date">
+        <span id="topDateText">---</span> <span class="status-dot"></span>
+      </div>
+    </header>
+
+    <div class="page-header">
+      <div>
+        <h1>Utilisateurs</h1>
+        <p class="subtitle" id="userCountSubtitle">Chargement des données...</p>
+      </div>
+      <button class="btn-primary" id="btnNewUser" data-perm="gerer_utilisateurs,ajouter">
+        <i class="fa-solid fa-plus"></i> Nouvel utilisateur
+      </button>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-icon admin"><i class="fa-solid fa-user-shield"></i></div>
+        <div>
+          <div class="stat-number" id="statAdmin">0</div>
+          <div class="stat-label">Administrateurs</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon prof"><i class="fa-solid fa-chalkboard-user"></i></div>
+        <div>
+          <div class="stat-number" id="statProf">0</div>
+          <div class="stat-label">Professeurs</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon etudiant"><i class="fa-solid fa-user-graduate"></i></div>
+        <div>
+          <div class="stat-number" id="statEtudiant">0</div>
+          <div class="stat-label">Étudiants</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher par nom ou email..." class="search-input">
+      </div>
+      <div class="filter-buttons" id="filterButtons">
+        <button class="btn-filter active" data-role="all">Tous</button>
+        <button class="btn-filter" data-role="admin">Administrateur</button>
+        <button class="btn-filter" data-role="teacher">Professeur</button>
+        <button class="btn-filter" data-role="student">Étudiant</button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>UTILISATEUR</th>
+            <th>EMAIL</th>
+            <th>RÔLE</th>
+            <th data-perm="gerer_utilisateurs">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <tr class="table-state-row">
+            <td colspan="4">Chargement des utilisateurs en cours...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <div id="userModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Nouvel utilisateur</h2>
+        <p id="modalSubtitle">Créer un compte administrateur, professeur ou étudiant.</p>
+      </div>
+
+      <div id="formError" class="form-error"></div>
+
+      <form id="userForm">
+        <input type="hidden" id="userId">
+
+        <div class="form-group" id="fullNameGroup">
+          <label for="userName">Nom complet</label>
+          <input type="text" id="userName" placeholder="Ex: Nom Prénom">
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Adresse email</label>
+          <input type="email" id="userEmail" required placeholder="Ex: adresse@ecole.dz">
+        </div>
+
+        <div class="form-group">
+          <label>Rôle</label>
+          <div class="radio-group">
+            <label><input type="radio" name="userRole" value="student" checked> Étudiant</label>
+            <label><input type="radio" name="userRole" value="teacher"> Professeur</label>
+            <label><input type="radio" name="userRole" value="admin"> Admin</label>
+          </div>
+        </div>
+
+        <div id="studentFieldsGroup" style="display: none;">
+          <div class="form-group">
+            <label for="studentPrenomInput">Prénom</label>
+            <input type="text" id="studentPrenomInput" placeholder="Ex: Ahmed">
+          </div>
+          <div class="form-group">
+            <label for="studentNomInput">Nom</label>
+            <input type="text" id="studentNomInput" placeholder="Ex: Benali">
+          </div>
+          <div class="form-group">
+            <label for="studentAgeInput">Âge</label>
+            <input type="number" id="studentAgeInput" min="1" max="100" placeholder="Ex: 18">
+          </div>
+          <div class="form-group">
+            <label for="studentMatriculeInput">Matricule</label>
+            <input type="text" id="studentMatriculeInput" placeholder="Ex: ETU-2026-0001">
+          </div>
+          <div class="form-group">
+            <label for="studentClasseInput">Classe</label>
+            <input type="text" id="studentClasseInput" list="adminClasseList" placeholder="Ex: 3ème A ou tout autre nom (création auto)" autocomplete="off">
+            <datalist id="adminClasseList"></datalist>
+          </div>
+        </div>
+
+        <div id="teacherFieldsGroup" style="display: none;">
+          <div class="form-group">
+            <label for="teacherMatiereInput">Matière / Spécialité</label>
+            <input type="text" id="teacherMatiereInput" placeholder="Ex: Mathématiques">
+          </div>
+          <div class="form-group">
+            <label for="teacherClasseInput">Classe assignée</label>
+            <select id="teacherClasseInput">
+              <option value="">Aucune classe assignée</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="userPassword">Mot de passe</label>
+          <input type="password" id="userPassword" placeholder="••••••••">
+          <small id="passwordHint" style="color: #64748b; font-size: 11px;"></small>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-secondary" id="btnCancelModal">Annuler</button>
+          <button type="submit" class="btn-primary" id="btnSubmitModal">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard-admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+## Dépendances Node.js
+node_modules/
+
+## Variables d'environnement & Sécurité
+.env
+
+## Logs
+ logs/app.log
+
+## utils
+ utils/
+
+## configuration
+config/
+
+## Fichiers de base de données
+db/database.db
+
+
+

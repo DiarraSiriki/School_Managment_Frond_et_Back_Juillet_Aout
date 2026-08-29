@@ -1,0 +1,29 @@
+{
+  "name": "school_mgnment_complet",
+  "version": "1.0.0",
+  "description": "Application complète pour la gestion scolaire. Développée en JavaScript (Node.js) sans framework, elle permet de gérer les utilisateurs, étudiants, professeurs, matières, notes, absences et de générer des statistiques globales.",
+  "main": "server.js",
+  "scripts": {
+    "seed": "node scripts/seed.js",
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "@libsql/client": "^0.17.4",
+    "better-sqlite3": "^12.11.1",
+    "chart.js": "^4.5.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "open": "^11.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

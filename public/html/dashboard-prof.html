@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySchoolManager - Professeurs</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="css/dashboard-prof.css">
+</head>
+
+<body data-roles="admin">
+
+  <div id="alertBox" class="alert-box"></div>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item active"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+      <a href="/mon-profil" class="menu-item"><i class="fa-solid fa-id-card"></i> Mon Profil</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <div class="user-name">Admin</div>
+        <div class="user-role">Administrateur</div>
+      </div>
+      <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+    </div>
+  </aside>
+
+  <main class="main-content">
+    <header class="top-header">
+      <div class="top-title"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</div>
+      <div class="top-date"><span id="TopDateText"></span> <span class="status-dot"></span></div>
+    </header>
+
+    <div class="page-header">
+      <div>
+        <h1>Professeurs</h1>
+        <p class="subtitle" id="profSubtitle">Chargement...</p>
+      </div>
+      <button class="btn-primary" id="btnNewTeacher" data-perm="gerer_professeurs,ajouter">
+        <i class="fa-solid fa-plus"></i> Nouveau professeur
+      </button>
+    </div>
+
+    <div class="filter-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Rechercher un professeur ou une discipline..." class="search-input">
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>PROFESSEUR</th>
+            <th>DISCIPLINE</th>
+            <th>CLASSES</th>
+            <th data-perm="gerer_professeurs,modifier,supprimer">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="teachersTableBody">
+          <tr class="table-state-row">
+            <td colspan="4">Chargement des professeurs...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+
+  <div id="teacherModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Nouveau professeur</h3>
+      <p id="modalSubtitle">Créer un professeur et son compte de connexion.</p>
+      <div id="formError" class="alert-box"></div>
+
+      <form id="teacherForm">
+        <input type="hidden" id="teacherId">
+        <div class="form-group">
+          <label for="teacherNom">Nom complet</label>
+          <input type="text" id="teacherNom" placeholder="Ex: Dr. Mansouri Farid" required>
+        </div>
+        <div class="form-group">
+          <label for="teacherMatiere">Discipline</label>
+          <input type="text" id="teacherMatiere" placeholder="Ex: Mathématiques" required>
+        </div>
+        <div class="form-group">
+          <label for="teacherClasse">Classe assignée</label>
+          <select id="teacherClasse">
+            <option value="">Aucune classe assignée</option>
+          </select>
+        </div>
+        <div id="teacherAccountGroup">
+          <div class="form-group">
+            <label for="teacherEmail">Adresse email</label>
+            <input type="email" id="teacherEmail" placeholder="Ex: adresse@ecole.dz">
+          </div>
+          <div class="form-group">
+            <label for="teacherPassword">Mot de passe</label>
+            <input type="password" id="teacherPassword" placeholder="••••••••">
+            <small id="passwordHint">Requis à la création.</small>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" id="btnCancelModal" class="btn-secondary">Annuler</button>
+          <button type="submit" id="btnSubmitModal" class="btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/dashboard-prof.js"></script>
+</body>
+</html>

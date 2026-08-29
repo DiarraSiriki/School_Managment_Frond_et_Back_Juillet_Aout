@@ -1,0 +1,1355 @@
+[2026-07-28 23:33:23] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-28 23:33:23] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-28 23:33:50] [INFO] Liste des matières consultée (3 matières)
+[2026-07-28 23:33:50] [INFO] Historique des absences consulté (1 absences)
+[2026-07-28 23:33:53] [INFO] Liste des matières consultée (3 matières)
+[2026-07-28 23:39:07] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-28 23:39:07] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-28 23:39:07] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-28 23:39:07] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-28 23:39:30] [INFO] Liste des matières consultée (3 matières)
+[2026-07-28 23:39:30] [INFO] Historique des absences consulté (1 absences)
+[2026-07-28 23:39:33] [INFO] Liste des matières consultée (3 matières)
+[2026-07-28 23:39:40] [INFO] Liste des utilisateurs consultée (11 utilisateurs)
+[2026-07-28 23:41:08] [INFO] Utilisateur ajouté: ID=13, Nom=Senateur, Rôle=teacher
+[2026-07-28 23:41:08] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-29 21:10:56] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-29 21:10:56] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-07-29 21:12:18] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-29 21:12:18] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-29 21:12:19] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:12:19] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 21:13:35] [INFO] Tentative de connexion: moun@gmail.com
+[2026-07-29 21:13:35] [INFO] Connexion réussie: moun@gmail.com (role: student)
+[2026-07-29 21:13:44] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:13:44] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:13:50] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:13:51] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:13:53] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:13:53] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:14:14] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-07-29 21:14:31] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:14:31] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:14:40] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:14:40] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:14:42] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:14:42] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:14:52] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:14:52] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:14:53] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:14:53] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:15:16] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:15:16] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:15:46] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:15:46] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:15:47] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:15:47] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:16:07] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-29 21:16:07] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-29 21:18:12] [INFO] Tentative de connexion: momo@gmail.com
+[2026-07-29 21:18:12] [INFO] Connexion réussie: momo@gmail.com (role: teacher)
+[2026-07-29 21:19:23] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:19:28] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:19:30] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:19:33] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:19:33] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:19:36] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:19:36] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 21:19:36] [INFO] Classement consulté (4 étudiants)
+[2026-07-29 21:19:36] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:19:36] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:27:58] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:27:58] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 21:27:58] [INFO] Classement consulté (4 étudiants)
+[2026-07-29 21:27:58] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:27:58] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:28:00] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:28:00] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 21:28:00] [INFO] Classement consulté (4 étudiants)
+[2026-07-29 21:28:00] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:28:00] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:28:01] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:28:01] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 21:28:01] [INFO] Classement consulté (4 étudiants)
+[2026-07-29 21:28:01] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:28:01] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:28:13] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:28:19] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:28:20] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 21:28:20] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 21:28:58] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-29 21:28:59] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-29 21:28:59] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 21:28:59] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 22:18:58] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-29 22:18:58] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-29 22:18:58] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 22:18:59] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 22:19:01] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 22:19:01] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:19:04] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:19:06] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 22:19:06] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:19:08] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:19:10] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-29 22:19:31] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-07-29 22:20:46] [INFO] Tentative de connexion: momo@gmail.com
+[2026-07-29 22:20:47] [INFO] Connexion réussie: momo@gmail.com (role: teacher)
+[2026-07-29 22:20:59] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:22:44] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:22:47] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:23:11] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:37:46] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-29 22:37:46] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-29 22:37:46] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-29 22:37:46] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-29 22:37:49] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 22:37:49] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:37:51] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:37:53] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 22:37:53] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:37:56] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-29 22:38:08] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-07-29 22:38:23] [INFO] Tentative de connexion: momo@gmail.com
+[2026-07-29 22:38:24] [INFO] Connexion réussie: momo@gmail.com (role: teacher)
+[2026-07-29 22:38:28] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:38:31] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:38:32] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:38:35] [INFO] Liste des matières consultée (3 matières)
+[2026-07-29 22:38:41] [INFO] Historique des absences consulté (1 absences)
+[2026-07-29 22:38:41] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:15:17] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-31 00:15:17] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-31 00:15:17] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-31 00:15:18] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-31 00:15:25] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-31 00:15:28] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:15:28] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:15:31] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:15:33] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:15:33] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:15:37] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:15:59] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-31 00:16:03] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-31 00:16:03] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-31 00:16:03] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:03] [INFO] Classement consulté (4 étudiants)
+[2026-07-31 00:16:03] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:16:04] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:16:04] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:07] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:16:07] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:08] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:16:08] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:14] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 00:16:14] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:15] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:17] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-31 00:16:17] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-31 00:16:17] [INFO] Classement consulté (4 étudiants)
+[2026-07-31 00:16:17] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 00:16:17] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 11:20:45] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-31 11:20:45] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-31 11:20:56] [INFO] Tentative de connexion: kar@gmail.com
+[2026-07-31 11:20:56] [WARN] Connexion échouée (identifiants incorrects): kar@gmail.com
+[2026-07-31 11:21:21] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-31 11:21:21] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-31 11:21:21] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-31 11:21:21] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-31 11:21:26] [INFO] Liste des utilisateurs consultée (12 utilisateurs)
+[2026-07-31 11:23:45] [INFO] Utilisateur ajouté: ID=14, Nom=Diarrassouba Karamoko, Rôle=student
+[2026-07-31 11:23:45] [INFO] Liste des utilisateurs consultée (13 utilisateurs)
+[2026-07-31 11:23:55] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-07-31 11:25:01] [INFO] Tentative de connexion: drk@gmail.com
+[2026-07-31 11:25:01] [WARN] Connexion échouée (identifiants incorrects): drk@gmail.com
+[2026-07-31 11:25:03] [INFO] Tentative de connexion: drk@gmail.com
+[2026-07-31 11:25:04] [INFO] Connexion réussie: drk@gmail.com (role: student)
+[2026-07-31 11:25:13] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 16:51:22] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-31 16:51:22] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-07-31 16:51:30] [INFO] Tentative de connexion: admin@gmail.com
+[2026-07-31 16:51:30] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-07-31 16:51:30] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-07-31 16:51:30] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-07-31 16:51:34] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 16:51:34] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 16:51:37] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 16:51:38] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 16:51:40] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 16:51:40] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 16:51:41] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:01:20] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:01:21] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:01:22] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:01:22] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:04:52] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 22:04:52] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:04:56] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 22:04:56] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:04:58] [INFO] Liste des utilisateurs consultée (13 utilisateurs)
+[2026-07-31 22:05:03] [INFO] Utilisateur supprimé: ID=14
+[2026-07-31 22:05:07] [INFO] Utilisateur supprimé: ID=13
+[2026-07-31 22:05:10] [INFO] Utilisateur supprimé: ID=12
+[2026-07-31 22:05:13] [INFO] Utilisateur supprimé: ID=11
+[2026-07-31 22:05:16] [INFO] Utilisateur supprimé: ID=10
+[2026-07-31 22:05:20] [INFO] Utilisateur supprimé: ID=9
+[2026-07-31 22:05:24] [INFO] Utilisateur supprimé: ID=8
+[2026-07-31 22:05:27] [INFO] Utilisateur supprimé: ID=2
+[2026-07-31 22:05:37] [INFO] Utilisateur supprimé: ID=5
+[2026-07-31 22:17:49] [INFO] Utilisateur supprimé: ID=4
+[2026-07-31 22:17:57] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-07-31 22:18:10] [INFO] Tentative de connexion: momo@gmail.com
+[2026-07-31 22:18:10] [INFO] Connexion réussie: momo@gmail.com (role: teacher)
+[2026-07-31 22:18:12] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:18:16] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:18:18] [INFO] Liste des matières consultée (3 matières)
+[2026-07-31 22:18:23] [INFO] Historique des absences consulté (1 absences)
+[2026-07-31 22:18:23] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:07:38] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-01 00:07:39] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-01 00:07:39] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-08-01 00:07:39] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-01 00:07:41] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:07:41] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:07:43] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:07:43] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:07:45] [INFO] Liste des utilisateurs consultée (3 utilisateurs)
+[2026-08-01 00:07:55] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-01 00:08:10] [INFO] Tentative de connexion: momo@gmail.com
+[2026-08-01 00:08:10] [INFO] Connexion réussie: momo@gmail.com (role: teacher)
+[2026-08-01 00:08:14] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:20] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:22] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:23] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:08:23] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:26] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-08-01 00:08:26] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-01 00:08:26] [INFO] Classement consulté (4 étudiants)
+[2026-08-01 00:08:26] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:26] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:08:40] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:42] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:44] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:08:44] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:08:50] [INFO] Déconnexion: momo@gmail.com (role: teacher)
+[2026-08-01 00:09:04] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-01 00:09:05] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-01 00:09:05] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-08-01 00:09:05] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-01 00:09:07] [INFO] Liste des utilisateurs consultée (3 utilisateurs)
+[2026-08-01 00:10:44] [INFO] Utilisateur ajouté: ID=15, Nom=Diarra Karasco, Rôle=student
+[2026-08-01 00:10:44] [INFO] Liste des utilisateurs consultée (4 utilisateurs)
+[2026-08-01 00:10:53] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-01 00:11:13] [INFO] Tentative de connexion: karasco@gmail.com
+[2026-08-01 00:11:13] [INFO] Connexion réussie: karasco@gmail.com (role: student)
+[2026-08-01 00:12:52] [INFO] Déconnexion: karasco@gmail.com (role: student)
+[2026-08-01 00:13:10] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-01 00:13:10] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-01 00:13:10] [INFO] Statistiques globales : Étudiants=4, Professeurs=4, Matières=3
+[2026-08-01 00:13:10] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-01 00:13:14] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:13:14] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:18] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:21] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:21] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:13:24] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:26] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:13:26] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:31] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:45] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:13:45] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:13:54] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:14:03] [INFO] Liste des matières consultée (3 matières)
+[2026-08-01 00:14:07] [INFO] Historique des absences consulté (1 absences)
+[2026-08-01 00:14:07] [INFO] Liste des matières consultée (3 matières)
+[2026-08-04 23:50:34] [INFO] Tentative de connexion: undefined
+[2026-08-04 23:50:34] [WARN] Connexion échouée (champs manquants): undefined
+[2026-08-05 00:04:20] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:04:20] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:05:07] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:05:07] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:05:23] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:05:23] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:05:25] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:05:25] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:05:26] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:05:26] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:06:35] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:06:35] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:06:36] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:06:36] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:06:36] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:06:36] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:35] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:35] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:37] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:37] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:43] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:43] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:44] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:44] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:45] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:45] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:45] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:45] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:45] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:45] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:13:45] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:13:45] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:11] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:11] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:12] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:12] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:13] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:13] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:13] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:13] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:13] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:13] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:14:14] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:14:14] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-05 00:15:26] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-05 00:15:26] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-05 00:26:18] [ERROR] [Classes Controller] Erreur création: Les champs nom, niveau et capacité sont obligatoires.
+[2026-08-05 00:26:21] [ERROR] [Classes Controller] Erreur création: Les champs nom, niveau et capacité sont obligatoires.
+[2026-08-05 00:26:58] [ERROR] [Student Controller] Erreur création: Classe avec l'ID 1 introuvable.
+[2026-08-05 00:27:48] [ERROR] [Classes Controller] Erreur création: Les champs nom, niveau et capacité sont obligatoires.
+[2026-08-12 23:59:41] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-12 23:59:41] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-13 11:37:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-13 11:37:44] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-13 15:04:21] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-13 15:04:21] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-13 15:45:55] [ERROR] Tentative d'ajout de l'utilisateur Admin Diarra avortée : l'email admin@gmail.com est déjà utilisé.
+[2026-08-13 22:09:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-13 22:09:44] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-13 23:52:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-13 23:52:44] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-14 10:26:49] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 10:26:49] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 11:30:55] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 11:30:55] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 11:31:09] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 11:31:09] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 11:31:52] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-14 11:31:52] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-14 11:38:31] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 11:38:31] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 11:38:46] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 11:38:46] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 11:41:01] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-14 11:41:01] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-14 11:50:57] [INFO] Tentative de connexion: admin@gamil.com
+[2026-08-14 11:50:57] [WARN] Connexion échouée (identifiants incorrects): admin@gamil.com
+[2026-08-14 11:51:40] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-14 11:51:40] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-14 11:54:03] [INFO] Tentative de connexion: admin@gmail.Com
+[2026-08-14 11:54:03] [INFO] Connexion réussie: admin@gmail.Com (role: admin)
+[2026-08-14 11:54:51] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 11:54:51] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 12:09:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-14 12:09:44] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-14 16:37:43] [INFO] Tentative de connexion: admin@mail.com
+[2026-08-14 16:37:43] [WARN] Connexion échouée (identifiants incorrects): admin@mail.com
+[2026-08-14 16:38:15] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-14 16:38:15] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-14 16:39:13] [INFO] Tentative de connexion: admin@mail.com
+[2026-08-14 16:39:13] [WARN] Connexion échouée (identifiants incorrects): admin@mail.com
+[2026-08-14 16:40:16] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-14 16:40:16] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 00:38:39] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-15 00:38:39] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-15 00:38:59] [INFO] Déconnexion: regis@gmail.com (role: teacher)
+[2026-08-15 00:39:17] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 00:39:17] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 00:50:24] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-15 00:50:37] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-15 00:50:37] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-15 00:53:30] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 00:53:30] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 01:07:38] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-15 01:10:30] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-15 01:10:30] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-15 01:14:22] [INFO] Déconnexion: regis@gmail.com (role: teacher)
+[2026-08-15 01:14:36] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 01:14:36] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 02:25:09] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-15 02:25:09] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-15 02:27:35] [INFO] Déconnexion: regis@gmail.com (role: teacher)
+[2026-08-15 02:27:52] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 02:27:52] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 02:47:51] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 02:47:51] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 16:50:45] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 16:50:45] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-15 17:36:09] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-15 17:36:09] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-17 10:35:51] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-17 10:35:51] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-17 13:05:21] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-17 13:05:39] [INFO] Tentative de connexion: admin@mail.com
+[2026-08-17 13:05:39] [WARN] Connexion échouée (identifiants incorrects): admin@mail.com
+[2026-08-17 13:06:13] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-17 13:06:13] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-17 13:21:00] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-17 13:21:00] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-17 13:23:55] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:26:04] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:28:14] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:32:38] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:33:32] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:36:49] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:37:30] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:37:51] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:42:35] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:42:38] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:42:39] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:13] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:14] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:14] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:15] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:15] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:15] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:15] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:16] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:17] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:38] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:39] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:40] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:41] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:41] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:43] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:43:43] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:29] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:30] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:31] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:35] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:36] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:36] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:45] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:46] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:47] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:54] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:45:54] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:35] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:36] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:37] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:37] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:41] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:42] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:42] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:42] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:43] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:57:43] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:58:00] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:58:01] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:58:01] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 13:58:02] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:20] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:21] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:21] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:21] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:22] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:22] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:22] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:22] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:22] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:23] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:23] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:23] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:23] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:23] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:24] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:24] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:24] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:24] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:24] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:25] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:26] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:26] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:26] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:26] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:26] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:27] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:04:28] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:05:43] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:16:06] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:16:07] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:19:34] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:40:28] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:40:32] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 14:40:38] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 15:21:42] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-17 16:08:06] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-17 16:08:06] [WARN] Connexion échouée (identifiants incorrects): admin@gmail.com
+[2026-08-17 16:08:33] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-17 16:08:33] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-17 16:08:33] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 22:25:34] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-17 22:45:57] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:15:48] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-18 15:15:48] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-18 15:15:48] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:36:57] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:38:42] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:40:09] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:40:20] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:42:31] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-18 15:52:36] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-18 15:52:36] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-18 16:47:15] [INFO] Tentative de connexion: regis@gmail.com
+[2026-08-18 16:47:15] [INFO] Connexion réussie: regis@gmail.com (role: teacher)
+[2026-08-19 10:30:08] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-19 10:30:08] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-19 10:30:08] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-19 12:39:13] [INFO] Liste des utilisateurs consultée (5 utilisateurs)
+[2026-08-19 12:40:45] [INFO] Utilisateur ajouté: ID=17, Nom=Kouassi Tyson, Rôle=student
+[2026-08-19 12:40:45] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-19 14:17:38] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-19 14:19:45] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-19 14:42:52] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-19 14:47:39] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-19 15:02:17] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:20] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:21] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:21] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:22] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:22] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:22] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:22] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:23] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:24] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:26] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:26] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:26] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:26] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:27] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:28] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:29] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:29] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:29] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:30] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:30] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:30] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 15:02:30] [ERROR] [Student Controller] Erreur création: no such column: classe_id
+[2026-08-19 16:55:28] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-19 16:55:28] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-19 16:55:29] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:28:10] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:28:32] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:31:20] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:33:38] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:36:32] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:36:35] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:36:35] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:38:39] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:38:56] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:39:05] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:39:15] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:39:26] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:39:44] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:44:37] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:44:39] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:45:00] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:45:04] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:47:50] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:50:20] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:50:20] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:50:21] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:50:21] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 00:50:25] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 01:09:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 01:09:51] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 01:18:13] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 01:18:13] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 01:35:11] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 01:35:11] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 01:35:26] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 01:35:26] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 01:38:36] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 01:38:36] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:41:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:41:37] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:41:40] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:08] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:11] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:42:11] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:19] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:42:19] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:21] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:42:21] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:26] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:42:26] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:42:43] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:47] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:47] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:48] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:48] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:48] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:48] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:49] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:49] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:49] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:49] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:50] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:50] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:50] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:51] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:51] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:51] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:51] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:52] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:52] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:52] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:53] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:54] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:54] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:55] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:55] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:55] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:42:55] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:13] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:14] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:15] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:16] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:16] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:16] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:17] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:17] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:17] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:17] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:18] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:18] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:18] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:43:18] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:11] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:12] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:12] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:12] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:12] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:13] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:13] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:13] [ERROR] [Student Controller] Erreur modification ID=1: no such column: classe_id
+[2026-08-20 10:44:27] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:44:27] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 10:44:29] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 10:44:29] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 11:05:04] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 11:05:04] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 11:05:05] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 11:05:05] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 11:10:13] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 11:10:13] [INFO] Liste des utilisateurs consultée (6 utilisateurs)
+[2026-08-20 11:11:30] [INFO] Utilisateur ajouté: ID=18, Nom=Diallo Amadou, Rôle=teacher
+[2026-08-20 11:58:42] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 11:58:42] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:15] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 12:02:17] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:27] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 12:02:27] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:29] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 12:02:32] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 12:02:39] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 13:04:17] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-20 13:04:17] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-20 13:04:17] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 13:04:24] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:04:29] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:04:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:04:34] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:04:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:07:16] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:08:26] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:08:57] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:09:43] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:09:44] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:15:42] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:16:13] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 13:16:18] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:16:18] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 13:16:20] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 13:21:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:18:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:18:38] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:18:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:20:30] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:39:27] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:43:53] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:43:55] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:43:56] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:43:56] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 14:43:59] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 14:44:19] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 14:44:21] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:44:22] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:47:55] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:48:03] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:48:13] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:48:28] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:48:33] [INFO] Liste des matières consultée (3 matières)
+[2026-08-20 14:49:07] [INFO] Matière supprimée: ID=2
+[2026-08-20 14:49:07] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 14:49:11] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 16:00:14] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-20 16:00:14] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-20 16:00:14] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 16:00:21] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 16:00:21] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-20 16:00:22] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 16:00:30] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 16:00:36] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 16:00:46] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 23:31:34] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 23:31:35] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 23:31:37] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 23:31:38] [INFO] Liste des matières consultée (2 matières)
+[2026-08-20 23:31:38] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:05:13] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:05:22] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:05:42] [INFO] Étudiant supprimé: ID=2
+[2026-08-21 00:05:51] [INFO] Étudiant supprimé: ID=3
+[2026-08-21 00:05:59] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:31:34] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:31:36] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:31:43] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:31:44] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:31:45] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:31:50] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:31:52] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:31:53] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:31:56] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:33:31] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:33:31] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:33:31] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:33:31] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:33:31] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:33:31] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:33:31] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:33:39] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:33:41] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:33:45] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:34:59] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:35:53] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:35:53] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:35:56] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:36:58] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:36:59] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:37:00] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:37:09] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:20] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:21] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:21] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:22] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:22] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:23] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:37:24] [ERROR] Erreur lors de la récupération des statistiques globales: calcAverage(...).toFixed is not a function
+[2026-08-21 00:39:12] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:39:18] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:39:18] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:39:18] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:39:18] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:39:18] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:39:18] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:39:18] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:39:21] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:39:23] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:39:25] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:39:27] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:39:27] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:39:36] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:40:54] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:41:41] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:41:41] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:42:48] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:42:50] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:43:04] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:43:04] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:43:04] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:43:04] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:43:04] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:43:04] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:43:04] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:43:12] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:48:43] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:48:44] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:48:46] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:48:50] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:48:50] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:48:52] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:48:53] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:48:53] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:48:57] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:48:59] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:49:00] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:03] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:05] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:05] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:49:09] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:49:16] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:17] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:17] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:49:20] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:49:20] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:49:20] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:49:21] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:49:21] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:49:21] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:49:21] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:49:31] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:49:32] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:34] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:35] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:49:35] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:49:37] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:51:19] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:19] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:51:20] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:26] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:35] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:51:38] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:51:38] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:51:38] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:51:38] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:51:38] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:51:38] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:51:38] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:51:40] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:51:41] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:48] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:51:48] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 00:51:48] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 00:51:48] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:51:48] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 00:51:48] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 00:51:48] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 00:51:49] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 00:51:50] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:52] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:53] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 00:51:53] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 00:51:55] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 01:53:32] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:32] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 01:53:35] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:36] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:37] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 01:53:39] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 01:53:39] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 01:53:39] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 01:53:39] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 01:53:39] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 01:53:39] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 01:53:39] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 01:53:41] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 01:53:44] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 01:53:44] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 01:53:44] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 01:53:44] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 01:53:44] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 01:53:44] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 01:53:44] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 01:53:46] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 01:53:49] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:52] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 01:53:56] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:58] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:53:58] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 01:54:01] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 01:54:23] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 01:54:23] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 11:22:42] [INFO] Liste des utilisateurs consultée (7 utilisateurs)
+[2026-08-21 14:43:43] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-21 14:43:43] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-21 14:43:56] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:43:56] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 14:44:00] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:01] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:06] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:08] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 14:44:10] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 14:44:10] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 14:44:10] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 14:44:10] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 14:44:10] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 14:44:10] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 14:44:10] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 14:44:12] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 14:44:13] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:14] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:15] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:44:15] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 14:45:22] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 14:45:56] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:45:56] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 14:46:00] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 14:46:08] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:05:58] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:05:58] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:05:59] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:01] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:01] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:06:03] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:04] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 15:06:07] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:08] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 15:06:10] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 15:06:10] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 15:06:10] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 15:06:10] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 15:06:10] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 15:06:10] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 15:06:10] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 15:06:11] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 15:06:12] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:13] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:14] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:06:14] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:06:16] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:07:45] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:21:20] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:22:10] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:22:17] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:27:23] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:28:35] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:36:58] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:37:06] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:06] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:37:09] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:11] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:12] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:13] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:13] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:37:15] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:17] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:19] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:19] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:37:20] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:21] [INFO] Historique des absences consulté (1 absences)
+[2026-08-21 15:37:22] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 15:37:22] [INFO] Classement consulté (2 étudiants)
+[2026-08-21 15:37:22] [INFO] Meilleur étudiant : Siriki Diarra (Moyenne: 15.00)
+[2026-08-21 15:37:22] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 15:37:22] [INFO] Absences de l'étudiant ID=1 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-21 15:37:22] [INFO] Absences de l'étudiant ID=4 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-21 15:37:22] [INFO] Statistiques globales : Étudiants=2, Professeurs=12, Matières=2
+[2026-08-21 15:37:25] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:27] [INFO] Liste des matières consultée (2 matières)
+[2026-08-21 15:37:27] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:37:29] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-21 15:38:33] [INFO] Utilisateur ajouté: ID=19, Nom=Diarra Moussa, Rôle=student
+[2026-08-21 15:38:33] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-23 23:50:13] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-23 23:50:13] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-23 23:50:13] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-23 23:50:32] [INFO] Liste des matières consultée (2 matières)
+[2026-08-23 23:50:32] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-24 00:00:06] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 00:02:18] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-24 11:41:31] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-24 11:44:57] [INFO] Utilisateur ajouté: ID=20, Nom=Big Campbell, Rôle=admin
+[2026-08-24 11:44:57] [INFO] Liste des utilisateurs consultée (23 entrées)
+[2026-08-24 11:46:12] [INFO] Utilisateur ajouté: ID=21, Nom=Coulibaly Mouna, Rôle=teacher
+[2026-08-24 11:46:12] [INFO] Fiche professeur créée pour user_id=21, matière=pc
+[2026-08-24 11:46:12] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 11:46:16] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 11:46:16] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 11:46:24] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 11:48:13] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:15] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:15] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:15] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:16] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:17] [ERROR] [Student Controller] Erreur création: Le matricule est obligatoire pour un étudiant.
+[2026-08-24 11:48:59] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 11:48:59] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 12:29:52] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:29:52] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 12:30:49] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 12:32:52] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:32:52] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-24 12:33:25] [INFO] Utilisateur ajouté: ID=22, Nom=Zebi Lobognon, Rôle=teacher
+[2026-08-24 12:33:25] [INFO] Fiche professeur créée pour user_id=22, matière=Algo
+[2026-08-24 12:34:11] [INFO] Utilisateur ajouté: ID=23, Nom=Zebi Lobognon, Rôle=teacher
+[2026-08-24 12:34:11] [INFO] Fiche professeur créée pour user_id=23, matière=Algo
+[2026-08-24 12:35:48] [INFO] Liste des utilisateurs consultée (26 entrées)
+[2026-08-24 12:35:56] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:35:56] [INFO] Liste des utilisateurs consultée (26 entrées)
+[2026-08-24 12:37:06] [INFO] Utilisateur ajouté: ID=24, Nom=Ali Ballo, Rôle=teacher
+[2026-08-24 12:37:06] [INFO] Fiche professeur créée pour user_id=24, matière=ASI
+[2026-08-24 12:37:06] [INFO] Professeur ajouté: ID=17, Nom=Ali Ballo, UserID=24
+[2026-08-24 12:37:06] [INFO] Liste des utilisateurs consultée (27 entrées)
+[2026-08-24 12:37:06] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:37:20] [INFO] Liste des utilisateurs consultée (27 entrées)
+[2026-08-24 12:45:44] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:46:55] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:47:18] [INFO] Liste des matières consultée (2 matières)
+[2026-08-24 12:47:27] [INFO] Liste des matières consultée (2 matières)
+[2026-08-25 23:25:58] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-25 23:25:58] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-25 23:25:58] [INFO] Liste des utilisateurs consultée (27 entrées)
+[2026-08-25 23:26:03] [INFO] Liste des matières consultée (2 matières)
+[2026-08-25 23:26:03] [INFO] Liste des utilisateurs consultée (27 entrées)
+[2026-08-25 23:26:59] [INFO] Utilisateur ajouté: ID=25, Nom=Niffin Diarra, Rôle=teacher
+[2026-08-25 23:26:59] [INFO] Fiche professeur créée pour user_id=25, matière=SVT
+[2026-08-25 23:26:59] [INFO] Professeur ajouté: ID=18, Nom=Niffin Diarra, UserID=25
+[2026-08-25 23:26:59] [INFO] Liste des utilisateurs consultée (28 entrées)
+[2026-08-25 23:26:59] [INFO] Liste des matières consultée (2 matières)
+[2026-08-25 23:28:27] [INFO] Utilisateur ajouté: ID=26, Nom=Reine Ahou, Rôle=student
+[2026-08-25 23:28:27] [ERROR] Erreur lors de l'insertion d'un étudiant: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:27] [ERROR] Échec création fiche liée pour user 26: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:27] [ERROR] [Student Controller] Erreur création: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [INFO] Utilisateur ajouté: ID=27, Nom=Reine Ahou, Rôle=student
+[2026-08-25 23:28:30] [ERROR] Erreur lors de l'insertion d'un étudiant: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [ERROR] Échec création fiche liée pour user 27: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [ERROR] [Student Controller] Erreur création: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [INFO] Utilisateur ajouté: ID=28, Nom=Reine Ahou, Rôle=student
+[2026-08-25 23:28:30] [ERROR] Erreur lors de l'insertion d'un étudiant: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [ERROR] Échec création fiche liée pour user 28: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:30] [ERROR] [Student Controller] Erreur création: NOT NULL constraint failed: students.classe
+[2026-08-25 23:28:34] [INFO] Liste des utilisateurs consultée (28 entrées)
+[2026-08-26 10:52:32] [INFO] Liste des utilisateurs consultée (28 entrées)
+[2026-08-26 10:53:50] [INFO] [Classe Model] Création réussie: class_id=4, nom=L1
+[2026-08-26 10:53:50] [INFO] [Classe Service] Classe créée automatiquement: ID=4, nom="L1", niveau="L1"
+[2026-08-26 10:53:50] [INFO] Utilisateur ajouté: ID=29, Nom=Ali Koffi, Rôle=student
+[2026-08-26 10:53:50] [INFO] [Student Model] Insertion réussie: student_id=5, matricule=MAT-14, user_id=29
+[2026-08-26 10:53:50] [INFO] Fiche étudiant créée pour user_id=29, matricule=MAT-14
+[2026-08-26 10:53:50] [INFO] Étudiant ajouté : ID=5, Matricule=MAT-14, ClasseID=4, UserID=29
+[2026-08-26 10:54:00] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 10:54:17] [INFO] Liste des matières consultée (2 matières)
+[2026-08-26 10:54:17] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 10:54:19] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 10:54:20] [INFO] Liste des matières consultée (2 matières)
+[2026-08-26 10:54:24] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 11:24:36] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 11:24:36] [INFO] Liste des matières consultée (2 matières)
+[2026-08-26 11:44:26] [INFO] Liste des matières consultée (2 matières)
+[2026-08-26 12:18:06] [INFO] Matière ajoutée: ID=result.lastInsertRowid,Nom={result.lastInsertRowid}, Nom=result.lastInsertRowid,Nom={nom}, Classe ID=classeid,ProfesseurID={classe_id}, Professeur ID=classei​d,ProfesseurID={teacher_id}
+[2026-08-26 12:18:06] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:09] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:33] [INFO] Matière modifiée: ID=id,Nom={id}, Nom=id,Nom={nom}, Classe ID=classeid,ProfesseurID={classe_id}, Professeur ID=classei​d,ProfesseurID={teacher_id}
+[2026-08-26 12:18:33] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:36] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:18:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:28:02] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:28:08] [INFO] Matière modifiée: ID=id,Nom={id}, Nom=id,Nom={nom}, Classe ID=classeid,ProfesseurID={classe_id}, Professeur ID=classei​d,ProfesseurID={teacher_id}
+[2026-08-26 12:28:08] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:28:12] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:40:11] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:40:31] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:40:31] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:40:55] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:40:56] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-26 12:46:44] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-26 12:46:44] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-26 12:46:44] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:46:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:00] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:01] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:02] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:03] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:38] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:39] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:45] [INFO] Matière modifiée: ID=12, Nom=PC, Classe ID=4, Professeur ID=17
+[2026-08-26 12:47:45] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:47:56] [INFO] Matière modifiée: ID=3, Nom=Physique-Chimie, Classe ID=3, Professeur ID=null
+[2026-08-26 12:47:56] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:04] [INFO] Matière modifiée: ID=1, Nom=Maths, Classe ID=2, Professeur ID=1
+[2026-08-26 12:48:04] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:06] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:08] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:08] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:48:19] [INFO] Professeur modifié avec succès: ID=3
+[2026-08-26 12:48:19] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:48:19] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:27] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:27] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:48:34] [INFO] Professeur modifié avec succès: ID=18
+[2026-08-26 12:48:34] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:48:34] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:49:22] [INFO] Étudiant modifié: ID=4, ClasseID=4
+[2026-08-26 12:49:30] [INFO] Étudiant modifié: ID=1, ClasseID=3
+[2026-08-26 12:49:38] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:49:38] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:49:50] [INFO] Professeur modifié avec succès: ID=16
+[2026-08-26 12:49:50] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:49:50] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:49:58] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:50:00] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:50:46] [INFO] Matière modifiée: ID=3, Nom=Physique-Chimie, Classe ID=3, Professeur ID=14
+[2026-08-26 12:50:46] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:50:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:50:54] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 12:50:54] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:50:58] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 12:59:46] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:00:01] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 13:00:01] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:00:20] [INFO] Professeur modifié avec succès: ID=3
+[2026-08-26 13:00:20] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:00:20] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 13:00:24] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:00:40] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 13:00:40] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:02:47] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 13:02:47] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:02:48] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:02:53] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:03:35] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:04:33] [INFO] Liste des matières consultée (3 matières)
+[2026-08-26 13:04:33] [INFO] Liste des utilisateurs consultée (29 entrées)
+[2026-08-26 13:04:40] [INFO] Professeur supprimé: ID=15
+[2026-08-26 13:04:53] [INFO] Professeur supprimé: ID=13
+[2026-08-26 13:06:35] [INFO] Liste des utilisateurs consultée (28 entrées)
+[2026-08-26 13:06:40] [INFO] Professeur orphelin supprimé: ID=12
+[2026-08-26 13:06:40] [INFO] Liste des utilisateurs consultée (27 entrées)
+[2026-08-26 13:06:44] [INFO] Professeur orphelin supprimé: ID=11
+[2026-08-26 13:06:44] [INFO] Liste des utilisateurs consultée (26 entrées)
+[2026-08-26 13:06:47] [INFO] Professeur orphelin supprimé: ID=10
+[2026-08-26 13:06:47] [INFO] Liste des utilisateurs consultée (25 entrées)
+[2026-08-26 13:06:50] [INFO] Professeur orphelin supprimé: ID=9
+[2026-08-26 13:06:50] [INFO] Liste des utilisateurs consultée (24 entrées)
+[2026-08-26 13:06:53] [INFO] Professeur orphelin supprimé: ID=8
+[2026-08-26 13:06:53] [INFO] Liste des utilisateurs consultée (23 entrées)
+[2026-08-26 13:06:56] [INFO] Professeur orphelin supprimé: ID=7
+[2026-08-26 13:06:56] [INFO] Liste des utilisateurs consultée (22 entrées)
+[2026-08-26 13:06:58] [INFO] Professeur orphelin supprimé: ID=6
+[2026-08-26 13:06:58] [INFO] Liste des utilisateurs consultée (21 entrées)
+[2026-08-26 13:07:01] [INFO] Professeur orphelin supprimé: ID=5
+[2026-08-26 13:07:01] [INFO] Liste des utilisateurs consultée (20 entrées)
+[2026-08-26 13:07:04] [INFO] Professeur orphelin supprimé: ID=4
+[2026-08-26 13:07:04] [INFO] Liste des utilisateurs consultée (19 entrées)
+[2026-08-26 13:07:07] [INFO] Professeur orphelin supprimé: ID=3
+[2026-08-26 13:07:07] [INFO] Liste des utilisateurs consultée (18 entrées)
+[2026-08-26 13:07:09] [INFO] Professeur orphelin supprimé: ID=1
+[2026-08-26 13:07:09] [INFO] Liste des utilisateurs consultée (17 entrées)
+[2026-08-26 13:07:12] [INFO] Étudiant orphelin supprimé: ID=4
+[2026-08-26 13:07:12] [INFO] Liste des utilisateurs consultée (16 entrées)
+[2026-08-26 13:07:15] [INFO] Étudiant orphelin supprimé: ID=1
+[2026-08-26 13:07:15] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 11:14:23] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:14:23] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:14:34] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:14:34] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:14:41] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:14:41] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:14:55] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:14:55] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:21:05] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:21:05] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:21:12] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:21:12] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:21:33] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:21:33] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:21:38] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:21:38] [ERROR] Erreur lors de la connexion: admin@gmail.com - database.execute is not a function
+[2026-08-28 11:23:43] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 11:23:43] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-28 11:23:43] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:23:51] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:23:51] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 11:23:56] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:00] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 11:24:00] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:02] [ERROR] Erreur lors de la récupération des statistiques globales: database.execute is not a function
+[2026-08-28 11:24:04] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:07] [ERROR] Erreur lors de la récupération des statistiques globales: database.execute is not a function
+[2026-08-28 11:24:08] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 11:24:08] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:09] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:11] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:11] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 11:24:13] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:13] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 11:24:15] [ERROR] [Classes Controller] Erreur lecture des classes: database.execute is not a function
+[2026-08-28 11:24:15] [ERROR] [Student Controller] Erreur lecture: database.execute is not a function
+[2026-08-28 12:37:48] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-28 12:37:48] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-28 12:37:49] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:37:54] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:37:55] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:37:55] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:37:58] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:37:58] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:38:00] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:01] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:38:03] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:04] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:06] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:38:08] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:09] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:09] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 12:38:09] [INFO] Toutes les absences globales : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:09] [INFO] Absences de l'étudiant ID=5 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:09] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 12:38:17] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:38:22] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:30] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:38:32] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:38:37] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:38:40] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:38:44] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:44] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:44] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 12:38:44] [INFO] Toutes les absences globales : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:44] [INFO] Absences de l'étudiant ID=5 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:44] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 12:38:47] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:38:49] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:50] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 12:38:50] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 12:38:50] [INFO] Toutes les absences globales : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:50] [INFO] Absences de l'étudiant ID=5 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 12:38:50] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 12:38:58] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:38:59] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:00] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:02] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:07] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 12:39:10] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:11] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:12] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:39:13] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:39:14] [INFO] Liste des utilisateurs consultée (15 entrées)
+[2026-08-28 12:39:28] [INFO] Utilisateur supprimé: ID=19
+[2026-08-28 12:39:29] [INFO] Liste des utilisateurs consultée (14 entrées)
+[2026-08-28 12:39:47] [INFO] Utilisateur supprimé: ID=15
+[2026-08-28 12:39:47] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 12:52:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 12:58:05] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:09] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:44] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:16:46] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:46] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:16:47] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:48] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:50] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:16:52] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:16:52] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:16:52] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 14:16:52] [INFO] Toutes les absences globales : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 14:16:52] [INFO] Absences de l'étudiant ID=5 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 14:16:52] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 14:16:55] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:16:57] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:58] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:16:59] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:17:00] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:17:48] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:17:48] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:17:50] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:17:53] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:17:55] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:24:59] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:36:17] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:36:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:36:33] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:36:33] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:36:33] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 14:36:33] [INFO] Toutes les absences globales : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 14:36:33] [INFO] Absences de l'étudiant ID=5 : Total=0, Justifiées=0, Non justifiées=0
+[2026-08-28 14:36:33] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 14:36:38] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:36:41] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:36:42] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:36:43] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:36:45] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-28 14:37:00] [INFO] Utilisateur supprimé: ID=17
+[2026-08-28 14:37:01] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 14:37:09] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 14:37:09] [INFO] Historique des absences consulté (0 absences)
+[2026-08-28 14:37:23] [INFO] Absence enregistrée: ID=1, Étudiant ID=5, Date=2026-08-28, Statut=non justifiée
+[2026-08-28 14:37:24] [INFO] Historique des absences consulté (1 absences)
+[2026-08-28 14:37:48] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:37:48] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 14:37:48] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 14:37:48] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 14:37:48] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 14:37:48] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 14:37:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:00] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:37] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:38] [INFO] Historique des absences consulté (1 absences)
+[2026-08-28 15:35:49] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:52] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:54] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:56] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:35:56] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 15:36:01] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 15:36:04] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 15:36:04] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 15:36:04] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 15:36:04] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 15:36:04] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 15:36:04] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 15:36:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:36:17] [INFO] Historique des absences consulté (1 absences)
+[2026-08-28 15:36:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:36:19] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:36:20] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:36:21] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 15:36:23] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 15:36:26] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 15:36:26] [INFO] Classement consulté (1 étudiants)
+[2026-08-28 15:36:26] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-28 15:36:26] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 15:36:26] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-28 15:36:26] [INFO] Statistiques globales : Étudiants=1, Professeurs=4, Matières=3
+[2026-08-28 15:36:28] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 15:36:28] [INFO] Historique des absences consulté (1 absences)
+[2026-08-28 15:36:40] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 15:36:50] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 16:42:51] [INFO] Liste des matières consultée (3 matières)
+[2026-08-28 23:46:52] [INFO] Liste des utilisateurs consultée (12 entrées)
+[2026-08-28 23:48:02] [INFO] Utilisateur ajouté: ID=30, Nom=Moussa Diarra, Rôle=teacher
+[2026-08-28 23:48:02] [INFO] Fiche professeur créée pour user_id=30, matière=Français, classe_id=4
+[2026-08-28 23:48:03] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 00:02:04] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 00:02:14] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:02:15] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 00:02:28] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:02:52] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:02:53] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 00:03:12] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:12] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:17] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:17] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 00:03:25] [INFO] Classement consulté (1 étudiants)
+[2026-08-29 00:03:25] [INFO] Classement consulté (1 étudiants)
+[2026-08-29 00:03:25] [INFO] Meilleur étudiant : Ali Koffi (Moyenne: 0.00)
+[2026-08-29 00:03:25] [INFO] Toutes les absences globales : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 00:03:25] [INFO] Absences de l'étudiant ID=5 : Total=1, Justifiées=0, Non justifiées=1
+[2026-08-29 00:03:25] [INFO] Statistiques globales : Étudiants=1, Professeurs=5, Matières=3
+[2026-08-29 00:03:31] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:31] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 00:03:33] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:34] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:36] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:46] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:03:47] [INFO] Liste des utilisateurs consultée (13 entrées)
+[2026-08-29 00:03:47] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 00:04:06] [INFO] Liste des utilisateurs consultée (13 entrées)

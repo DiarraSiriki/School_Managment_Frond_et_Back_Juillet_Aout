@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySchoolManager - Statistiques</title>
+
+  <!-- Font Awesome 6 CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Font (Inter) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+
+  <!-- Lien vers le fichier CSS des statistiques -->
+  <link rel="stylesheet" href="css/statistiques.css">
+</head>
+<body data-roles="admin">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item active"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <div class="user-name">Admin</div>
+        <div class="user-role">Administrateur</div>
+      </div>
+      <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- EN-TÊTE HAUT -->
+    <header class="top-header">
+      <div class="top-title"><i class="fa-solid fa-chart-column"></i> Statistiques</div>
+      <div class="top-date">Lun 03 Août 2026 <span class="status-dot"></span></div>
+    </header>
+
+    <!-- EN-TÊTE PAGE -->
+    <div class="page-header">
+      <h1>Statistiques</h1>
+      <p class="subtitle">Analyse globale · Année 2025–2026</p>
+    </div>
+
+    <!-- CARTES -->
+    <div class="stats-cards">
+      <div class="card">
+        <div class="card-title">Moyenne Maximale</div>
+        <div class="card-val">18.2/20</div>
+        <div class="card-sub">Khelifi Rania</div>
+      </div>
+
+      <div class="card card-red">
+        <div class="card-title">Absences Totales</div>
+        <div class="card-val red">8</div>
+        <div class="card-sub">5 non justifiées</div>
+      </div>
+    </div>
+
+    <!-- TABLEAU DE PROGRESSION -->
+    <div class="table-container">
+      <div class="table-header">PROGRESSION PAR ÉTUDIANT</div>
+      <table>
+        <thead>
+          <tr>
+            <th>NOM</th>
+            <th>MOYENNE</th>
+            <th>ABS. JUSTIF.</th>
+            <th>ABS. NON JUSTIF.</th>
+            <th>TOTAL ABSENCES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="font-bold">Khelifi Rania</td>
+            <td class="font-bold text-blue">18.2</td>
+            <td class="font-bold text-green">0</td>
+            <td class="font-bold text-red">0</td>
+            <td class="font-bold">0</td>
+          </tr>
+          <tr>
+            <td class="font-bold">Rahmani Sonia</td>
+            <td class="font-bold text-blue">12.4</td>
+            <td class="font-bold text-green">1</td>
+            <td class="font-bold text-red">2</td>
+            <td class="font-bold">3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/statistiques.js"></script>
+</body>
+</html>

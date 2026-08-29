@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+            text-align: center;
+            border: 1px solid #ef9a9a;
+            display: none; 
+        }
+    </style>
+   
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Connexion</h2>
+        
+        <!-- Boîte d'erreur dynamique -->
+        <div id="error-box" class="error-message"></div>
+        
+        <form id="loginForm" action="#">
+            <div class="input-group">
+                <label for="email">Adresse email</label>
+                <input type="email" id="email" placeholder="exemple@mail.com" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Se connecter</button>
+        </form>
+    </div>
+    <script src="/js/api.js"></script>
+    <script src="/js/login.js" defer></script>
+</body>
+</html>

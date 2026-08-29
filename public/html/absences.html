@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Absences</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/absences.css">
+</head>
+<body data-roles="admin,teacher,student">
+
+  <!-- BARRE LATÉRALE (SIDEBAR) -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item active"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+      <a href="/mon-profil" class="menu-item"><i class="fa-solid fa-id-card"></i> Mon Profil</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <div class="user-name">Admin</div>
+        <div class="user-role">Administrateur</div>
+      </div>
+      <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-content">
+
+    <header class="top-header">
+      <div class="top-title">
+        <i class="fa-solid fa-calendar-days"></i> Absences
+      </div>
+      <div class="top-date">
+        <span id="topDateText">Chargement...</span> <span class="status-dot"></span>
+      </div>
+    </header>
+
+    <div class="page-header">
+      <div>
+        <h1>Absences</h1>
+        <p class="subtitle">Chargement des absences...</p>
+      </div>
+      <button class="btn-primary" id="btnNewAbsence">
+        <i class="fa-solid fa-plus"></i> Signaler une absence
+      </button>
+    </div>
+
+    <!-- CARTES DE RÉSUMÉ -->
+    <div class="summary-cards">
+      <div class="card">
+        <div class="card-icon warning">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div class="card-content">
+          <span class="card-value">0</span>
+          <span class="card-label">Non justifiées</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon success">
+          <i class="fa-solid fa-square-check"></i>
+        </div>
+        <div class="card-content">
+          <span class="card-value">0</span>
+          <span class="card-label">Justifiées</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-icon neutral">
+          <i class="fa-solid fa-stopwatch"></i>
+        </div>
+        <div class="card-content">
+          <span class="card-value">0</span>
+          <span class="card-label">Nombre d'absences</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLEAU -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ÉTUDIANT</th>
+            <th>CLASSE</th>
+            <th>MATIÈRE</th>
+            <th>DATE</th>
+            <th>STATUT</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="6" style="text-align:center;">Chargement des données...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- MODALE AJOUT ABSENCE -->
+  <div id="absenceModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Signaler une absence</h3>
+      <p id="modalSubtitle">Renseignez les informations de l'absence.</p>
+
+      <div id="formError" class="alert-box alert-error" style="display: none;"></div>
+
+      <form id="absenceForm">
+        <div class="form-group">
+          <label for="absenceStudent">Étudiant</label>
+          <select id="absenceStudent" required>
+            <option value="">Sélectionner un étudiant</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="absenceClasse">Classe</label>
+          <select id="absenceClasse">
+            <option value="">Sélectionner une classe</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="absenceMatiere">Matière</label>
+          <select id="absenceMatiere">
+            <option value="">Sélectionner une matière</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="absenceDate">Date</label>
+          <input type="date" id="absenceDate" required>
+        </div>
+
+        <div class="form-group">
+          <label for="absenceStatus">Statut</label>
+          <select id="absenceStatus" required>
+            <option value="non justifiée">Non justifiée</option>
+            <option value="justifiée">Justifiée</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnCancelModal" class="btn-secondary">Annuler</button>
+          <button type="submit" id="btnSubmitModal" class="btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/absences.js"></script>
+</body>
+</html>

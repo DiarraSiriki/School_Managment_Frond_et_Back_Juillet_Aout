@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySchoolManager - Notes</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/notes.css">
+</head>
+<body data-roles="admin,teacher,student">
+
+  <!-- BOÎTE D'ALERTE POUR NOTIFICATIONS -->
+  <div id="alertBox" class="alert-box"></div>
+
+  <!-- BARRE LATÉRALE (SIDEBAR) -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">É</div>
+      <div>
+        <div class="brand-title">MySchoolManager</div>
+        <div class="brand-sub">2025–2026</div>
+      </div>
+    </div>
+
+    <div class="menu-title">NAVIGATION</div>
+
+    <nav class="menu">
+      <a href="/dashboard-admin" class="menu-item"><i class="fa-solid fa-users"></i> Utilisateurs</a>
+      <a href="/dashboard-etudiant" class="menu-item"><i class="fa-solid fa-user-graduate"></i> Étudiants</a>
+      <a href="/dashboard-prof" class="menu-item"><i class="fa-solid fa-chalkboard-user"></i> Professeurs</a>
+      <a href="/matieres" class="menu-item"><i class="fa-solid fa-book-open"></i> Matières</a>
+      <a href="/notes" class="menu-item active"><i class="fa-solid fa-pen-to-square"></i> Notes</a>
+      <a href="/absences" class="menu-item"><i class="fa-solid fa-calendar-days"></i> Absences</a>
+      <a href="/statistiques" class="menu-item"><i class="fa-solid fa-chart-column"></i> Statistiques</a>
+      <a href="/mon-profil" class="menu-item"><i class="fa-solid fa-id-card"></i> Mon Profil</a>
+    </nav>
+
+    <div class="user-profile">
+      <div class="avatar">A</div>
+      <div class="user-info">
+        <div class="user-name">Admin</div>
+        <div class="user-role">Administrateur</div>
+      </div>
+      <i class="fa-solid fa-right-from-bracket logout-icon"></i>
+    </div>
+  </aside>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main class="main-content">
+
+    <!-- EN-TÊTE HAUT -->
+    <header class="top-header">
+      <div class="top-title">
+        <i class="fa-solid fa-pen-to-square"></i> Notes
+      </div>
+      <div class="top-date">
+        <span id="topDateText">Chargement...</span> <span class="status-dot"></span>
+      </div>
+    </header>
+
+    <!-- EN-TÊTE PAGE + BOUTON -->
+    <div class="page-header">
+      <div>
+        <h1>Notes</h1>
+        <p class="subtitle" id="gradeSubtitle">Chargement des notes...</p>
+      </div>
+      <button class="btn-primary" id="btnNewGrade"><i class="fa-solid fa-plus"></i> Saisir une note</button>
+    </div>
+
+    <!-- TABLEAU DES NOTES -->
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ÉTUDIANT</th>
+            <th>CLASSE</th>
+            <th>MATIÈRE</th>
+            <th>NOTE</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="gradesTableBody">
+          <tr class="table-state-row">
+            <td colspan="5" style="text-align:center;">Chargement des données...</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+
+  <!-- MODALE DE SAISIE ET MODIFICATION -->
+  <div id="gradeModal" class="modal">
+    <div class="modal-content">
+      <h3 id="modalTitle">Saisir une note</h3>
+      <p id="modalSubtitle">Renseignez les détails de la note de l'élève.</p>
+
+      <div id="formError" class="alert-box alert-error" style="display: none;"></div>
+
+      <form id="gradeForm">
+        <input type="hidden" id="gradeId">
+
+        <div class="form-group">
+          <label for="gradeStudent">Étudiant</label>
+          <select id="gradeStudent" required>
+            <option value="">Sélectionner un étudiant</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gradeClasse">Classe</label>
+          <select id="gradeClasse">
+            <option value="">Sélectionner une classe</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gradeSubject">Matière</label>
+          <select id="gradeSubject" required>
+            <option value="">Sélectionner une matière</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gradeValue">Note (/20)</label>
+          <input type="number" id="gradeValue" min="0" max="20" step="0.25" placeholder="Ex: 15.5" required>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" id="btnCancelModal" class="btn-secondary">Annuler</button>
+          <button type="submit" id="btnSubmitModal" class="btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/authGuard.js"></script>
+  <script src="/js/api.js"></script>
+  <script src="/js/notes.js"></script>
+</body>
+</html>

@@ -1,0 +1,92 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f6ff;
+  padding: 20px;
+}
+
+/* Carte principale */
+.welcome-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 48px 36px 40px 36px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  border: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Icône chapeau d'étudiant */
+.icon-container {
+  width: 72px;
+  height: 72px;
+  background-color: #1e3a8a;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  color: #ffffff;
+  font-size: 32px;
+}
+
+/* Titre principal */
+.title {
+  color: #0f172a;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.25;
+  margin-bottom: 16px;
+}
+
+/* Description */
+.description {
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  max-width: 360px;
+}
+
+/* Bouton de connexion */
+.btn-login {
+  width: 100%;
+  background-color: #032b7a;
+  color: #ffffff;
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 2px 4px rgba(3, 43, 122, 0.2);
+}
+
+.btn-login:hover {
+  background-color: #021f59;
+}
+
+.btn-login:active {
+  transform: scale(0.99);
+}
+
+.btn-login i {
+  font-size: 16px;
+}
