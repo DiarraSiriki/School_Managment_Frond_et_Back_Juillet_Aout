@@ -1455,3 +1455,11 @@
 [2026-08-29 22:33:52] [INFO] Historique des absences consulté (1 absences)
 [2026-08-29 22:33:53] [INFO] Liste des matières consultée (3 matières)
 [2026-08-29 22:33:53] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:38:32] [INFO] Liste des matières consultée (3 matières)
+[2026-08-29 22:38:32] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:38:34] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=non justifiée
+[2026-08-29 22:38:34] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:38:36] [INFO] Statut d'absence modifié: ID=1, Nouveau statut=justifiée
+[2026-08-29 22:38:36] [INFO] Historique des absences consulté (1 absences)
+[2026-08-29 22:38:54] [INFO] Absence enregistrée: ID=2, Étudiant=5, Date=2026-08-29, Statut=non justifiée, Matière=null
+[2026-08-29 22:38:54] [INFO] Historique des absences consulté (2 absences)

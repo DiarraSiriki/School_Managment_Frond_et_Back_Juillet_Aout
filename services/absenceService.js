@@ -69,11 +69,29 @@ async function recordAbsence(student_id, date, status = STATUS.NON_JUSTIFIEE, su
   await ensureAbsenceSchema();
   const normalizedStatus = normalizeStatus(status);
   const sid = subject_id != null && subject_id !== '' ? Number(subject_id) : null;
-  const result = await Absence.create(student_id, date, normalizedStatus, sid);
-  logger.info(
-    `Absence enregistrée: ID=${result.lastInsertRowid}, Étudiant=${student_id}, Date=${date}, Statut=${normalizedStatus}, Matière=${sid}`
-  );
-  return result.lastInsertRowid;
+  try {
+    const result = await Absence.create(student_id, date, normalizedStatus, sid);
+    logger.info(
+      `Absence enregistrée: ID=${result.lastInsertRowid}, Étudiant=${student_id}, Date=${date}, Statut=${normalizedStatus}, Matière=${sid}`
+    );
+    return result.lastInsertRowid;
+  } catch (err) {
+    logger.warn(`[Absence] create avec subject_id échoué: ${err.message}`);
+    const result = await database.execute({
+      sql: 'INSERT INTO absences (student_id, date, status) VALUES (?, ?, ?)',
+      args: [student_id, date, normalizedStatus]
+    });
+    const id = Number(result.lastInsertRowid);
+    if (sid != null) {
+      try {
+        await database.execute({
+          sql: 'UPDATE absences SET subject_id = ? WHERE id = ?',
+          args: [sid, id]
+        });
+      } catch (_) {}
+    }
+    return id;
+  }
 }
 
 async function updateAbsence(id, { student_id, date, status, subject_id }) {
