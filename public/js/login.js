@@ -46,8 +46,15 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
       const role = normalizeLoginRole(result.user?.role);
       const user = { ...result.user, role };
 
+      console.log('[Login] Original role from server:', result.user?.role);
+      console.log('[Login] Normalized role:', role);
+      console.log('[Login] User object to store:', user);
+
       localStorage.setItem('token', result.token);
       localStorage.setItem('user', JSON.stringify(user));
+
+      console.log('[Login] Token and user stored in localStorage');
+      console.log('[Login] Stored user:', JSON.parse(localStorage.getItem('user')));
 
       const redirectMap = {
         admin: '/dashboard-admin',
@@ -55,7 +62,10 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         student: '/dashboard-etudiant'
       };
 
+      console.log('[Login] Redirect target for role', role, ':', redirectMap[role]);
+
       if (role && redirectMap[role]) {
+        console.log('[Login] Redirecting to:', redirectMap[role]);
         window.location.href = redirectMap[role];
       } else {
         showLoginError('Rôle utilisateur inconnu : ' + (role || 'vide'));

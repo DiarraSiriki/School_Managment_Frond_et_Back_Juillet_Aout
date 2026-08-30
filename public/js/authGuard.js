@@ -113,22 +113,36 @@ const AuthGuard = {
 
   checkPageAccess() {
     const role = this.getRole();
+    console.log('[AuthGuard] checkPageAccess - Role:', role, 'Path:', window.location.pathname);
 
     if (!role) {
+      console.log('[AuthGuard] No role found, redirecting to login');
       window.location.href = '/login';
       return false;
     }
 
     if (!localStorage.getItem('token')) {
+      console.log('[AuthGuard] No token found, redirecting to login');
       localStorage.removeItem('user');
       window.location.href = '/login';
       return false;
     }
 
     const allowedRolesAttr = document.body.getAttribute('data-roles');
+    console.log('[AuthGuard] data-roles attribute:', allowedRolesAttr);
     if (allowedRolesAttr) {
       const allowedRoles = allowedRolesAttr.split(',').map(r => this.normalizeRole(r.trim()));
+      console.log('[AuthGuard] Allowed roles after normalization:', allowedRoles);
+      console.log('[AuthGuard] Current role after normalization:', role);
+      
+      // Si aucun data-roles n'est spécifié ou si l'attribut contient 'all', autoriser l'accès
+      if (!allowedRolesAttr || allowedRolesAttr.includes('all')) {
+        console.log('[AuthGuard] No restriction or "all" permission - access granted');
+        return true;
+      }
+      
       if (!allowedRoles.includes(role)) {
+        console.log('[AuthGuard] Role not in allowed roles, redirecting to home page');
         window.location.href = this.homePage[role] || '/login';
         return false;
       }
@@ -136,12 +150,17 @@ const AuthGuard = {
 
     const path = window.location.pathname.replace(/\/$/, '') || '/';
     const allowed = this.menuAccess[role] || [];
+    console.log('[AuthGuard] Menu access for role:', role, allowed);
+    console.log('[AuthGuard] Current path:', path);
     const isAllowed = allowed.some(p => path === p || path.startsWith(p + '/'));
+    console.log('[AuthGuard] Is path allowed:', isAllowed);
     if (!isAllowed && path !== '/login' && path !== '/') {
+      console.log('[AuthGuard] Path not allowed, redirecting to home page');
       window.location.href = this.homePage[role] || '/login';
       return false;
     }
 
+    console.log('[AuthGuard] Access granted');
     return true;
   },
 
