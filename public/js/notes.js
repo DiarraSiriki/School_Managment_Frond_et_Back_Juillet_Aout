@@ -114,15 +114,70 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+   function currentRole() {
+    try {
+      return (typeof AuthGuard !== 'undefined' && AuthGuard.getRole)
+        ? AuthGuard.getRole()
+        : (JSON.parse(localStorage.getItem('user') || 'null')?.role || null);
+    } catch (_) { return null; }
+  }
+
   function renderTable() {
-    if (gradeSubtitle) {
-      gradeSubtitle.textContent = `${allGrades.length} note${allGrades.length > 1 ? 's' : ''} enregistrée${allGrades.length > 1 ? 's' : ''}`;
+    const role = currentRole();
+    const canEdit = role === 'admin' || role === 'teacher';
+    const canDelete = role === 'admin';
+
+    let subtitle = `${allGrades.length} note${allGrades.length > 1 ? 's' : ''} enregistrée${allGrades.length > 1 ? 's' : ''}`;
+    if (role === 'student' && allGrades.length > 0) {
+      const vals = allGrades.map(g => Number(g.valeur ?? g.note ?? 0)).filter(n => !Number.isNaN(n));
+      if (vals.length) {
+        const moy = vals.reduce((a, b) => a + b, 0) / vals.length;
+        subtitle += ` · Moyenne : ${moy.toFixed(2)}/20`;
+      }
     }
+    if (gradeSubtitle) gradeSubtitle.textContent = subtitle;
 
     if (allGrades.length === 0) {
       tableBody.innerHTML = `<tr class="table-state-row"><td colspan="5" style="text-align:center;">Aucune note enregistrée.</td></tr>`;
       return;
     }
+
+    tableBody.innerHTML = allGrades.map(g => {
+      const student = allStudents.find(s => String(s.id) === String(g.student_id));
+      const studentName = student ? `${student.nom} ${student.prenom || ''}` : (g.student_nom || 'Étudiant inconnu');
+
+      const subject = allSubjects.find(s => String(s.id) === String(g.subject_id));
+      const subjectName = subject ? subject.nom : (g.subject_nom || '-');
+
+      const classeObj = allClasses.find(c => String(c.id) === String(student?.classe_id || subject?.classe_id));
+      const className = classeObj ? classeObj.nom : (g.classe || '-');
+
+      const val = Number(g.valeur ?? g.note ?? 0);
+      let gradeClass = 'grade-medium';
+      if (val >= 14) gradeClass = 'grade-high';
+      else if (val < 10) gradeClass = 'grade-low';
+
+      let actions = '';
+      if (canEdit || canDelete) {
+        actions = '<div class="action-buttons">';
+        if (canEdit) actions += `<button class="btn-edit" data-action="edit" data-id="${g.id}"><i class="fa-solid fa-pen"></i></button>`;
+        if (canDelete) actions += `<button class="btn-delete" data-action="delete" data-id="${g.id}"><i class="fa-solid fa-trash"></i></button>`;
+        actions += '</div>';
+      } else {
+        actions = '<span style="color:#94a3b8;">—</span>';
+      }
+
+      return `
+        <tr>
+          <td><strong>${escapeHtml(studentName)}</strong></td>
+          <td>${escapeHtml(className)}</td>
+          <td>${escapeHtml(subjectName)}</td>
+          <td><span class="grade ${gradeClass}">${val}/20</span></td>
+          <td>${actions}</td>
+        </tr>
+      `;
+    }).join('');
+  }
 
     tableBody.innerHTML = allGrades.map(g => {
       const student = allStudents.find(s => String(s.id) === String(g.student_id));

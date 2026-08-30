@@ -18,7 +18,8 @@ router.use(verifyToken);
 router.get('/search', checkRole(['admin']), chercherProfesseur);
 router.get('/me', checkRole(['teacher', 'admin']), getMonProfilProfesseur);
 
-router.get('/', checkRole(['admin']), getProfesseurs);
+// Lecture autorisée aussi au prof (pour afficher les matières)
+router.get('/', checkRole(['admin', 'teacher']), getProfesseurs);
 router.get('/:id', checkRole(['admin']), getProfesseurParId);
 
 router.post('/', checkRole(['admin']), ajouterProfesseur);

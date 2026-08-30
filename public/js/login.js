@@ -51,8 +51,8 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
 
       const redirectMap = {
         admin: '/dashboard-admin',
-        teacher: '/notes',
-        student: '/mon-profil'
+        teacher: '/dashboard-prof',
+        student: '/dashboard-etudiant'
       };
 
       if (role && redirectMap[role]) {

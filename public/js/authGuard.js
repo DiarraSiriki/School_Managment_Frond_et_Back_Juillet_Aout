@@ -16,7 +16,7 @@ const AuthGuard = {
     };
     return aliases[normalized] || normalized;
   },
- 
+
   getUser() {
     const userJson = localStorage.getItem('user');
     const user = userJson ? JSON.parse(userJson) : null;
@@ -26,12 +26,17 @@ const AuthGuard = {
       role: this.normalizeRole(user.role)
     };
   },
- 
+
   getRole() {
     const user = this.getUser();
     return user ? user.role : null;
   },
 
+  /*
+   * ADMIN  : tout
+   * PROF   : consulter étudiants, consulter matières, ajouter/modifier notes, absences limité
+   * ÉLÈVE  : voir ses notes, ses absences, sa moyenne, son profil
+   */
   permissions: {
     admin: [
       'gerer_utilisateurs',
@@ -41,6 +46,11 @@ const AuthGuard = {
       'gerer_notes',
       'gerer_absences',
       'voir_statistiques',
+      'consulter_etudiants',
+      'consulter_matieres',
+      'consulter_absences',
+      'ajouter_notes',
+      'modifier_notes',
       'ajouter',
       'modifier',
       'supprimer'
@@ -48,15 +58,16 @@ const AuthGuard = {
     teacher: [
       'consulter_etudiants',
       'consulter_matieres',
-      'gerer_notes',
-      'gerer_absences',
-      'voir_statistiques',
       'ajouter_notes',
-      'modifier_notes'
+      'modifier_notes',
+      'gerer_notes',
+      'consulter_absences',
+      'gerer_absences'
     ],
     student: [
       'voir_ses_notes',
       'voir_ses_absences',
+      'voir_sa_moyenne',
       'voir_profil'
     ]
   },
@@ -70,30 +81,28 @@ const AuthGuard = {
       '/notes',
       '/absences',
       '/statistiques',
-      '/mon-profil',
-      '/profil'
+      '/mon-profil'
     ],
     teacher: [
+      '/dashboard-prof',
       '/dashboard-etudiant',
       '/matieres',
       '/notes',
       '/absences',
-      '/statistiques',
-      '/mon-profil',
-      '/profil'
+      '/mon-profil'
     ],
     student: [
+      '/dashboard-etudiant',
       '/notes',
       '/absences',
-      '/mon-profil',
-      '/profil'
+      '/mon-profil'
     ]
   },
 
   homePage: {
     admin: '/dashboard-admin',
-    teacher: '/notes',
-    student: '/mon-profil'
+    teacher: '/dashboard-prof',
+    student: '/dashboard-etudiant'
   },
 
   can(permission) {
@@ -101,17 +110,18 @@ const AuthGuard = {
     if (!role || !this.permissions[role]) return false;
     return this.permissions[role].includes(permission);
   },
- 
+
   checkPageAccess() {
-    const rawUser = localStorage.getItem('user');
     const role = this.getRole();
 
     if (!role) {
-      console.warn(
-        `[AuthGuard] Aucun rôle valide trouvé → retour à l'accueil. ` +
-        `Contenu brut de localStorage.user : ${rawUser === null ? 'ABSENT (clé manquante)' : rawUser}`
-      );
-      window.location.href = '/';
+      window.location.href = '/login';
+      return false;
+    }
+
+    if (!localStorage.getItem('token')) {
+      localStorage.removeItem('user');
+      window.location.href = '/login';
       return false;
     }
 
@@ -119,13 +129,17 @@ const AuthGuard = {
     if (allowedRolesAttr) {
       const allowedRoles = allowedRolesAttr.split(',').map(r => this.normalizeRole(r.trim()));
       if (!allowedRoles.includes(role)) {
-        console.warn(
-          `[AuthGuard] Rôle "${role}" non autorisé sur cette page (data-roles="${allowedRolesAttr}") ` +
-          `→ redirection vers "${this.homePage[role] || '/'}".`
-        );
-        window.location.href = this.homePage[role] || '/';
+        window.location.href = this.homePage[role] || '/login';
         return false;
       }
+    }
+
+    const path = window.location.pathname.replace(/\/$/, '') || '/';
+    const allowed = this.menuAccess[role] || [];
+    const isAllowed = allowed.some(p => path === p || path.startsWith(p + '/'));
+    if (!isAllowed && path !== '/login' && path !== '/') {
+      window.location.href = this.homePage[role] || '/login';
+      return false;
     }
 
     return true;
@@ -137,11 +151,7 @@ const AuthGuard = {
       if (!requiredPerm) return;
       const perms = requiredPerm.split(',').map(p => p.trim());
       const hasAccess = perms.some(p => this.can(p));
-      if (!hasAccess) {
-        element.style.display = 'none';
-      } else {
-        element.style.display = '';
-      }
+      element.style.display = hasAccess ? '' : 'none';
     });
   },
 
@@ -155,14 +165,9 @@ const AuthGuard = {
       const href = link.getAttribute('href');
       if (!href || href === '#') return;
 
-      const cleanHref = href.split('?')[0];
+      const cleanHref = href.split('?')[0].replace(/\/$/, '') || '/';
       const isAllowed = allowed.some(p => cleanHref === p || cleanHref.startsWith(p + '/'));
-
-      if (!isAllowed) {
-        link.style.display = 'none';
-      } else {
-        link.style.display = '';
-      }
+      link.style.display = isAllowed ? '' : 'none';
     });
   },
 

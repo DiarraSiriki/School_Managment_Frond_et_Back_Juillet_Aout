@@ -1,10 +1,19 @@
 import User from '../models/modelUsers.js';
 import Student from '../models/modelStudent.js';
 import Teacher from '../models/modelTeacher.js';
-import Classe from '../models/modelClass.js';
+
 import { resolveClasseId } from './classeService.js';
 import logger from '../utils/logger.js';
 
+export {
+  addUser,
+  authenticate,
+  removeUser,
+  listUsers,
+  getUserById,
+  updateUser,
+  normalizeRole
+};
 const ROLE_ALIASES = {
   admin: 'admin',
   administrateur: 'admin',
@@ -29,15 +38,7 @@ const normalizeRole = (role) => {
   return ROLE_ALIASES[normalized] || normalized;
 };
 
-export {
-  addUser,
-  authenticate,
-  removeUser,
-  listUsers,
-  getUserById,
-  updateUser,
-  normalizeRole
-};
+
 
 /**
  * Découpe un nom complet en (prenom, nom).
