@@ -204,7 +204,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  function setupLogout() {
+    const logoutIcon = document.querySelector('.logout-icon');
+    if (logoutIcon) {
+      logoutIcon.addEventListener('click', async () => {
+        try {
+          await API.auth.logout();
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.location.href = '/login';
+        } catch (error) {
+          console.error('Erreur de déconnexion:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.location.href = '/login';
+        }
+      });
+    }
+  }
+
   // --- 7. INITIALISATION ---
   renderDate();
+  setupLogout();
   await loadData();
 });

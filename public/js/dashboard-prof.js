@@ -349,11 +349,31 @@ function setupTableActions() {
   });
 }
 
+function setupLogout() {
+  const logoutIcon = document.querySelector('.logout-icon');
+  if (logoutIcon) {
+    logoutIcon.addEventListener('click', async () => {
+      try {
+        await API.auth.logout();
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+      } catch (error) {
+        console.error('Erreur de déconnexion:', error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+      }
+    });
+  }
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
   renderTodayDate();
   setupSearch();
   setupModal();
   setupTableActions();
+  setupLogout();
   await Promise.all([loadSubjects(), loadUsers()]);
   await loadTeachers();
 });

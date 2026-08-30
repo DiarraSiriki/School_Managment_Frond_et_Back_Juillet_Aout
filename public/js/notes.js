@@ -179,38 +179,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }).join('');
   }
 
-    tableBody.innerHTML = allGrades.map(g => {
-      const student = allStudents.find(s => String(s.id) === String(g.student_id));
-      const studentName = student ? `${student.nom} ${student.prenom || ''}` : (g.student_nom || 'Étudiant inconnu');
-
-      const subject = allSubjects.find(s => String(s.id) === String(g.subject_id));
-      const subjectName = subject ? subject.nom : (g.subject_nom || '-');
-
-      const classeObj = allClasses.find(c => String(c.id) === String(student?.classe_id || subject?.classe_id));
-      const className = classeObj ? classeObj.nom : (g.classe || '-');
-
-      const val = Number(g.valeur ?? g.note ?? 0);
-      let gradeClass = 'grade-medium';
-      if (val >= 14) gradeClass = 'grade-high';
-      else if (val < 10) gradeClass = 'grade-low';
-
-      return `
-        <tr>
-          <td><strong>${escapeHtml(studentName)}</strong></td>
-          <td>${escapeHtml(className)}</td>
-          <td>${escapeHtml(subjectName)}</td>
-          <td><span class="grade ${gradeClass}">${val}/20</span></td>
-          <td>
-            <div class="action-buttons">
-              <button class="btn-edit" data-action="edit" data-id="${g.id}"><i class="fa-solid fa-pen"></i></button>
-              <button class="btn-delete" data-action="delete" data-id="${g.id}"><i class="fa-solid fa-trash"></i></button>
-            </div>
-          </td>
-        </tr>
-      `;
-    }).join('');
-  }
-
   function openModal(grade = null) {
     gradeForm.reset();
     formError.style.display = 'none';
@@ -299,6 +267,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
 
+  function setupLogout() {
+    const logoutIcon = document.querySelector('.logout-icon');
+    if (logoutIcon) {
+      logoutIcon.addEventListener('click', async () => {
+        try {
+          await API.auth.logout();
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.location.href = '/login';
+        } catch (error) {
+          console.error('Erreur de déconnexion:', error);
+          localStorage.removeItem('token');
+          localStorage.removeItem('user');
+          window.location.href = '/login';
+        }
+      });
+    }
+  }
+
   renderDate();
+  setupLogout();
   await loadData();
 });

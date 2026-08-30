@@ -148,6 +148,24 @@
         document.getElementById('sidebarUserRole').textContent = role;
         document.getElementById('sidebarAvatar').textContent = initials[0] || 'A';
       }
+
+      // Déconnexion
+      const logoutBtn = document.querySelector('.logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', async () => {
+          try {
+            await API.auth.logout();
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+          } catch (error) {
+            console.error('Erreur de déconnexion:', error);
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = '/login';
+          }
+        });
+      }
     });
   </script>
 </body>

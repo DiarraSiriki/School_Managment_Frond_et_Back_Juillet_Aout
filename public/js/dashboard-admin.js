@@ -506,7 +506,17 @@ document.addEventListener('DOMContentLoaded', async () => {
   const logoutBtn = document.querySelector('.logout-btn');
   if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
-      await API.auth.logout();
+      try {
+        await API.auth.logout();
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+      } catch (error) {
+        console.error('Erreur de déconnexion:', error);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/login';
+      }
     });
   }
 });
