@@ -98,8 +98,8 @@ function getSubjectsForStudent(studentId) {
 
 async function loadAbsences() {
   try {
-    const absences = await API.absences.getAll();
-    allAbsences = Array.isArray(absences) ? absences : [];
+    const res = await API.absences.getAll();
+    allAbsences = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
     renderStats();
     renderTable();
   } catch (error) {
@@ -440,6 +440,37 @@ document.addEventListener('DOMContentLoaded', async () => {
   setupTableActions();
   setupNewAbsenceButton();
   setupLogout();
+
+  const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
+  const role = currentUser?.role;
+
+  // Étudiant : uniquement ses propres absences
+  if (role === 'student') {
+    const btn = document.querySelector('.page-header .btn-primary');
+    if (btn) btn.style.display = 'none';
+    try {
+      const profile = await API.students.getMyProfile();
+      const me = profile?.data || profile;
+      if (me?.id) {
+        allStudents = [me];
+        const res = await API.absences.getByStudent(me.id);
+        allAbsences = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+      }
+      try {
+        const subjectsRes = await API.subjects.getAll();
+        allSubjects = Array.isArray(subjectsRes?.data) ? subjectsRes.data : (Array.isArray(subjectsRes) ? subjectsRes : []);
+      } catch (_) {
+        allSubjects = [];
+      }
+    } catch (e) {
+      console.error('[absences student]', e);
+      allAbsences = [];
+    }
+    renderStats();
+    renderTable();
+    return;
+  }
+
   await Promise.all([loadStudents(), loadSubjects(), loadClasses()]);
   await loadAbsences();
 });

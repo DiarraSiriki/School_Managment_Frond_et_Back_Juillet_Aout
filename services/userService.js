@@ -138,12 +138,14 @@ async function authenticate(email, mot_passe) {
   if (!emailToVerify || !mot_passe) return null;
 
   const user = await User.getByEmail(emailToVerify);
-  if (!user || !user.mot_passe) return null;
+  if (!user || user.mot_passe == null || user.mot_passe === '') return null;
 
-  if (mot_passe !== user.mot_passe) return null;
+  // Comparaison en clair uniquement (pas de hachage)
+  if (String(mot_passe) !== String(user.mot_passe)) return null;
 
+  const { mot_passe: _pwd, ...safeUser } = user;
   return {
-    ...user,
+    ...safeUser,
     role: normalizeRole(user.role)
   };
 }

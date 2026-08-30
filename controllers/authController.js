@@ -2,9 +2,7 @@ import { authenticate, getUserById } from '../services/userService.js';
 import jwt from 'jsonwebtoken';
 import { logToFile } from '../utils/logger.js';
 
-
 const JWT_SECRET = process.env.JWT_SECRET || 'votre_cle_secrete_super_securisee';
-
 
 const login = async (req, res) => {
   const { email, mot_passe } = req.body;
@@ -27,6 +25,14 @@ const login = async (req, res) => {
       return res.status(401).json({
         success: false,
         message: "Email ou mot de passe incorrect."
+      });
+    }
+
+    if (!user.id || !user.role) {
+      logToFile('ERROR', `Connexion refusée (profil incomplet): ${email}`);
+      return res.status(401).json({
+        success: false,
+        message: "Compte invalide. Contactez l'administrateur."
       });
     }
 
@@ -59,52 +65,46 @@ const login = async (req, res) => {
     logToFile('ERROR', `Erreur lors de la connexion: ${email} - ${error.message}`);
     return res.status(500).json({
       success: false,
-      error: "Erreur lors de la connexion."
+      error: "Erreur lors de la connexion.",
+      message: "Erreur lors de la connexion."
     });
   }
 };
 
-
-// Récupère le profil de l'utilisateur actuellement connecté (tous rôles confondus)
 const getMonProfil = async (req, res) => {
+  const userId = req.user.id;
 
-    const userId = req.user.id;
+  try {
+    const user = await getUserById(userId);
 
-    try {
-        const user = await getUserById(userId);
-
-        if (!user) {
-            return res.status(404).json({
-                success: false,
-                message: "Profil introuvable."
-            });
-        }
-
-        return res.json({
-            success: true,
-            data: user
-        });
-    } catch (error) {
-        console.error("[ERREUR GET MON PROFIL]", error);
-        return res.status(500).json({
-            success: false,
-            message: "Erreur lors de la récupération du profil."
-        });
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Profil introuvable."
+      });
     }
+
+    return res.json({
+      success: true,
+      data: user
+    });
+  } catch (error) {
+    console.error("[ERREUR GET MON PROFIL]", error);
+    return res.status(500).json({
+      success: false,
+      message: "Erreur lors de la récupération du profil."
+    });
+  }
 };
 
 const logout = (req, res) => {
+  const user = req.user;
+  logToFile('INFO', `Déconnexion: ${user?.email} (role: ${user?.role})`);
 
-    const user = req.user;
-
-    logToFile('INFO', `Déconnexion: ${user?.email} (role: ${user?.role})`);
-
-
-    return res.json({
-        success: true,
-        message: "Déconnexion réussie !"
-    });
+  return res.json({
+    success: true,
+    message: "Déconnexion réussie !"
+  });
 };
-
 
 export { login, logout, getMonProfil };

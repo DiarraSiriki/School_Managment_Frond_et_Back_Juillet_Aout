@@ -1503,3 +1503,9 @@
 [2026-08-29 22:55:22] [INFO] Liste des matières consultée (3 matières)
 [2026-08-29 22:55:59] [INFO] Tentative de connexion: krasco@gmail.com
 [2026-08-29 22:56:00] [INFO] Connexion réussie: krasco@gmail.com (role: student)
+[2026-08-30 00:22:20] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-30 00:22:21] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-30 00:22:22] [INFO] Liste des utilisateurs consultée (16 entrées)
+[2026-08-30 00:22:26] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-30 00:22:41] [INFO] Tentative de connexion: yamouss@gmail.com
+[2026-08-30 00:22:41] [INFO] Connexion réussie: yamouss@gmail.com (role: student)
