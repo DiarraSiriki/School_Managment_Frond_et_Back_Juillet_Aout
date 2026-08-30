@@ -103,9 +103,14 @@ const AuthGuard = {
   },
  
   checkPageAccess() {
+    const rawUser = localStorage.getItem('user');
     const role = this.getRole();
 
     if (!role) {
+      console.warn(
+        `[AuthGuard] Aucun rôle valide trouvé → retour à l'accueil. ` +
+        `Contenu brut de localStorage.user : ${rawUser === null ? 'ABSENT (clé manquante)' : rawUser}`
+      );
       window.location.href = '/';
       return false;
     }
@@ -114,6 +119,10 @@ const AuthGuard = {
     if (allowedRolesAttr) {
       const allowedRoles = allowedRolesAttr.split(',').map(r => this.normalizeRole(r.trim()));
       if (!allowedRoles.includes(role)) {
+        console.warn(
+          `[AuthGuard] Rôle "${role}" non autorisé sur cette page (data-roles="${allowedRolesAttr}") ` +
+          `→ redirection vers "${this.homePage[role] || '/'}".`
+        );
         window.location.href = this.homePage[role] || '/';
         return false;
       }

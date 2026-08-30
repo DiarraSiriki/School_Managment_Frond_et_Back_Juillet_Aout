@@ -1509,3 +1509,16 @@
 [2026-08-30 00:22:26] [INFO] Déconnexion: admin@gmail.com (role: admin)
 [2026-08-30 00:22:41] [INFO] Tentative de connexion: yamouss@gmail.com
 [2026-08-30 00:22:41] [INFO] Connexion réussie: yamouss@gmail.com (role: student)
+[2026-08-30 01:15:38] [INFO] Tentative de connexion: admin@gmail.com
+[2026-08-30 01:15:39] [INFO] Connexion réussie: admin@gmail.com (role: admin)
+[2026-08-30 01:15:40] [INFO] Liste des utilisateurs consultée (16 entrées)
+[2026-08-30 01:15:45] [INFO] Déconnexion: admin@gmail.com (role: admin)
+[2026-08-30 01:16:23] [INFO] Tentative de connexion: siriki.diarra@school.com
+[2026-08-30 01:16:23] [WARN] Connexion échouée (identifiants incorrects): siriki.diarra@school.com
+[2026-08-30 01:17:05] [INFO] Tentative de connexion: krasco@gmail.com
+[2026-08-30 01:17:06] [INFO] Connexion réussie: krasco@gmail.com (role: student)
+[2026-08-30 01:18:01] [INFO] Tentative de connexion: coul@gmail.com
+[2026-08-30 01:18:01] [INFO] Connexion réussie: coul@gmail.com (role: teacher)
+[2026-08-30 01:18:03] [INFO] Liste des matières consultée (3 matières)
+[2026-08-30 02:00:05] [INFO] Tentative de connexion: yamouss@gmail.com
+[2026-08-30 02:00:06] [INFO] Connexion réussie: yamouss@gmail.com (role: student)

@@ -28,7 +28,12 @@ const API = {
       // 401 = session expirée → déconnexion
       // 403 = droit insuffisant → on laisse l'appelant gérer (ne pas déconnecter)
       if (response.status === 401) {
-        console.warn('[API] Session expirée.');
+        const data401 = await response.json().catch(() => ({}));
+        console.warn(
+          `[API] 401 reçu sur "${endpoint}" → déconnexion automatique. ` +
+          `Message serveur : "${data401.message || data401.error || '(aucun)'}". ` +
+          `Token présent avant l'appel : ${token ? 'oui' : 'NON (probablement la cause)'}.`
+        );
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         window.location.href = '/';
