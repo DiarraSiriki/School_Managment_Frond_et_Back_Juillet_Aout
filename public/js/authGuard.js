@@ -1,7 +1,12 @@
 const AuthGuard = {
   normalizeRole(role) {
     if (!role) return '';
-    const normalized = String(role).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const normalized = String(role)
+      .trim()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '');
+
     const aliases = {
       admin: 'admin',
       administrateur: 'admin',
@@ -12,19 +17,30 @@ const AuthGuard = {
       student: 'student',
       etudiant: 'student',
       etudiante: 'student',
-      eleve: 'student'
+      eleve: 'student',
+      eleve: 'student',
+      etudiant: 'student',
+      student: 'student'
     };
+
     return aliases[normalized] || normalized;
   },
 
   getUser() {
-    const userJson = localStorage.getItem('user');
-    const user = userJson ? JSON.parse(userJson) : null;
-    if (!user) return null;
-    return {
-      ...user,
-      role: this.normalizeRole(user.role)
-    };
+    try {
+      const userJson = localStorage.getItem('user');
+      const user = userJson ? JSON.parse(userJson) : null;
+      if (!user) return null;
+
+      return {
+        ...user,
+        role: this.normalizeRole(user.role)
+      };
+    } catch (error) {
+      console.warn('[AuthGuard] Données utilisateur invalides, nettoyage local.', error);
+      localStorage.removeItem('user');
+      return null;
+    }
   },
 
   getRole() {
@@ -32,11 +48,12 @@ const AuthGuard = {
     return user ? user.role : null;
   },
 
-  /*
-   * ADMIN  : tout
-   * PROF   : consulter étudiants, consulter matières, ajouter/modifier notes, absences limité
-   * ÉLÈVE  : voir ses notes, ses absences, sa moyenne, son profil
-   */
+  cleanPath(pathname = '') {
+    let path = String(pathname || '').replace(/\/$/, '') || '/';
+    path = path.replace(/\.html$/, '');
+    return path;
+  },
+
   permissions: {
     admin: [
       'gerer_utilisateurs',
@@ -113,7 +130,9 @@ const AuthGuard = {
 
   checkPageAccess() {
     const role = this.getRole();
-    console.log('[AuthGuard] checkPageAccess - Role:', role, 'Path:', window.location.pathname);
+    const path = this.cleanPath(window.location.pathname);
+
+    console.log('[AuthGuard] checkPageAccess - Role:', role, 'Path:', path);
 
     if (!role) {
       console.log('[AuthGuard] No role found, redirecting to login');
@@ -128,34 +147,27 @@ const AuthGuard = {
       return false;
     }
 
-    const allowedRolesAttr = document.body.getAttribute('data-roles');
-    console.log('[AuthGuard] data-roles attribute:', allowedRolesAttr);
+    const body = document.body;
+    const allowedRolesAttr = body ? body.getAttribute('data-roles') : null;
+
     if (allowedRolesAttr) {
-      const allowedRoles = allowedRolesAttr.split(',').map(r => this.normalizeRole(r.trim()));
-      console.log('[AuthGuard] Allowed roles after normalization:', allowedRoles);
-      console.log('[AuthGuard] Current role after normalization:', role);
-      
-      // Si aucun data-roles n'est spécifié ou si l'attribut contient 'all', autoriser l'accès
-      if (!allowedRolesAttr || allowedRolesAttr.includes('all')) {
-        console.log('[AuthGuard] No restriction or "all" permission - access granted');
-        return true;
-      }
-      
-      if (!allowedRoles.includes(role)) {
+      const allowedRoles = allowedRolesAttr
+        .split(',')
+        .map((r) => this.normalizeRole(r.trim()));
+
+      const roleAllowed = allowedRoles.includes(role) || allowedRoles.includes('all');
+      if (!roleAllowed) {
         console.log('[AuthGuard] Role not in allowed roles, redirecting to home page');
         window.location.href = this.homePage[role] || '/login';
         return false;
       }
     }
 
-    const path = window.location.pathname.replace(/\/$/, '') || '/';
     const allowed = this.menuAccess[role] || [];
-    console.log('[AuthGuard] Menu access for role:', role, allowed);
-    console.log('[AuthGuard] Current path:', path);
-    const isAllowed = allowed.some(p => path === p || path.startsWith(p + '/'));
-    console.log('[AuthGuard] Is path allowed:', isAllowed);
+    const isAllowed = allowed.some((p) => path === p || path.startsWith(`${p}/`));
+
     if (!isAllowed && path !== '/login' && path !== '/') {
-      console.log('[AuthGuard] Path not allowed, redirecting to home page');
+      console.log('[AuthGuard] Path not allowed, redirect to home page');
       window.location.href = this.homePage[role] || '/login';
       return false;
     }
@@ -165,11 +177,12 @@ const AuthGuard = {
   },
 
   applyUI() {
-    document.querySelectorAll('[data-perm]').forEach(element => {
+    document.querySelectorAll('[data-perm]').forEach((element) => {
       const requiredPerm = element.getAttribute('data-perm');
       if (!requiredPerm) return;
-      const perms = requiredPerm.split(',').map(p => p.trim());
-      const hasAccess = perms.some(p => this.can(p));
+
+      const perms = requiredPerm.split(',').map((p) => p.trim());
+      const hasAccess = perms.some((perm) => this.can(perm));
       element.style.display = hasAccess ? '' : 'none';
     });
   },
@@ -180,12 +193,12 @@ const AuthGuard = {
 
     const allowed = this.menuAccess[role];
 
-    document.querySelectorAll('.menu a, .menu .menu-item').forEach(link => {
+    document.querySelectorAll('.menu a, .menu .menu-item').forEach((link) => {
       const href = link.getAttribute('href');
       if (!href || href === '#') return;
 
-      const cleanHref = href.split('?')[0].replace(/\/$/, '') || '/';
-      const isAllowed = allowed.some(p => cleanHref === p || cleanHref.startsWith(p + '/'));
+      const cleanHref = this.cleanPath(href.split('?')[0]);
+      const isAllowed = allowed.some((p) => cleanHref === p || cleanHref.startsWith(`${p}/`));
       link.style.display = isAllowed ? '' : 'none';
     });
   },
@@ -198,8 +211,8 @@ const AuthGuard = {
 
   getInitials(name) {
     if (!name) return '?';
-    const parts = name.trim().split(/\s+/);
-    return parts.slice(0, 2).map(p => p[0]?.toUpperCase() || '').join('') || '?';
+    const parts = String(name).trim().split(/\s+/);
+    return parts.slice(0, 2).map((p) => p[0]?.toUpperCase() || '').join('') || '?';
   },
 
   renderUserWidget() {

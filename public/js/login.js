@@ -10,7 +10,12 @@ function showLoginError(msg) {
 
 function normalizeLoginRole(role) {
   if (!role) return '';
-  const n = String(role).trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const normalized = String(role)
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '');
+
   const aliases = {
     admin: 'admin',
     administrateur: 'admin',
@@ -23,58 +28,70 @@ function normalizeLoginRole(role) {
     etudiante: 'student',
     eleve: 'student'
   };
-  return aliases[n] || n;
+
+  return aliases[normalized] || normalized;
 }
 
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('loginForm');
+  if (!form) return;
 
-  const email = document.getElementById('email').value.trim();
-  const mot_passe = document.getElementById('password').value;
-  const errorBox = document.getElementById('error-box');
-  if (errorBox) errorBox.style.display = 'none';
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-  if (!email || !mot_passe) {
-    showLoginError("L'email et le mot de passe sont requis.");
-    return;
-  }
+    const email = document.getElementById('email')?.value.trim();
+    const mot_passe = document.getElementById('password')?.value;
+    const errorBox = document.getElementById('error-box');
 
-  try {
-    const result = await API.auth.login({ email, mot_passe });
+    if (errorBox) errorBox.style.display = 'none';
 
-    if (result.success || result.token) {
-      const role = normalizeLoginRole(result.user?.role);
-      const user = { ...result.user, role };
-
-      console.log('[Login] Original role from server:', result.user?.role);
-      console.log('[Login] Normalized role:', role);
-      console.log('[Login] User object to store:', user);
-
-      localStorage.setItem('token', result.token);
-      localStorage.setItem('user', JSON.stringify(user));
-
-      console.log('[Login] Token and user stored in localStorage');
-      console.log('[Login] Stored user:', JSON.parse(localStorage.getItem('user')));
-
-      const redirectMap = {
-        admin: '/dashboard-admin',
-        teacher: '/dashboard-prof',
-        student: '/dashboard-etudiant'
-      };
-
-      console.log('[Login] Redirect target for role', role, ':', redirectMap[role]);
-
-      if (role && redirectMap[role]) {
-        console.log('[Login] Redirecting to:', redirectMap[role]);
-        window.location.href = redirectMap[role];
-      } else {
-        showLoginError('Rôle utilisateur inconnu : ' + (role || 'vide'));
-      }
-    } else {
-      showLoginError(result.message || result.error || 'Échec de la connexion.');
+    if (!email || !mot_passe) {
+      showLoginError("L'email et le mot de passe sont requis.");
+      return;
     }
-  } catch (error) {
-    console.error('Erreur de connexion:', error);
-    showLoginError(error.message || 'Erreur réseau lors de la connexion.');
-  }
+
+    try {
+      console.log('[LOGIN] Appel API en cours...');
+      const result = await API.auth.login({ email, mot_passe });
+      console.log('[LOGIN] Réponse API brute :', result);
+
+      // ✅ ROBUSTESSE : gère les deux formes possibles de réponse
+      // { success, token, user } ou { message: "..." } (échec 401 renvoyé par api.js)
+      const token = result?.token;
+      const userData = result?.user;
+
+      if (token && userData) {
+        const role = normalizeLoginRole(userData.role);
+        console.log('[LOGIN] Rôle normalisé :', role);
+        console.log('[LOGIN] User :', userData);
+
+        const user = { ...userData, role };
+
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(user));
+        console.log('[LOGIN] localStorage rempli ✓ (token + user)');
+
+        const redirectMap = {
+          admin: '/dashboard-admin',
+          teacher: '/dashboard-prof',
+          student: '/dashboard-etudiant'
+        };
+
+        if (role && redirectMap[role]) {
+          console.log('[LOGIN] Redirection vers :', redirectMap[role]);
+          window.location.href = redirectMap[role];
+        } else {
+          showLoginError(`Rôle utilisateur inconnu : ${role || 'vide'}`);
+        }
+      } else {
+        console.warn('[LOGIN] Réponse sans token ou sans user :', result);
+        showLoginError(
+          result?.message || result?.error || 'Échec de la connexion (identifiants incorrects ?).'
+        );
+      }
+    } catch (error) {
+      console.error('[LOGIN] Erreur catch :', error);
+      showLoginError(error.message || 'Erreur réseau lors de la connexion.');
+    }
+  });
 });

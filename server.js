@@ -29,26 +29,32 @@ app.use(express.urlencoded({ extended: true }));
 // Serveur de fichiers statiques (dossier public)
 app.use(express.static(join(__dirname, 'public')));
 
-// 1. PAGE D'ACCUEIL (Renvoyer index.html pour '/')
-app.get('/', (req, res) => {
-    res.sendFile(join(__dirname, 'public', 'index.html'));
-});
+// Servir toutes les pages HTML avec des URLs propres
+const pagesMap = {
+    '/': 'index.html',
+    '/login': 'login.html',
+    '/dashboard-admin': 'html/dashboard-admin.html',
+    '/dashboard-etudiant': 'html/dashboard-etudiant.html',
+    '/dashboard-prof': 'html/dashboard-prof.html',
+    '/absences': 'html/absences.html',
+    '/matieres': 'html/matieres.html',
+    '/notes': 'html/notes.html',
+    '/statistiques': 'html/statistiques.html',
+    '/mon-profil': 'html/mon-profil.html'
+};
 
-// 2. PAGE DE CONNEXION (Renvoyer login.html pour '/login')
-app.get('/login', (req, res) => {
-    res.sendFile(join(__dirname, 'public', 'login.html'));
-});
+for (const [route, file] of Object.entries(pagesMap)) {
+    app.get(route, (req, res) => {
+        res.sendFile(join(__dirname, 'public', file), (err) => {
+            if (err) {
+                console.error(`[PAGE INTROUVABLE] ${file}`);
+                res.status(404).send(`Page introuvable : ${file}`);
+            }
+        });
+    });
+}
 
-// Routes des pages HTML
-app.get('/dashboard-admin', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-admin.html')));
-app.get('/dashboard-etudiant', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-etudiant.html')));
-app.get('/dashboard-prof', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'dashboard-prof.html')));
-app.get('/absences', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'absences.html')));
-app.get('/matieres', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'matieres.html')));
-app.get('/notes', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'notes.html')));
-app.get('/statistiques', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'statistiques.html')));
-app.get('/mon-profil', (req, res) => res.sendFile(join(__dirname, 'public', 'html', 'mon-profil.html')));
-
+// Redirection des anciennes URLs /HTML/:page (compatibilité)
 const htmlRouteMap = {
     'index.html': '/',
     'login.html': '/login',
@@ -56,21 +62,21 @@ const htmlRouteMap = {
     'dashboard-etudiant.html': '/dashboard-etudiant',
     'dashboard-prof.html': '/dashboard-prof',
     'absences.html': '/absences',
-    'matières.html': '/matieres',
+    'matieres.html': '/matieres',
     'notes.html': '/notes',
     'statistiques.html': '/statistiques',
     'mon-profil.html': '/mon-profil'
 };
 
-app.get('/HTML/:page', (req, res) => {
-    const page = req.params.page.toLowerCase();
+app.get(['/HTML/:page', '/html/:page'], (req, res) => {
+    const page = (req.params.page || '').toLowerCase();
     const redirectUrl = htmlRouteMap[page] || '/';
     res.redirect(redirectUrl);
 });
 
 // Routes API
 app.use('/api/auth', authRoutes);
-app.use('/api/users', usersRoutes); 
+app.use('/api/users', usersRoutes);
 app.use('/api/classes', classRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/teachers', teacherRoutes);
@@ -83,14 +89,14 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'API School Management fonctionnelle' });
 });
 
-// Route 404 pour les requêtes non trouvées
+// Route 404 pour requêtes non trouvées
 app.use((req, res) => {
     res.status(404).json({ error: `Route non trouvée : ${req.originalUrl}` });
 });
 
 // Gestionnaire d'erreurs globales (500)
 app.use((err, req, res, next) => {
-    console.error("[ERREUR SERVEUR]", err.stack);
+    console.error('[ERREUR SERVER]', err.stack);
     res.status(500).json({
         error: "Une erreur interne s'est produite sur le serveur.",
         details: process.env.NODE_ENV === 'development' ? err.message : undefined
@@ -99,8 +105,8 @@ app.use((err, req, res, next) => {
 
 // Démarrage du serveur
 app.listen(PORT, () => {
-    console.log(`=================================`);
-    console.log(`Serveur School Management lancé !`);
+    console.log('=================================');
+    console.log('Serveur School Management lancé !');
     console.log(`Port : ${PORT}`);
-    console.log(`=================================`);
+    console.log('=================================');
 });
