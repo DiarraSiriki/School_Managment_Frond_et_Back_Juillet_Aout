@@ -1,4 +1,5 @@
-// Gestion de la page Absences — création + édition (étudiant, classe, matière, date, statut)
+// Gestion de la page Absences — création + édition
+// Champs : étudiant, classe, matière (subject), date, statut
 
 const ROLE_LABELS = {
   admin: 'Administrateur',
@@ -43,6 +44,16 @@ function showAlert(message, type = 'success') {
   setTimeout(() => alertDiv.remove(), 3500);
 }
 
+/** Normalise une matière (API peut renvoyer nom / name / libelle) */
+function normalizeSubject(s) {
+  if (!s) return null;
+  return {
+    id: s.id ?? s.subject_id,
+    nom: s.nom || s.name || s.libelle || s.title || ('Matière #' + s.id),
+    classe_id: s.classe_id ?? s.class_id ?? null
+  };
+}
+
 async function loadStudents() {
   try {
     const res = await API.students.getAll();
@@ -56,8 +67,9 @@ async function loadStudents() {
 async function loadSubjects() {
   try {
     const res = await API.subjects.getAll();
-    allSubjects = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
-    console.log('[loadSubjects] matières chargées:', allSubjects.length, allSubjects);
+    const raw = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+    allSubjects = raw.map(normalizeSubject).filter(Boolean);
+    console.log('[loadSubjects]', allSubjects.length, 'matières', allSubjects);
   } catch (e) {
     console.error('[loadSubjects] ERREUR:', e);
     allSubjects = [];
@@ -78,22 +90,25 @@ function getStudentById(studentId) {
   return allStudents.find((x) => String(x.id) === String(studentId)) || null;
 }
 
-function getStudentClassName(studentId) {
-  const s = getStudentById(studentId);
-  if (!s) return '-';
-  const c = allClasses.find((x) => String(x.id) === String(s.classe_id));
-  return c ? c.nom : (s.classe || '-');
-}
-
 function getSubjectsForStudent(studentId) {
+  if (!studentId || !allSubjects.length) return allSubjects;
   const s = getStudentById(studentId);
-  if (!s || s.classe_id == null || s.classe_id === '') {
-    return allSubjects;
-  }
+  if (!s || s.classe_id == null || s.classe_id === '') return allSubjects;
   const filtered = allSubjects.filter(
     (sub) => String(sub.classe_id) === String(s.classe_id)
   );
   return filtered.length > 0 ? filtered : allSubjects;
+}
+
+function resolveMatiereLabel(a) {
+  let label = a.matiere || a.matiere_nom || a.subject_name || a.subject_nom || '';
+  if (label) return label;
+  const sid = a.subject_id ?? a.matiere_id;
+  if (sid != null) {
+    const sub = allSubjects.find((s) => String(s.id) === String(sid));
+    if (sub) return sub.nom;
+  }
+  return '-';
 }
 
 async function loadAbsences() {
@@ -106,7 +121,7 @@ async function loadAbsences() {
     console.error('Erreur chargement absences:', error);
     const tbody = document.querySelector('.table-container tbody');
     if (tbody) {
-      tbody.innerHTML = `<tr><td colspan="5">Erreur: ${escapeHtml(error.message)}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Erreur: ${escapeHtml(error.message)}</td></tr>`;
     }
   }
 }
@@ -133,12 +148,12 @@ function renderTable() {
 
   const filtered = allAbsences.filter((a) => {
     if (!searchTerm) return true;
-    const hay = `${a.student_name || ''} ${a.classe || ''} ${a.matiere || ''}`.toLowerCase();
+    const hay = `${a.student_name || ''} ${a.classe || ''} ${a.matiere || ''} ${resolveMatiereLabel(a)}`.toLowerCase();
     return hay.includes(searchTerm);
   });
 
   if (filtered.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="5">Aucune absence trouvée.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;">Aucune absence trouvée.</td></tr>`;
     return;
   }
 
@@ -146,20 +161,16 @@ function renderTable() {
     .map((a) => {
       const statusLabel = a.status || '-';
       const statusClass = a.status === 'justifiée' ? 'badge-success' : 'badge-warning';
-      let matiereLabel = a.matiere || a.matiere_nom || '-';
-      if ((!matiereLabel || matiereLabel === '-') && a.subject_id) {
-        const sub = allSubjects.find((s) => String(s.id) === String(a.subject_id));
-        if (sub) matiereLabel = sub.nom;
-      }
+      const matiereLabel = resolveMatiereLabel(a);
       return `
       <tr>
         <td><strong>${escapeHtml(a.student_name || 'Inconnu')}</strong></td>
         <td>${escapeHtml(a.classe || '-')}</td>
         <td>${escapeHtml(matiereLabel)}</td>
         <td>${escapeHtml(a.date || '-')}</td>
+        <td><span class="badge ${statusClass}">${escapeHtml(statusLabel)}</span></td>
         <td>
           <div class="action-buttons">
-            <span class="badge ${statusClass}" style="margin-right:8px;font-size:12px;">${escapeHtml(statusLabel)}</span>
             <button class="btn-edit" data-id="${a.id}" title="Modifier">
               <i class="fa-solid fa-pen"></i>
             </button>
@@ -185,73 +196,35 @@ function renderTodayDate() {
   dateEl.innerHTML = `${formatted.charAt(0).toUpperCase() + formatted.slice(1)} <span class="status-dot"></span>`;
 }
 
-function ensureModal() {
-  if (document.getElementById('absenceModal')) return;
+function fillClassSelect(selectedClassId) {
+  const classSelect = document.getElementById('absenceClasse');
+  if (!classSelect) return;
 
-  const modal = document.createElement('div');
-  modal.id = 'absenceModal';
-  modal.style.cssText =
-    'display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:2000;align-items:center;justify-content:center;';
-  modal.innerHTML = `
-    <div style="background:#fff;border-radius:12px;padding:24px;width:min(460px,94vw);box-shadow:0 12px 40px rgba(0,0,0,.18);max-height:90vh;overflow:auto;">
-      <h2 id="absenceModalTitle" style="margin:0 0 8px;font-size:1.25rem;">Signaler une absence</h2>
-      <p id="absenceModalSubtitle" style="margin:0 0 16px;color:#64748b;font-size:.9rem;">Renseignez les informations de l'absence.</p>
-      <div id="absenceFormError" style="display:none;color:#dc2626;margin-bottom:12px;font-size:.9rem;"></div>
+  classSelect.innerHTML =
+    '<option value="">Sélectionner une classe</option>' +
+    allClasses
+      .map((c) => {
+        const label = c.nom || c.name || ('Classe #' + c.id);
+        return `<option value="${c.id}">${escapeHtml(label)}</option>`;
+      })
+      .join('');
 
-      <label style="display:block;margin-bottom:6px;font-weight:600;">Étudiant *</label>
-      <select id="absenceStudent" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;"></select>
-
-      <label style="display:block;margin-bottom:6px;font-weight:600;">Classe (auto)</label>
-      <input type="text" id="absenceClasse" readonly placeholder="—"
-        style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;background:#f8fafc;color:#64748b;" />
-
-      <label style="display:block;margin-bottom:6px;font-weight:600;">Matière *</label>
-      <select id="absenceSubject" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:4px;"></select>
-      <p id="absenceSubjectHint" style="margin:0 0 12px;font-size:12px;color:#94a3b8;"></p>
-
-      <label style="display:block;margin-bottom:6px;font-weight:600;">Date *</label>
-      <input type="date" id="absenceDate" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px;" />
-
-      <label style="display:block;margin-bottom:6px;font-weight:600;">Statut</label>
-      <select id="absenceStatus" style="width:100%;padding:10px;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:16px;">
-        <option value="non justifiée">Non justifiée</option>
-        <option value="justifiée">Justifiée</option>
-      </select>
-
-      <div style="display:flex;gap:10px;justify-content:flex-end;">
-        <button type="button" id="btnCancelAbsence" style="padding:10px 16px;border-radius:8px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;">Annuler</button>
-        <button type="button" id="btnSubmitAbsence" style="padding:10px 16px;border-radius:8px;border:none;background:#2563eb;color:#fff;cursor:pointer;font-weight:600;">Enregistrer</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeAbsenceModal();
-  });
-  document.getElementById('btnCancelAbsence').addEventListener('click', closeAbsenceModal);
-  document.getElementById('btnSubmitAbsence').addEventListener('click', submitAbsence);
-
-  document.getElementById('absenceStudent').addEventListener('change', () => {
-    const sid = document.getElementById('absenceStudent').value;
-    document.getElementById('absenceClasse').value = sid ? getStudentClassName(sid) : '';
-    fillSubjectSelect(sid, null);
-  });
+  if (selectedClassId != null && selectedClassId !== '') {
+    classSelect.value = String(selectedClassId);
+  }
 }
 
 function fillSubjectSelect(studentId, selectedSubjectId) {
-  const subjectSelect = document.getElementById('absenceSubject');
-  const hint = document.getElementById('absenceSubjectHint');
-  if (!subjectSelect) return;
+  const subjectSelect = document.getElementById('absenceMatiere');
+  if (!subjectSelect) {
+    console.warn('[fillSubjectSelect] #absenceMatiere introuvable');
+    return;
+  }
 
   const list = studentId ? getSubjectsForStudent(studentId) : allSubjects;
 
   if (!allSubjects.length) {
-    subjectSelect.innerHTML = '<option value="">Aucune matière en base — créez-en dans Matières</option>';
-    if (hint) {
-      hint.textContent = 'Allez dans le menu Matières pour en ajouter, puis rechargez cette page.';
-      hint.style.color = '#dc2626';
-    }
+    subjectSelect.innerHTML = '<option value="">Aucune matière — créez-en dans Matières</option>';
     return;
   }
 
@@ -259,7 +232,7 @@ function fillSubjectSelect(studentId, selectedSubjectId) {
     '<option value="">Sélectionner une matière</option>' +
     list.map((s) => `<option value="${s.id}">${escapeHtml(s.nom)}</option>`).join('');
 
-  if (selectedSubjectId) {
+  if (selectedSubjectId != null && selectedSubjectId !== '') {
     subjectSelect.value = String(selectedSubjectId);
     if (subjectSelect.value !== String(selectedSubjectId)) {
       const sub = allSubjects.find((s) => String(s.id) === String(selectedSubjectId));
@@ -272,105 +245,144 @@ function fillSubjectSelect(studentId, selectedSubjectId) {
       }
     }
   }
-
-  if (hint) {
-    const s = getStudentById(studentId);
-    if (s && s.classe_id != null) {
-      const filtered = allSubjects.filter((sub) => String(sub.classe_id) === String(s.classe_id));
-      if (filtered.length > 0) {
-        hint.textContent = `${list.length} matière(s) pour la classe de cet étudiant.`;
-        hint.style.color = '#94a3b8';
-      } else {
-        hint.textContent = 'Aucune matière liée à cette classe : liste complète affichée.';
-        hint.style.color = '#ca8a04';
-      }
-    } else {
-      hint.textContent = `${allSubjects.length} matière(s) disponible(s).`;
-      hint.style.color = '#94a3b8';
-    }
-  }
 }
 
-function fillSelects(selectedStudentId, selectedSubjectId) {
+function fillSelects(selectedStudentId, selectedSubjectId, selectedClassId) {
   const studentSelect = document.getElementById('absenceStudent');
+  if (!studentSelect) return;
 
   studentSelect.innerHTML =
     '<option value="">Sélectionner un étudiant</option>' +
     allStudents
       .map((s) => {
-        const name = `${s.prenom || ''} ${s.nom || ''}`.trim() || s.name || `Étudiant #${s.id}`;
+        const name =
+          ((s.prenom || '') + ' ' + (s.nom || '')).trim() ||
+          s.name ||
+          ('Étudiant #' + s.id);
         return `<option value="${s.id}">${escapeHtml(name)}</option>`;
       })
       .join('');
 
-  if (selectedStudentId) studentSelect.value = String(selectedStudentId);
-  document.getElementById('absenceClasse').value = selectedStudentId
-    ? getStudentClassName(selectedStudentId)
-    : '';
+  if (selectedStudentId != null && selectedStudentId !== '') {
+    studentSelect.value = String(selectedStudentId);
+  }
 
+  let classId = selectedClassId;
+  if (selectedStudentId) {
+    const s = getStudentById(selectedStudentId);
+    if (s && s.classe_id != null) classId = s.classe_id;
+  }
+  fillClassSelect(classId);
   fillSubjectSelect(selectedStudentId, selectedSubjectId);
 }
 
 async function openAbsenceModal(absence = null) {
-  ensureModal();
-  await loadSubjects();
+  await Promise.all([loadSubjects(), loadClasses()]);
+  if (!allStudents.length) await loadStudents();
 
   editingAbsenceId = absence ? absence.id : null;
-  document.getElementById('absenceFormError').style.display = 'none';
 
-  if (absence) {
-    document.getElementById('absenceModalTitle').textContent = "Modifier l'absence";
-    document.getElementById('absenceModalSubtitle').textContent =
-      "Modifiez l'étudiant, la date, la matière ou le statut.";
-    fillSelects(absence.student_id, absence.subject_id);
-    document.getElementById('absenceDate').value = (absence.date || '').slice(0, 10);
-    document.getElementById('absenceStatus').value =
-      absence.status === 'justifiée' ? 'justifiée' : 'non justifiée';
-  } else {
-    document.getElementById('absenceModalTitle').textContent = 'Signaler une absence';
-    document.getElementById('absenceModalSubtitle').textContent =
-      "Renseignez les informations de l'absence.";
-    fillSelects(null, null);
-    document.getElementById('absenceDate').value = new Date().toISOString().slice(0, 10);
-    document.getElementById('absenceStatus').value = 'non justifiée';
+  const errEl = document.getElementById('formError');
+  if (errEl) {
+    errEl.style.display = 'none';
+    errEl.textContent = '';
   }
 
-  document.getElementById('absenceModal').style.display = 'flex';
+  const titleEl = document.getElementById('modalTitle');
+  const subtitleEl = document.getElementById('modalSubtitle');
+
+  if (absence) {
+    if (titleEl) titleEl.textContent = "Modifier l'absence";
+    if (subtitleEl) {
+      subtitleEl.textContent =
+        "Modifiez l'étudiant, la classe, la matière, la date ou le statut.";
+    }
+    const subjectId = absence.subject_id ?? absence.matiere_id ?? null;
+    const classId = absence.classe_id ?? null;
+    fillSelects(absence.student_id, subjectId, classId);
+    const dateEl = document.getElementById('absenceDate');
+    if (dateEl) dateEl.value = (absence.date || '').slice(0, 10);
+    const statusEl = document.getElementById('absenceStatus');
+    if (statusEl) {
+      statusEl.value =
+        absence.status === 'justifiée' ? 'justifiée' : 'non justifiée';
+    }
+  } else {
+    if (titleEl) titleEl.textContent = 'Signaler une absence';
+    if (subtitleEl) {
+      subtitleEl.textContent = "Renseignez les informations de l'absence.";
+    }
+    fillSelects(null, null, null);
+    const dateEl = document.getElementById('absenceDate');
+    if (dateEl) dateEl.value = new Date().toISOString().slice(0, 10);
+    const statusEl = document.getElementById('absenceStatus');
+    if (statusEl) statusEl.value = 'non justifiée';
+  }
+
+  const modal = document.getElementById('absenceModal');
+  if (modal) {
+    modal.classList.add('show');
+    modal.style.display = 'flex';
+  }
 }
 
 function closeAbsenceModal() {
   const modal = document.getElementById('absenceModal');
-  if (modal) modal.style.display = 'none';
+  if (modal) {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+  }
   editingAbsenceId = null;
 }
 
-async function submitAbsence() {
-  const errEl = document.getElementById('absenceFormError');
-  errEl.style.display = 'none';
+async function submitAbsence(e) {
+  if (e) e.preventDefault();
 
-  const student_id = Number(document.getElementById('absenceStudent').value);
-  const date = document.getElementById('absenceDate').value;
-  const status = document.getElementById('absenceStatus').value;
-  const subjectRaw = document.getElementById('absenceSubject').value;
+  const errEl = document.getElementById('formError');
+  if (errEl) {
+    errEl.style.display = 'none';
+    errEl.textContent = '';
+  }
+
+  const studentEl = document.getElementById('absenceStudent');
+  const dateEl = document.getElementById('absenceDate');
+  const statusEl = document.getElementById('absenceStatus');
+  const matiereEl = document.getElementById('absenceMatiere');
+  const classeEl = document.getElementById('absenceClasse');
+
+  const student_id = studentEl ? Number(studentEl.value) : 0;
+  const date = dateEl ? dateEl.value : '';
+  const status = statusEl ? statusEl.value : 'non justifiée';
+  const subjectRaw = matiereEl ? matiereEl.value : '';
   const subject_id = subjectRaw ? Number(subjectRaw) : null;
+  const classeRaw = classeEl ? classeEl.value : '';
+  const classe_id = classeRaw ? Number(classeRaw) : null;
 
   if (!student_id || !date) {
-    errEl.textContent = "L'étudiant et la date sont obligatoires.";
-    errEl.style.display = 'block';
+    if (errEl) {
+      errEl.textContent = "L'étudiant et la date sont obligatoires.";
+      errEl.style.display = 'block';
+    }
     return;
   }
 
   if (!subject_id) {
-    errEl.textContent = "Veuillez sélectionner la matière concernée par l'absence.";
-    errEl.style.display = 'block';
+    if (errEl) {
+      errEl.textContent =
+        "Veuillez sélectionner la matière concernée par l'absence.";
+      errEl.style.display = 'block';
+    }
     return;
   }
 
-  const btn = document.getElementById('btnSubmitAbsence');
-  btn.disabled = true;
-  btn.textContent = 'Enregistrement...';
+  const btn = document.getElementById('btnSubmitModal');
+  if (btn) {
+    btn.disabled = true;
+    btn.textContent = 'Enregistrement...';
+  }
 
   const payload = { student_id, date, status, subject_id };
+  if (classe_id) payload.classe_id = classe_id;
 
   try {
     if (editingAbsenceId) {
@@ -383,11 +395,44 @@ async function submitAbsence() {
     closeAbsenceModal();
     await loadAbsences();
   } catch (error) {
-    errEl.textContent = error.message || "Erreur lors de l'enregistrement.";
-    errEl.style.display = 'block';
+    if (errEl) {
+      errEl.textContent =
+        error.message || "Erreur lors de l'enregistrement.";
+      errEl.style.display = 'block';
+    }
   } finally {
-    btn.disabled = false;
-    btn.textContent = 'Enregistrer';
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Enregistrer';
+    }
+  }
+}
+
+function setupModalListeners() {
+  const modal = document.getElementById('absenceModal');
+  if (!modal) return;
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeAbsenceModal();
+  });
+
+  const btnCancel = document.getElementById('btnCancelModal');
+  if (btnCancel) btnCancel.addEventListener('click', closeAbsenceModal);
+
+  const form = document.getElementById('absenceForm');
+  if (form) form.addEventListener('submit', submitAbsence);
+
+  const studentSelect = document.getElementById('absenceStudent');
+  if (studentSelect) {
+    studentSelect.addEventListener('change', () => {
+      const sid = studentSelect.value;
+      const s = getStudentById(sid);
+      if (s && s.classe_id != null) {
+        const classSelect = document.getElementById('absenceClasse');
+        if (classSelect) classSelect.value = String(s.classe_id);
+      }
+      fillSubjectSelect(sid || null, null);
+    });
   }
 }
 
@@ -414,14 +459,16 @@ function setupTableActions() {
         showAlert('Absence supprimée avec succès');
         await loadAbsences();
       } catch (error) {
-        showAlert(`Erreur: ${error.message}`, 'error');
+        showAlert('Erreur: ' + error.message, 'error');
       }
     }
   });
 }
 
 function setupNewAbsenceButton() {
-  const btn = document.querySelector('.page-header .btn-primary');
+  const btn =
+    document.getElementById('btnNewAbsence') ||
+    document.querySelector('.page-header .btn-primary');
   if (btn) btn.addEventListener('click', () => openAbsenceModal());
 }
 
@@ -439,14 +486,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   updateCurrentUserDisplay();
   setupTableActions();
   setupNewAbsenceButton();
+  setupModalListeners();
   setupLogout();
 
   const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
   const role = currentUser?.role;
 
-  // Étudiant : uniquement ses propres absences
   if (role === 'student') {
-    const btn = document.querySelector('.page-header .btn-primary');
+    const btn =
+      document.getElementById('btnNewAbsence') ||
+      document.querySelector('.page-header .btn-primary');
     if (btn) btn.style.display = 'none';
     try {
       const profile = await API.students.getMyProfile();
@@ -454,14 +503,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (me?.id) {
         allStudents = [me];
         const res = await API.absences.getByStudent(me.id);
-        allAbsences = Array.isArray(res?.data) ? res.data : (Array.isArray(res) ? res : []);
+        allAbsences = Array.isArray(res?.data)
+          ? res.data
+          : Array.isArray(res)
+            ? res
+            : [];
       }
-      try {
-        const subjectsRes = await API.subjects.getAll();
-        allSubjects = Array.isArray(subjectsRes?.data) ? subjectsRes.data : (Array.isArray(subjectsRes) ? subjectsRes : []);
-      } catch (_) {
-        allSubjects = [];
-      }
+      await loadSubjects();
     } catch (e) {
       console.error('[absences student]', e);
       allAbsences = [];

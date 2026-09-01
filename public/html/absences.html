@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
   <link rel="stylesheet" href="css/absences.css">
 </head>
-<body data-roles="admin,teacher,student"></body>
+<body data-roles="admin,teacher,student">
 
   <!-- BARRE LATÉRALE (SIDEBAR) -->
   <aside class="sidebar">
@@ -122,7 +122,7 @@
 
   </main>
 
-  <!-- MODALE AJOUT ABSENCE -->
+  <!-- MODALE AJOUT / MODIFICATION ABSENCE -->
   <div id="absenceModal" class="modal">
     <div class="modal-content">
       <h3 id="modalTitle">Signaler une absence</h3>
@@ -147,7 +147,7 @@
 
         <div class="form-group">
           <label for="absenceMatiere">Matière</label>
-          <select id="absenceMatiere">
+          <select id="absenceMatiere" required>
             <option value="">Sélectionner une matière</option>
           </select>
         </div>
