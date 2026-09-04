@@ -109,7 +109,6 @@ const AuthGuard = {
       '/mon-profil'
     ],
     student: [
-      '/dashboard-etudiant',
       '/notes',
       '/absences',
       '/mon-profil'
@@ -119,7 +118,7 @@ const AuthGuard = {
   homePage: {
     admin: '/dashboard-admin',
     teacher: '/dashboard-prof',
-    student: '/dashboard-etudiant'
+    student: '/mon-profil'
   },
 
   can(permission) {

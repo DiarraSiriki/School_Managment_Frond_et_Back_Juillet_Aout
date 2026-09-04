@@ -13,11 +13,12 @@ const router = express.Router();
 
 router.use(verifyToken);
 
-router.get('/', checkRole(['admin', 'teacher']), handleGetAllClasses);
+// Lecture autorisée aussi aux étudiants (pour afficher le nom de leur classe)
+router.get('/', checkRole(['admin', 'teacher', 'student']), handleGetAllClasses);
 
 // Plus spécifique avant /:id
 router.get('/:id/details', checkRole(['admin', 'teacher']), handleGetClasseDetails);
-router.get('/:id', checkRole(['admin', 'teacher']), handleGetClasseById);
+router.get('/:id', checkRole(['admin', 'teacher', 'student']), handleGetClasseById);
 
 router.post('/', checkRole(['admin']), handleCreateClasse);
 router.put('/:id', checkRole(['admin']), handleUpdateClasse);

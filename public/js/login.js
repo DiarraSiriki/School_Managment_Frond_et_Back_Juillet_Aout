@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const redirectMap = {
           admin: '/dashboard-admin',
           teacher: '/dashboard-prof',
-          student: '/dashboard-etudiant'
+          student: '/mon-profil'
         };
 
         if (role && redirectMap[role]) {

@@ -6,18 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mon-Profil</title>
 
-  <!-- Font Awesome 6 CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Google Font (Inter) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
-
-  <!-- Fichier CSS Externe -->
   <link rel="stylesheet" href="css/mon-profil.css">
 </head>
 
 <body data-roles="admin,teacher,student">
 
-  <!-- SIDEBAR FIXE UNIFIÉE -->
   <aside class="sidebar">
     <div class="brand">
       <div class="logo">É</div>
@@ -50,7 +45,6 @@
     </div>
   </aside>
 
-  <!-- CONTENU PRINCIPAL (DÉFILANT) -->
   <main class="main-content">
 
     <header class="top-header">
@@ -111,63 +105,7 @@
 
   <script src="/js/authGuard.js"></script>
   <script src="/js/api.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Date dynamique dans l'en-tête
-      const now = new Date();
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const dateEl = document.getElementById('topDateText');
-      if (dateEl) {
-        dateEl.textContent = now.toLocaleDateString('fr-FR', options);
-      }
-
-      // Informations utilisateur depuis localStorage
-      const user = JSON.parse(localStorage.getItem('user'));
-
-      if (user) {
-        const fullName = user.name || 'Utilisateur';
-        const role = user.role || 'Non défini';
-
-        // Profil principal
-        document.getElementById('userName').textContent = fullName;
-        document.getElementById('userRole').textContent = role;
-        document.getElementById('userEmail').textContent = user.email || '-';
-        document.getElementById('userMatricule').textContent = user.matricule || '-';
-        document.getElementById('userNameDetail').textContent = user.nom || fullName.split(' ')[0] || '-';
-        document.getElementById('userPrenomsDetail').textContent = user.prenoms || fullName.split(' ').slice(1).join(' ') || '-';
-        document.getElementById('userClassDetail').textContent = user.classe || '-';
-        document.getElementById('userLastLogin').textContent = user.lastLogin || 'Aujourd\'hui';
-
-        const initials = fullName
-          ? fullName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2)
-          : '?';
-        document.getElementById('userAvatar').textContent = initials;
-
-       
-        document.getElementById('sidebarUserName').textContent = fullName;
-        document.getElementById('sidebarUserRole').textContent = role;
-        document.getElementById('sidebarAvatar').textContent = initials[0] || 'A';
-      }
-
-      // Déconnexion
-      const logoutBtn = document.querySelector('.logout-btn');
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', async () => {
-          try {
-            await API.auth.logout();
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login';
-          } catch (error) {
-            console.error('Erreur de déconnexion:', error);
-            localStorage.removeItem('token');
-            localStorage.removeItem('user');
-            window.location.href = '/login';
-          }
-        });
-      }
-    });
-  </script>
+  <script src="/js/mon-profil.js"></script>
 </body>
 
 </html>

@@ -30,33 +30,67 @@ class Student {
     }
   }
 
+  // Toutes les lectures exposent classe_nom + classe_niveau via LEFT JOIN
   static async getAll() {
-    const { rows } = await database.execute('SELECT * FROM students');
+    const { rows } = await database.execute(`
+      SELECT s.*, c.nom AS classe_nom, c.niveau AS classe_niveau
+      FROM students s
+      LEFT JOIN classes c ON c.id = s.classe_id
+      ORDER BY s.nom, s.prenom
+    `);
     return rows;
   }
 
   static async getById(id) {
-    const { rows } = await database.execute({ sql: 'SELECT * FROM students WHERE id = ?', args: [id] });
+    const { rows } = await database.execute({
+      sql: `
+        SELECT s.*, c.nom AS classe_nom, c.niveau AS classe_niveau
+        FROM students s
+        LEFT JOIN classes c ON c.id = s.classe_id
+        WHERE s.id = ?
+      `,
+      args: [id]
+    });
     return rows[0];
   }
 
   static async getByMatricule(matricule) {
-    const { rows } = await database.execute({ sql: 'SELECT * FROM students WHERE matricule = ?', args: [matricule] });
+    const { rows } = await database.execute({
+      sql: `
+        SELECT s.*, c.nom AS classe_nom, c.niveau AS classe_niveau
+        FROM students s
+        LEFT JOIN classes c ON c.id = s.classe_id
+        WHERE s.matricule = ?
+      `,
+      args: [matricule]
+    });
     return rows[0];
   }
 
   static async getByUserId(user_id) {
-    const { rows } = await database.execute({ sql: 'SELECT * FROM students WHERE user_id = ?', args: [user_id] });
+    const { rows } = await database.execute({
+      sql: `
+        SELECT s.*, c.nom AS classe_nom, c.niveau AS classe_niveau
+        FROM students s
+        LEFT JOIN classes c ON c.id = s.classe_id
+        WHERE s.user_id = ?
+      `,
+      args: [user_id]
+    });
     return rows[0];
   }
 
   static async search(keyword) {
     const k = `%${keyword}%`;
     const { rows } = await database.execute({
-      sql: `SELECT * FROM students
-            WHERE nom LIKE ? OR prenom LIKE ? OR matricule LIKE ?
-               OR CAST(classe_id AS TEXT) LIKE ?`,
-      args: [k, k, k, k]
+      sql: `
+        SELECT s.*, c.nom AS classe_nom, c.niveau AS classe_niveau
+        FROM students s
+        LEFT JOIN classes c ON c.id = s.classe_id
+        WHERE s.nom LIKE ? OR s.prenom LIKE ? OR s.matricule LIKE ?
+           OR CAST(s.classe_id AS TEXT) LIKE ? OR c.nom LIKE ?
+      `,
+      args: [k, k, k, k, k]
     });
     return rows;
   }

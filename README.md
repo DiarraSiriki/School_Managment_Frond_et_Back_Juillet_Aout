@@ -51,10 +51,10 @@ L'accent est mis sur une architecture MVC propre, une API RESTful, l'authentific
 
 - **Langage :** JavaScript / Node.js
 - **Framework Backend :** Express.js
-- **Base de données :** SQLite via le package `better-sqlite3`
+- **Base de données :** Turso (SQLite cloud) via `@libsql/client`
 - **Authentification :** JWT (JSON Web Tokens)
 - **Frontend :** HTML5, CSS, JavaScript
-- **Sécurité :** CORS, bcryptjs pour le hachage des mots de passe
+- **Sécurité :** CORS, middleware d'authentification
 - **Gestionnaire de version :** Git
 
 ---
@@ -62,14 +62,14 @@ L'accent est mis sur une architecture MVC propre, une API RESTful, l'authentific
 ## Structure du Projet
 
 ```text
-School_Managment_Final_juillet/
+School_Managment_Frond_et_Back_Juillet_Aout/
 ├── server.js
 ├── package.json
-├── .env                       # Variables d'environnement (optionnel)
+├── .env                       # Variables d'environnement (Turso credentials, JWT secret)
 ├── .gitignore
+├── migration.js               # Script de migration base de données locale → Turso
 ├── db/
-│   ├── database.js
-│   └── database.db            # Si généré
+│   └── database.js            # Client Turso (base de données cloud)
 ├── models/
 │   ├── modelUsers.js
 │   ├── modelStudent.js
@@ -158,31 +158,31 @@ cd School_Managment_Final_juillet
 npm install
 ```
 
-3. Configurer les variables d'environnement (optionnel) :
+3. Configurer les variables d'environnement (requis) :
 
-Créer un fichier `.env` à la racine du projet :
+Créer un fichier `.env` à la racine du projet avec les credentials Turso :
 
 ```env
 PORT=3000
 JWT_SECRET=votre_clé_secrète_super_securisée
 NODE_ENV=development
+TURSO_DATABASE_URL=libsql://votre-database.turso.io
+TURSO_AUTH_TOKEN=votre_token_turso
 ```
 
 4. Initialiser la base de données (optionnel) :
 
-Si vous souhaitez peupler la base de données avec des données de test :
+Si vous avez une base de données SQLite locale et souhaitez migrer vers Turso :
 
 ```bash
-node scripts/seed.js
+node migration.js
 ```
 
-Cela créera un compte admin par défaut :
-- Email : `admin@school.com`
-- Mot de passe : `Admin123!`
+Pour peupler la base de données avec des données de test (script à compléter) :
 
-Et des comptes de test :
-- Professeur : `marie.kouassi@school.com` / `Prof123!`
-- Étudiant : `siriki.diarra@school.com` / `Etu123!`
+```bash
+npm run seed
+```
 
 ---
 
@@ -226,7 +226,7 @@ Le projet suit une architecture **MVC (Model-View-Controller)** avec séparation
 ### Flux de données
 
 ```
-Frontend (public/js/) → API (routes/) → Controllers → Services → Models → Base de données (SQLite)
+Frontend (public/js/) → API (routes/) → Controllers → Services → Models → Base de données (Turso/SQLite cloud)
 ```
 
 ### Couches de l'application
@@ -234,7 +234,7 @@ Frontend (public/js/) → API (routes/) → Controllers → Services → Models 
 1. **Frontend** (`public/`) :
    - Pages HTML pour l'interface utilisateur
    - CSS pour le style
-   - JavaScript vanilla pour la logique frontend et appels API
+   - JavaScript pour la logique frontend et appels API
 
 2. **Routes** (`routes/`) :
    - Définition des endpoints API
@@ -269,8 +269,8 @@ Frontend (public/js/) → API (routes/) → Controllers → Services → Models 
 - **Authentification JWT** : Tokens stateless pour l'authentification
 - **Rôles et permissions** : Contrôle d'accès basé sur les rôles (admin, teacher, student)
 - **CORS** : Configuration pour autoriser les requêtes cross-origin
-- **Validation** : Validation des données côté serveur
-- **Hachage des mots de passe** : Utilisation de bcryptjs (optionnel)
+- **Validation** : Validation des données côté serveur (à améliorer)
+- **Note** : Version prototype - mots de passe stockés en clair (à remplacer par bcryptjs en production)
 
 ---
 
@@ -280,7 +280,7 @@ Frontend (public/js/) → API (routes/) → Controllers → Services → Models 
 
 - `npm run dev` : Lance le serveur avec nodemon (auto-reload)
 - `npm start` : Lance le serveur en mode production
-- `npm test` : Lance les tests (à implémenter)
+
 
 ### Journalisation
 
@@ -294,6 +294,25 @@ Les logs incluent :
 - Actions sur les données (création, modification, suppression)
 - Erreurs serveur et exceptions
 - Informations de débogage pour le dashboard étudiant
+
+---
+
+## État Actuel et Améliorations Prévues
+
+###  Fonctionnalités Implémentées
+- Architecture MVC complète avec services
+- Authentification JWT fonctionnelle
+- Base de données Turso cloud
+- Interface frontend responsive
+- Système de permissions par rôle
+- Logging des opérations
+
+###  Améliorations à Prévoir
+- **Sécurité** : Remplacer le stockage en clair des mots de passe par bcryptjs
+- **Validation** : Améliorer la validation des données (express-validator ou similaire)
+- **Tests** : Implémenter des tests unitaires et d'intégration
+- **Seed** : Compléter le script `scripts/seed.js` pour les données de test
+- **Documentation API** : Ajouter une documentation Swagger/OpenAPI
 
 ---
 

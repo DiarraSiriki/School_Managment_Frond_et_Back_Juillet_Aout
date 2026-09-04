@@ -48,35 +48,90 @@ document.addEventListener('DOMContentLoaded', async () => {
     topDateText.textContent = formatted.charAt(0).toUpperCase() + formatted.slice(1);
   }
 
+  function currentRole() {
+    try {
+      return (typeof AuthGuard !== 'undefined' && AuthGuard.getRole)
+        ? AuthGuard.getRole()
+        : (JSON.parse(localStorage.getItem('user') || 'null')?.role || null);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function resolveClassName(student, subject, grade) {
+    // 1. Nom déjà fourni par le backend (JOIN)
+    if (student?.classe_nom) return student.classe_nom;
+    if (student?.classe) return student.classe;
+
+    // 2. Recherche dans la liste des classes
+    if (student?.classe_id && allClasses.length) {
+      const found = allClasses.find(c => String(c.id) === String(student.classe_id));
+      if (found?.nom) return found.nom;
+    }
+    if (subject?.classe_id && allClasses.length) {
+      const found = allClasses.find(c => String(c.id) === String(subject.classe_id));
+      if (found?.nom) return found.nom;
+    }
+
+    return grade?.classe || '-';
+  }
+
   async function loadData() {
     try {
       const currentUser = JSON.parse(localStorage.getItem('user') || 'null');
       const role = currentUser?.role;
 
-      // Étudiant : uniquement SES notes
+      // ========== ÉTUDIANT : uniquement SES notes ==========
       if (role === 'student') {
         if (btnNewGrade) btnNewGrade.style.display = 'none';
+
         const profile = await API.students.getMyProfile();
         const me = profile?.data || profile;
         const studentId = me?.id;
         if (!studentId) {
           throw new Error('Profil étudiant introuvable.');
         }
+
         const gradesRes = await API.grades.getByStudent(studentId);
-        allGrades = Array.isArray(gradesRes?.data) ? gradesRes.data : (Array.isArray(gradesRes) ? gradesRes : []);
+        allGrades = Array.isArray(gradesRes?.data)
+          ? gradesRes.data
+          : (Array.isArray(gradesRes) ? gradesRes : []);
+
+        // Profil contient classe_nom (JOIN backend) + classe_id
         allStudents = [me];
+
         try {
           const subjectsRes = await API.subjects.getAll();
-          allSubjects = Array.isArray(subjectsRes?.data) ? subjectsRes.data : (Array.isArray(subjectsRes) ? subjectsRes : []);
+          allSubjects = Array.isArray(subjectsRes?.data)
+            ? subjectsRes.data
+            : (Array.isArray(subjectsRes) ? subjectsRes : []);
         } catch (_) {
           allSubjects = [];
         }
-        allClasses = [];
+
+        // Classes : autorisé maintenant pour les étudiants (lecture seule)
+        try {
+          const classesRes = await API.classes.getAll();
+          allClasses = Array.isArray(classesRes?.data)
+            ? classesRes.data
+            : (Array.isArray(classesRes) ? classesRes : []);
+        } catch (_) {
+          // Fallback : construire à partir du profil
+          allClasses = [];
+          if (me.classe_id) {
+            allClasses = [{
+              id: me.classe_id,
+              nom: me.classe_nom || me.classe || '-'
+            }];
+          }
+        }
+
         populateSelects();
         renderTable();
         return;
       }
 
+      // ========== ADMIN / PROF ==========
       const [gradesRes, studentsRes, subjectsRes, classesRes] = await Promise.all([
         API.grades.getAll(),
         API.students.getAll(),
@@ -103,7 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (selectStudent) {
       selectStudent.innerHTML = '<option value="">Sélectionner un étudiant</option>' +
         allStudents.map(s => {
-          const name = s.nom ? `${s.nom} ${s.prenom || ''}` : (s.name || `Étudiant #${s.id}`);
+          const name = s.nom ? `${s.nom} ${s.prenom || ''}`.trim() : (s.name || `Étudiant #${s.id}`);
           return `<option value="${s.id}">${escapeHtml(name)}</option>`;
         }).join('');
     }
@@ -112,14 +167,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       selectSubject.innerHTML = '<option value="">Sélectionner une matière</option>' +
         allSubjects.map(s => `<option value="${s.id}">${escapeHtml(s.nom)}</option>`).join('');
     }
-  }
-
-   function currentRole() {
-    try {
-      return (typeof AuthGuard !== 'undefined' && AuthGuard.getRole)
-        ? AuthGuard.getRole()
-        : (JSON.parse(localStorage.getItem('user') || 'null')?.role || null);
-    } catch (_) { return null; }
   }
 
   function renderTable() {
@@ -137,6 +184,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     if (gradeSubtitle) gradeSubtitle.textContent = subtitle;
 
+    if (!tableBody) return;
+
     if (allGrades.length === 0) {
       tableBody.innerHTML = `<tr class="table-state-row"><td colspan="5" style="text-align:center;">Aucune note enregistrée.</td></tr>`;
       return;
@@ -144,13 +193,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tableBody.innerHTML = allGrades.map(g => {
       const student = allStudents.find(s => String(s.id) === String(g.student_id));
-      const studentName = student ? `${student.nom} ${student.prenom || ''}` : (g.student_nom || 'Étudiant inconnu');
+      const studentName = student
+        ? `${student.nom || ''} ${student.prenom || ''}`.trim()
+        : (g.student_nom || 'Étudiant inconnu');
 
       const subject = allSubjects.find(s => String(s.id) === String(g.subject_id));
       const subjectName = subject ? subject.nom : (g.subject_nom || '-');
 
-      const classeObj = allClasses.find(c => String(c.id) === String(student?.classe_id || subject?.classe_id));
-      const className = classeObj ? classeObj.nom : (g.classe || '-');
+      const className = resolveClassName(student, subject, g);
 
       const val = Number(g.valeur ?? g.note ?? 0);
       let gradeClass = 'grade-medium';
@@ -180,104 +230,115 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function openModal(grade = null) {
+    if (!gradeForm) return;
     gradeForm.reset();
-    formError.style.display = 'none';
+    if (formError) formError.style.display = 'none';
 
     if (grade) {
-      modalTitle.textContent = 'Modifier la note';
-      modalSubtitle.textContent = 'Ajustement de la note de l\'élève';
-      inputId.value = grade.id;
-      selectStudent.value = grade.student_id || '';
-      selectSubject.value = grade.subject_id || '';
-      inputValeur.value = grade.valeur ?? grade.note ?? '';
+      if (modalTitle) modalTitle.textContent = 'Modifier la note';
+      if (modalSubtitle) modalSubtitle.textContent = "Ajustement de la note de l'élève";
+      if (inputId) inputId.value = grade.id;
+      if (selectStudent) selectStudent.value = grade.student_id || '';
+      if (selectSubject) selectSubject.value = grade.subject_id || '';
+      if (inputValeur) inputValeur.value = grade.valeur ?? grade.note ?? '';
     } else {
-      modalTitle.textContent = 'Saisir une note';
-      modalSubtitle.textContent = 'Renseignez les détails de la note de l\'élève.';
-      inputId.value = '';
+      if (modalTitle) modalTitle.textContent = 'Saisir une note';
+      if (modalSubtitle) modalSubtitle.textContent = "Renseignez les détails de la note de l'élève.";
+      if (inputId) inputId.value = '';
     }
 
-    modal.classList.add('show');
+    if (modal) modal.classList.add('show');
   }
 
   function closeModal() {
-    modal.classList.remove('show');
+    if (modal) modal.classList.remove('show');
   }
 
   if (btnNewGrade) btnNewGrade.addEventListener('click', () => openModal());
   if (btnCancelModal) btnCancelModal.addEventListener('click', closeModal);
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
 
-  tableBody.addEventListener('click', async (e) => {
-    const btn = e.target.closest('button[data-action]');
-    if (!btn) return;
+  if (tableBody) {
+    tableBody.addEventListener('click', async (e) => {
+      const btn = e.target.closest('button[data-action]');
+      if (!btn) return;
 
-    const id = btn.dataset.id;
-    const grade = allGrades.find(g => String(g.id) === String(id));
+      const id = btn.dataset.id;
+      const grade = allGrades.find(g => String(g.id) === String(id));
 
-    if (btn.dataset.action === 'edit' && grade) {
-      openModal(grade);
-    } else if (btn.dataset.action === 'delete' && grade) {
-      if (confirm('Voulez-vous vraiment supprimer cette note ?')) {
-        try {
-          await API.grades.delete(id);
-          showAlert('Note supprimée avec succès.');
-          await loadData();
-        } catch (err) {
-          showAlert(err.message || 'Erreur lors de la suppression.', 'error');
+      if (btn.dataset.action === 'edit' && grade) {
+        openModal(grade);
+      } else if (btn.dataset.action === 'delete' && grade) {
+        if (confirm('Voulez-vous vraiment supprimer cette note ?')) {
+          try {
+            await API.grades.delete(id);
+            showAlert('Note supprimée avec succès.');
+            await loadData();
+          } catch (err) {
+            showAlert(err.message || 'Erreur lors de la suppression.', 'error');
+          }
         }
       }
-    }
-  });
+    });
+  }
 
-  gradeForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    formError.style.display = 'none';
+  if (gradeForm) {
+    gradeForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (formError) formError.style.display = 'none';
 
-    const id = inputId.value;
-    const payload = {
-      student_id: Number(selectStudent.value),
-      subject_id: Number(selectSubject.value),
-      note: Number(inputValeur.value),
-      valeur: Number(inputValeur.value)
-    };
+      const id = inputId?.value;
+      const payload = {
+        student_id: Number(selectStudent?.value),
+        subject_id: Number(selectSubject?.value),
+        note: Number(inputValeur?.value),
+        valeur: Number(inputValeur?.value)
+      };
 
-    btnSubmitModal.disabled = true;
-    btnSubmitModal.textContent = 'Enregistrement...';
-
-    try {
-      if (id) {
-        await API.grades.update(id, payload);
-        showAlert('Note modifiée avec succès.');
-      } else {
-        await API.grades.create(payload);
-        showAlert('Note ajoutée avec succès.');
+      if (btnSubmitModal) {
+        btnSubmitModal.disabled = true;
+        btnSubmitModal.textContent = 'Enregistrement...';
       }
 
-      closeModal();
-      await loadData();
-    } catch (err) {
-      formError.textContent = err.message || 'Une erreur est survenue.';
-      formError.style.display = 'block';
-    } finally {
-      btnSubmitModal.disabled = false;
-      btnSubmitModal.textContent = 'Enregistrer';
-    }
-  });
+      try {
+        if (id) {
+          await API.grades.update(id, payload);
+          showAlert('Note modifiée avec succès.');
+        } else {
+          await API.grades.create(payload);
+          showAlert('Note ajoutée avec succès.');
+        }
+
+        closeModal();
+        await loadData();
+      } catch (err) {
+        if (formError) {
+          formError.textContent = err.message || 'Une erreur est survenue.';
+          formError.style.display = 'block';
+        }
+      } finally {
+        if (btnSubmitModal) {
+          btnSubmitModal.disabled = false;
+          btnSubmitModal.textContent = 'Enregistrer';
+        }
+      }
+    });
+  }
 
   function setupLogout() {
-    const logoutIcon = document.querySelector('.logout-icon');
+    const logoutIcon = document.querySelector('.logout-icon, .logout-btn');
     if (logoutIcon) {
       logoutIcon.addEventListener('click', async () => {
         try {
           await API.auth.logout();
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          window.location.href = '/login';
         } catch (error) {
           console.error('Erreur de déconnexion:', error);
+        } finally {
           localStorage.removeItem('token');
           localStorage.removeItem('user');
           window.location.href = '/login';
