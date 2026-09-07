@@ -1,3 +1,7 @@
+/**
+ * Affiche un message d'erreur dans la boîte d'erreur de connexion
+ * Utilise une alerte si la boîte d'erreur n'existe pas
+ */
 function showLoginError(msg) {
   const box = document.getElementById('error-box');
   if (box) {
@@ -8,6 +12,10 @@ function showLoginError(msg) {
   }
 }
 
+/**
+ * Normalise le nom d'un rôle pour le rendre standard
+ * Gère les accents, les fautes de frappe et les variantes
+ */
 function normalizeLoginRole(role) {
   if (!role) return '';
   const normalized = String(role)
@@ -32,6 +40,7 @@ function normalizeLoginRole(role) {
   return aliases[normalized] || normalized;
 }
 
+// Initialisation du formulaire de connexion au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('loginForm');
   if (!form) return;
@@ -43,8 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const mot_passe = document.getElementById('password')?.value;
     const errorBox = document.getElementById('error-box');
 
+    // Masquer la boîte d'erreur avant de tenter la connexion
     if (errorBox) errorBox.style.display = 'none';
 
+    // Validation des champs
     if (!email || !mot_passe) {
       showLoginError("L'email et le mot de passe sont requis.");
       return;
@@ -55,22 +66,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = await API.auth.login({ email, mot_passe });
       console.log('[LOGIN] Réponse API brute :', result);
 
-      // ✅ ROBUSTESSE : gère les deux formes possibles de réponse
-      // { success, token, user } ou { message: "..." } (échec 401 renvoyé par api.js)
+      // Extraction du token et des données utilisateur
       const token = result?.token;
       const userData = result?.user;
 
       if (token && userData) {
+        // Normalisation du rôle
         const role = normalizeLoginRole(userData.role);
         console.log('[LOGIN] Rôle normalisé :', role);
         console.log('[LOGIN] User :', userData);
 
         const user = { ...userData, role };
 
+        // Stockage du token et des utilisateur dans le localStorage
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
         console.log('[LOGIN] localStorage rempli ✓ (token + user)');
 
+        // Redirection selon le rôle de l'utilisateur
         const redirectMap = {
           admin: '/dashboard-admin',
           teacher: '/dashboard-prof',

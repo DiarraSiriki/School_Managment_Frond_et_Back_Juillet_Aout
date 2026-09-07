@@ -11,6 +11,9 @@ import {
 
 import logger from '../utils/logger.js';
 
+/**
+ * Récupère la liste de tous les étudiants
+ */
 const getEtudiants = async (req, res) => {
   try {
     const students = await listStudents();
@@ -21,6 +24,9 @@ const getEtudiants = async (req, res) => {
   }
 };
 
+/**
+ * Récupère un étudiant par son ID
+ */
 const getEtudiantParId = async (req, res) => {
   try {
     const id = req.params.id;
@@ -34,6 +40,9 @@ const getEtudiantParId = async (req, res) => {
   }
 };
 
+/**
+ * Récupère un étudiant par son matricule
+ */
 const getEtudiantParMatricule = async (req, res) => {
   try {
     const matricule = req.params.matricule;
@@ -47,6 +56,9 @@ const getEtudiantParMatricule = async (req, res) => {
   }
 };
 
+/**
+ * Récupère le profil de l'étudiant connecté
+ */
 const getMonProfilEtudiant = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -60,6 +72,9 @@ const getMonProfilEtudiant = async (req, res) => {
   }
 };
 
+/**
+ * Recherche des étudiants par mot-clé
+ */
 const chercherEtudiant = async (req, res) => {
   try {
     const keyword = req.query.q || '';
@@ -70,6 +85,9 @@ const chercherEtudiant = async (req, res) => {
   }
 };
 
+/**
+ * Crée un nouvel étudiant
+ */
 const ajouterEtudiant = async (req, res) => {
   try {
     const { matricule, nom, prenom, age, classe_id, classe, email, mot_passe } = req.body;
@@ -90,6 +108,9 @@ const ajouterEtudiant = async (req, res) => {
   }
 };
 
+/**
+ * Modifie les informations d'un étudiant
+ */
 const modifierEtudiant = async (req, res) => {
   try {
     const id = req.params.id;
@@ -106,6 +127,9 @@ const modifierEtudiant = async (req, res) => {
   }
 };
 
+/**
+ * Supprime un étudiant
+ */
 const supprimerEtudiant = async (req, res) => {
   try {
     const id = req.params.id;

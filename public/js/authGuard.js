@@ -1,4 +1,8 @@
 const AuthGuard = {
+  /**
+   * Normalise le nom d'un rôle pour le rendre standard
+   * Gère les accents, les fautes de frappe et les variantes
+   */
   normalizeRole(role) {
     if (!role) return '';
     const normalized = String(role)
@@ -26,6 +30,10 @@ const AuthGuard = {
     return aliases[normalized] || normalized;
   },
 
+  /**
+   * Récupère les informations de l'utilisateur depuis le localStorage
+   * Retourne null si les données sont invalides
+   */
   getUser() {
     try {
       const userJson = localStorage.getItem('user');
@@ -43,17 +51,25 @@ const AuthGuard = {
     }
   },
 
+  /**
+   * Récupère le rôle de l'utilisateur connecté
+   */
   getRole() {
     const user = this.getUser();
     return user ? user.role : null;
   },
 
+  /**
+   * Nettoie un chemin d'URL pour le normaliser
+   * Supprime le slash final et l'extension .html
+   */
   cleanPath(pathname = '') {
     let path = String(pathname || '').replace(/\/$/, '') || '/';
     path = path.replace(/\.html$/, '');
     return path;
   },
 
+  // Définition des permissions par rôle
   permissions: {
     admin: [
       'gerer_utilisateurs',
@@ -89,6 +105,7 @@ const AuthGuard = {
     ]
   },
 
+  // Définition des pages accessibles par rôle
   menuAccess: {
     admin: [
       '/dashboard-admin',
@@ -115,30 +132,40 @@ const AuthGuard = {
     ]
   },
 
+  // Page d'accueil par rôle
   homePage: {
     admin: '/dashboard-admin',
     teacher: '/dashboard-prof',
     student: '/mon-profil'
   },
 
+  /**
+   * Vérifie si l'utilisateur a une permission spécifique
+   */
   can(permission) {
     const role = this.getRole();
     if (!role || !this.permissions[role]) return false;
     return this.permissions[role].includes(permission);
   },
 
+  /**
+   * Vérifie si l'utilisateur a accès à la page actuelle
+   * Redirige vers la page de connexion ou la page d'accueil si nécessaire
+   */
   checkPageAccess() {
     const role = this.getRole();
     const path = this.cleanPath(window.location.pathname);
 
     console.log('[AuthGuard] checkPageAccess - Role:', role, 'Path:', path);
 
+    // Vérification de la présence d'un rôle
     if (!role) {
       console.log('[AuthGuard] No role found, redirecting to login');
       window.location.href = '/login';
       return false;
     }
 
+    // Vérification de la présence du token
     if (!localStorage.getItem('token')) {
       console.log('[AuthGuard] No token found, redirecting to login');
       localStorage.removeItem('user');
@@ -146,6 +173,7 @@ const AuthGuard = {
       return false;
     }
 
+    // Vérification des rôles autorisés pour la page
     const body = document.body;
     const allowedRolesAttr = body ? body.getAttribute('data-roles') : null;
 
@@ -162,6 +190,7 @@ const AuthGuard = {
       }
     }
 
+    // Vérification de l'accès au menu
     const allowed = this.menuAccess[role] || [];
     const isAllowed = allowed.some((p) => path === p || path.startsWith(`${p}/`));
 
@@ -175,6 +204,10 @@ const AuthGuard = {
     return true;
   },
 
+  /**
+   * Applique les permissions UI aux éléments avec l'attribut data-perm
+   * Masque les éléments pour lesquels l'utilisateur n'a pas la permission
+   */
   applyUI() {
     document.querySelectorAll('[data-perm]').forEach((element) => {
       const requiredPerm = element.getAttribute('data-perm');
@@ -186,6 +219,10 @@ const AuthGuard = {
     });
   },
 
+  /**
+   * Applique les restrictions d'accès au menu de navigation
+   * Masque les liens de menu non autorisés pour le rôle de l'utilisateur
+   */
   applySidebar() {
     const role = this.getRole();
     if (!role || !this.menuAccess[role]) return;
@@ -202,18 +239,27 @@ const AuthGuard = {
     });
   },
 
+  // Labels d'affichage des rôles
   roleLabels: {
     admin: 'Administrateur',
     teacher: 'Professeur',
     student: 'Étudiant'
   },
 
+  /**
+   * Génère les initiales à partir d'un nom
+   * Ex: "Jean Dupont" -> "JD"
+   */
   getInitials(name) {
     if (!name) return '?';
     const parts = String(name).trim().split(/\s+/);
     return parts.slice(0, 2).map((p) => p[0]?.toUpperCase() || '').join('') || '?';
   },
 
+  /**
+   * Met à jour le widget utilisateur dans la sidebar
+   * Affiche le nom, le rôle et les initiales de l'utilisateur
+   */
   renderUserWidget() {
     const footer = document.querySelector('.user-profile, .sidebar-footer');
     if (!footer) return;
@@ -234,6 +280,7 @@ const AuthGuard = {
   }
 };
 
+// Initialisation de l'AuthGuard au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
   if (AuthGuard.checkPageAccess()) {
     AuthGuard.applySidebar();

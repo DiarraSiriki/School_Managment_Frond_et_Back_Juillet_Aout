@@ -5,15 +5,7 @@ import Teacher from '../models/modelTeacher.js';
 import { resolveClasseId } from './classeService.js';
 import logger from '../utils/logger.js';
 
-export {
-  addUser,
-  authenticate,
-  removeUser,
-  listUsers,
-  getUserById,
-  updateUser,
-  normalizeRole
-};
+// Alias pour normaliser les rôles (accents, fautes de frappe, etc.)
 const ROLE_ALIASES = {
   admin: 'admin',
   administrateur: 'admin',
@@ -28,6 +20,10 @@ const ROLE_ALIASES = {
   eleve: 'student'
 };
 
+/**
+ * Normalise le nom d'un rôle pour le rendre standard
+ * Gère les accents, les fautes de frappe et les variantes
+ */
 const normalizeRole = (role) => {
   if (!role) return '';
   const normalized = String(role)
@@ -38,10 +34,9 @@ const normalizeRole = (role) => {
   return ROLE_ALIASES[normalized] || normalized;
 };
 
-
-
 /**
- * Découpe un nom complet en (prenom, nom).
+ * Sépare un nom complet en prénom et nom
+ * Ex: "Jean Dupont" -> { prenom: "Jean", nom: "Dupont" }
  */
 function splitFullName(fullName) {
   const parts = String(fullName || '').trim().split(/\s+/).filter(Boolean);
@@ -50,31 +45,40 @@ function splitFullName(fullName) {
   return { prenom: parts[0], nom: parts.slice(1).join(' ') };
 }
 
+/**
+ * Crée un nouvel utilisateur avec son compte et sa fiche associée
+ * Gère la création des fiches professeur ou étudiant selon le rôle
+ */
 async function addUser(name, role, email, mot_passe, extra = {}) {
   const normalizedRole = normalizeRole(role);
   const emailToSave = (email || '').toLowerCase().trim();
   const passwordToSave = mot_passe;
 
+  // Validation du mot de passe
   if (!passwordToSave) {
     logger.error(`Tentative d'ajout de l'utilisateur ${name} sans mot de passe.`);
     throw new Error('Le mot de passe ne peut pas être vide.');
   }
 
+  // Validation des champs obligatoires
   if (!name || !normalizedRole || !emailToSave) {
     throw new Error('name, role et email sont requis.');
   }
 
+  // Validation du rôle
   const allowedRoles = ['admin', 'teacher', 'student'];
   if (!allowedRoles.includes(normalizedRole)) {
     throw new Error(`Rôle invalide. Valeurs autorisées : ${allowedRoles.join(', ')}`);
   }
 
+  // Vérification que l'email n'est pas déjà utilisé
   const existingUser = await User.getByEmail(emailToSave);
   if (existingUser) {
     logger.error(`Email déjà utilisé : ${emailToSave}`);
     throw new Error('Cet email est déjà utilisé.');
   }
 
+  // Validations spécifiques selon le rôle
   if (normalizedRole === 'teacher') {
     if (!extra.matiere || !String(extra.matiere).trim()) {
       throw new Error('La matière est obligatoire pour un professeur.');
@@ -85,22 +89,26 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
     if (!extra.matricule || !String(extra.matricule).trim()) {
       throw new Error('Le matricule est obligatoire pour un étudiant.');
     }
+    // Résolution de l'ID de classe
     const resolvedId = await resolveClasseId({
       classe_id: extra.classe_id,
       classe: extra.classe || extra.nom_classe
     });
     extra.classe_id = resolvedId;
+    // Vérification que le matricule n'est pas déjà utilisé
     const existingMat = await Student.getByMatricule(String(extra.matricule).trim());
     if (existingMat) {
       throw new Error(`Le matricule '${String(extra.matricule).trim()}' appartient déjà à un étudiant.`);
     }
   }
 
+  // Création de l'utilisateur
   const result = await User.create(name, normalizedRole, emailToSave, passwordToSave);
   const userId = result.id;
 
   logger.info(`Utilisateur ajouté: ID=${userId}, Nom=${name}, Rôle=${normalizedRole}`);
 
+  // Création de la fiche associée (professeur ou étudiant)
   try {
     if (normalizedRole === 'teacher') {
       const matiere = String(extra.matiere).trim();
@@ -117,6 +125,7 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
       logger.info(`Fiche étudiant créée pour user_id=${userId}, matricule=${matricule}`);
     }
   } catch (err) {
+    // En cas d'erreur, on supprime l'utilisateur créé
     logger.error(`Échec création fiche liée pour user ${userId}: ${err.message}`);
     try { await User.delete(userId); } catch (_) {}
     throw err;
@@ -125,6 +134,9 @@ async function addUser(name, role, email, mot_passe, extra = {}) {
   return { id: userId };
 }
 
+/**
+ * Récupère un utilisateur par son ID avec son rôle normalisé
+ */
 async function getUserById(id) {
   const user = await User.getById(id);
   if (!user) return null;
@@ -134,6 +146,10 @@ async function getUserById(id) {
   };
 }
 
+/**
+ * Authentifie un utilisateur par email et mot de passe
+ * Retourne l'utilisateur sans le mot de passe si l'authentification réussit
+ */
 async function authenticate(email, mot_passe) {
   const emailToVerify = (email || '').toLowerCase().trim();
   if (!emailToVerify || !mot_passe) return null;
@@ -141,9 +157,10 @@ async function authenticate(email, mot_passe) {
   const user = await User.getByEmail(emailToVerify);
   if (!user || user.mot_passe == null || user.mot_passe === '') return null;
 
-  // Comparaison en clair uniquement (pas de hachage)
+  // Comparaison en clair (à remplacer par bcrypt en production)
   if (String(mot_passe) !== String(user.mot_passe)) return null;
 
+  // Retour de l'utilisateur sans le mot de passe
   const { mot_passe: _pwd, ...safeUser } = user;
   return {
     ...safeUser,
@@ -151,8 +168,12 @@ async function authenticate(email, mot_passe) {
   };
 }
 
+/**
+ * Supprime un utilisateur et sa fiche associée (professeur ou étudiant)
+ * Gère aussi les enregistrements orphelins (sans user_id)
+ */
 async function removeUser(id) {
-  // Gérer les IDs orphelins (student-123, teacher-456)
+  // Gestion des IDs orphelins (format: student-123, teacher-456)
   if (typeof id === 'string' && id.includes('-')) {
     const [type, realId] = id.split('-');
     const numericId = Number(realId);
@@ -196,9 +217,14 @@ async function removeUser(id) {
   return false;
 }
 
+/**
+ * Liste tous les utilisateurs avec leurs détails (étudiants et professeurs)
+ * Inclut aussi les enregistrements orphelins (sans compte utilisateur)
+ */
 async function listUsers() {
   const users = await User.getAll();
 
+  // Récupération des détails pour chaque utilisateur
   const usersWithDetails = await Promise.all(users.map(async user => {
     const userRole = normalizeRole(user.role);
     let details = {};
@@ -232,6 +258,7 @@ async function listUsers() {
     };
   }));
 
+  // Identification des utilisateurs liés
   const linkedStudentUserIds = new Set(
     usersWithDetails.filter(u => u.role === 'student').map(u => u.id)
   );
@@ -239,6 +266,7 @@ async function listUsers() {
     usersWithDetails.filter(u => u.role === 'teacher').map(u => u.id)
   );
 
+  // Récupération des enregistrements orphelins (sans compte utilisateur)
   const allStudents = await Student.getAll();
   const orphanStudents = allStudents
     .filter(s => !s.user_id || !linkedStudentUserIds.has(s.user_id))
@@ -269,15 +297,21 @@ async function listUsers() {
       _orphan: true
     }));
 
+  // Fusion de tous les utilisateurs
   const all = [...usersWithDetails, ...orphanStudents, ...orphanTeachers];
   logger.info(`Liste des utilisateurs consultée (${all.length} entrées)`);
   return all;
 }
 
+/**
+ * Met à jour un utilisateur et sa fiche associée
+ * Gère les changements de rôle et la création/mise à jour des fiches
+ */
 async function updateUser(id, name, role, email, mot_passe, extra = {}) {
   const currentUser = await User.getById(id);
   if (!currentUser) return false;
 
+  // Gestion du mot de passe (garder l'ancien si non fourni)
   let passwordToSave = mot_passe;
   if (!passwordToSave) {
     const fullUser = await User.getByEmail(currentUser.email);
@@ -288,8 +322,10 @@ async function updateUser(id, name, role, email, mot_passe, extra = {}) {
   const nameToSave = name || currentUser.name;
   const roleToSave = normalizeRole(role || currentUser.role);
 
+  // Mise à jour de l'utilisateur
   const result = await User.update(id, nameToSave, roleToSave, emailToSave, passwordToSave);
 
+  // Mise à jour de la fiche associée
   try {
     if (roleToSave === 'teacher') {
       let teacher = await Teacher.getByUserId(id);
@@ -308,6 +344,7 @@ async function updateUser(id, name, role, email, mot_passe, extra = {}) {
       const { prenom, nom } = splitFullName(nameToSave);
 
       if (student) {
+        // Mise à jour de la fiche étudiante existante
         const matricule = (extra.matricule && String(extra.matricule).trim())
           ? String(extra.matricule).trim()
           : student.matricule;
@@ -324,6 +361,7 @@ async function updateUser(id, name, role, email, mot_passe, extra = {}) {
 
         await Student.update(student.id, matricule, nom || nameToSave, prenom, age, classe_id, id);
       } else {
+        // Création d'une nouvelle fiche étudiante
         if (!extra.matricule) {
           logger.warn(`Impossible de créer la fiche étudiant pour user ${id}: matricule manquant`);
         } else {
@@ -350,3 +388,14 @@ async function updateUser(id, name, role, email, mot_passe, extra = {}) {
   }
   return true;
 }
+
+// Export des fonctions du service
+export {
+  addUser,
+  authenticate,
+  removeUser,
+  listUsers,
+  getUserById,
+  updateUser,
+  normalizeRole
+};

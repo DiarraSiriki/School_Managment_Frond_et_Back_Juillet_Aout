@@ -6,6 +6,7 @@ import cors from 'cors';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 
+// Import des routes API
 import classRoutes from './routes/classeRoute.js';
 import studentRoutes from './routes/studentRoutes.js';
 import teacherRoutes from './routes/teacherRoutes.js';
@@ -21,15 +22,15 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
+// Configuration des middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serveur de fichiers statiques (dossier public)
+// Servir les fichiers statiques du dossier public
 app.use(express.static(join(__dirname, 'public')));
 
-// Servir toutes les pages HTML avec des URLs propres
+// Mapping des routes vers les fichiers HTML
 const pagesMap = {
     '/': 'index.html',
     '/login': 'login.html',
@@ -43,6 +44,7 @@ const pagesMap = {
     '/mon-profil': 'html/mon-profil.html'
 };
 
+// Création des routes pour chaque page HTML
 for (const [route, file] of Object.entries(pagesMap)) {
     app.get(route, (req, res) => {
         res.sendFile(join(__dirname, 'public', file), (err) => {
@@ -54,27 +56,14 @@ for (const [route, file] of Object.entries(pagesMap)) {
     });
 }
 
-// Redirection des anciennes URLs /HTML/:page (compatibilité)
-const htmlRouteMap = {
-    'index.html': '/',
-    'login.html': '/login',
-    'dashboard-admin.html': '/dashboard-admin',
-    'dashboard-etudiant.html': '/dashboard-etudiant',
-    'dashboard-prof.html': '/dashboard-prof',
-    'absences.html': '/absences',
-    'matieres.html': '/matieres',
-    'notes.html': '/notes',
-    'statistiques.html': '/statistiques',
-    'mon-profil.html': '/mon-profil'
-};
-
+// Redirection pour les anciennes URLs avec /html/
 app.get(['/HTML/:page', '/html/:page'], (req, res) => {
     const page = (req.params.page || '').toLowerCase();
-    const redirectUrl = htmlRouteMap[page] || '/';
+    const redirectUrl = pagesMap[`/${page}`] || '/';
     res.redirect(redirectUrl);
 });
 
-// Routes API
+// Configuration des routes API
 app.use('/api/auth', authRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/classes', classRoutes);
@@ -85,16 +74,17 @@ app.use('/api/grades', gradesRoutes);
 app.use('/api/absences', absenceRoutes);
 app.use('/api/stats', statsRoutes);
 
+// Route de santé pour vérifier que l'API fonctionne
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'API School Management fonctionnelle' });
 });
 
-// Route 404 pour requêtes non trouvées
+// Gestion des routes non trouvées (404)
 app.use((req, res) => {
     res.status(404).json({ error: `Route non trouvée : ${req.originalUrl}` });
 });
 
-// Gestionnaire d'erreurs globales (500)
+// Gestionnaire d'erreurs global (500)
 app.use((err, req, res, next) => {
     console.error('[ERREUR SERVER]', err.stack);
     res.status(500).json({

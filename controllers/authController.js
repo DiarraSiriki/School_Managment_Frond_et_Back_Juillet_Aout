@@ -2,13 +2,19 @@ import { authenticate, getUserById } from '../services/userService.js';
 import jwt from 'jsonwebtoken';
 import { logToFile } from '../utils/logger.js';
 
+// Clé secrète pour signer les tokens JWT
 const JWT_SECRET = process.env.JWT_SECRET || 'votre_cle_secrete_super_securisee';
 
+/**
+ * Gère la connexion d'un utilisateur
+ * Vérifie les identifiants et génère un token JWT
+ */
 const login = async (req, res) => {
   const { email, mot_passe } = req.body;
 
   logToFile('INFO', `Tentative de connexion: ${email}`);
 
+  // Vérification que les champs sont remplis
   if (!email || !mot_passe) {
     logToFile('WARN', `Connexion échouée (champs manquants): ${email}`);
     return res.status(400).json({
@@ -18,6 +24,7 @@ const login = async (req, res) => {
   }
 
   try {
+    // Authentification de l'utilisateur
     const user = await authenticate(email, mot_passe);
 
     if (!user) {
@@ -28,6 +35,7 @@ const login = async (req, res) => {
       });
     }
 
+    // Vérification que le profil est complet
     if (!user.id || !user.role) {
       logToFile('ERROR', `Connexion refusée (profil incomplet): ${email}`);
       return res.status(401).json({
@@ -36,6 +44,7 @@ const login = async (req, res) => {
       });
     }
 
+    // Génération du token JWT
     const token = jwt.sign(
       {
         id: user.id,
@@ -71,6 +80,9 @@ const login = async (req, res) => {
   }
 };
 
+/**
+ * Récupère le profil de l'utilisateur connecté
+ */
 const getMonProfil = async (req, res) => {
   const userId = req.user.id;
 
@@ -97,6 +109,10 @@ const getMonProfil = async (req, res) => {
   }
 };
 
+/**
+ * Gère la déconnexion d'un utilisateur
+ * Note: Le token JWT reste valide côté client jusqu'à son expiration
+ */
 const logout = (req, res) => {
   const user = req.user;
   logToFile('INFO', `Déconnexion: ${user?.email} (role: ${user?.role})`);
